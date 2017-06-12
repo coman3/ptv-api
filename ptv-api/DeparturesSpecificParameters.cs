@@ -1,21 +1,32 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class DeparturesSpecificParameters : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class DeparturesSpecificParameters : INotifyPropertyChanged
     {
+        private DateTime? _dateUtc;
         private int? _directionId;
-        private System.DateTime? _dateUtc;
-        private int? _maxResults;
+        private ObservableCollection<ExpandableParameter> _expand;
         private bool? _gtfs;
         private bool? _includeCancelled;
-        private System.Collections.ObjectModel.ObservableCollection<ExpandableParameter> _expand;
+        private int? _maxResults;
 
-        /// <summary>Filter by identifier of direction of travel; values returned by Directions API - /v3/directions/route/{route_id}</summary>
-        [Newtonsoft.Json.JsonProperty("direction_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>
+        ///     Filter by identifier of direction of travel; values returned by Directions API -
+        ///     /v3/directions/route/{route_id}
+        /// </summary>
+        [JsonProperty("direction_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? DirectionId
         {
-            get { return _directionId; }
+            get => _directionId;
             set
             {
                 if (_directionId != value)
@@ -27,11 +38,11 @@ namespace PtvApi
         }
 
         /// <summary>Filter by the date and time of the request (ISO 8601 UTC format)</summary>
-        [Newtonsoft.Json.JsonProperty("date_utc", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? DateUtc
+        [JsonProperty("date_utc", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? DateUtc
         {
-            get { return _dateUtc; }
+            get => _dateUtc;
             set
             {
                 if (_dateUtc != value)
@@ -43,11 +54,11 @@ namespace PtvApi
         }
 
         /// <summary>Maximum number of results returned</summary>
-        [Newtonsoft.Json.JsonProperty("max_results", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("max_results", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? MaxResults
         {
-            get { return _maxResults; }
+            get => _maxResults;
             set
             {
                 if (_maxResults != value)
@@ -59,11 +70,11 @@ namespace PtvApi
         }
 
         /// <summary>Indicates that stop_id parameter will accept "GTFS stop_id" data</summary>
-        [Newtonsoft.Json.JsonProperty("gtfs", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("gtfs", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public bool? Gtfs
         {
-            get { return _gtfs; }
+            get => _gtfs;
             set
             {
                 if (_gtfs != value)
@@ -75,11 +86,11 @@ namespace PtvApi
         }
 
         /// <summary>Indicates if cancelled services (if they exist) are returned (default = false) - metropolitan train only</summary>
-        [Newtonsoft.Json.JsonProperty("include_cancelled", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("include_cancelled", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public bool? IncludeCancelled
         {
-            get { return _includeCancelled; }
+            get => _includeCancelled;
             set
             {
                 if (_includeCancelled != value)
@@ -90,13 +101,16 @@ namespace PtvApi
             }
         }
 
-        /// <summary>List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run, direction, disruption</summary>
-        [Newtonsoft.Json.JsonProperty("expand", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
-            ItemConverterType = typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public System.Collections.ObjectModel.ObservableCollection<ExpandableParameter> Expand
+        /// <summary>
+        ///     List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run, direction,
+        ///     disruption
+        /// </summary>
+        [JsonProperty("expand", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore,
+            ItemConverterType = typeof(StringEnumConverter))]
+        public ObservableCollection<ExpandableParameter> Expand
         {
-            get { return _expand; }
+            get => _expand;
             set
             {
                 if (_expand != value)
@@ -107,24 +121,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static DeparturesSpecificParameters FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<DeparturesSpecificParameters>(data);
+            return JsonConvert.DeserializeObject<DeparturesSpecificParameters>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -1,21 +1,26 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class Run : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class Run : INotifyPropertyChanged
     {
-        private int? _runId;
+        private string _destinationName;
+        private int? _finalStopId;
         private int? _routeId;
         private int? _routeType;
-        private int? _finalStopId;
-        private string _destinationName;
+        private int? _runId;
         private string _status;
 
         /// <summary>Trip/service run identifier</summary>
-        [Newtonsoft.Json.JsonProperty("run_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("run_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RunId
         {
-            get { return _runId; }
+            get => _runId;
             set
             {
                 if (_runId != value)
@@ -27,11 +32,11 @@ namespace PtvApi
         }
 
         /// <summary>Route identifier</summary>
-        [Newtonsoft.Json.JsonProperty("route_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RouteId
         {
-            get { return _routeId; }
+            get => _routeId;
             set
             {
                 if (_routeId != value)
@@ -43,11 +48,11 @@ namespace PtvApi
         }
 
         /// <summary>Transport mode identifier</summary>
-        [Newtonsoft.Json.JsonProperty("route_type", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_type", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RouteTypes
         {
-            get { return _routeType; }
+            get => _routeType;
             set
             {
                 if (_routeType != value)
@@ -59,11 +64,11 @@ namespace PtvApi
         }
 
         /// <summary>stop_id of final stop of run</summary>
-        [Newtonsoft.Json.JsonProperty("final_stop_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("final_stop_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? FinalStopId
         {
-            get { return _finalStopId; }
+            get => _finalStopId;
             set
             {
                 if (_finalStopId != value)
@@ -75,11 +80,11 @@ namespace PtvApi
         }
 
         /// <summary>Name of destination of run</summary>
-        [Newtonsoft.Json.JsonProperty("destination_name", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("destination_name", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string DestinationName
         {
-            get { return _destinationName; }
+            get => _destinationName;
             set
             {
                 if (_destinationName != value)
@@ -91,11 +96,11 @@ namespace PtvApi
         }
 
         /// <summary>Status of metropolitan train run; returns "scheduled" for other modes</summary>
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("status", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string Status
         {
-            get { return _status; }
+            get => _status;
             set
             {
                 if (_status != value)
@@ -106,24 +111,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static Run FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Run>(data);
+            return JsonConvert.DeserializeObject<Run>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

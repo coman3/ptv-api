@@ -1,17 +1,27 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "10.6.6324.28497")]
+    [GeneratedCode("NSwag", "10.6.6324.28497")]
     public partial class RouteTypesClient
     {
         public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
             string url);
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
-            System.Text.StringBuilder urlBuilder);
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
+            StringBuilder urlBuilder);
 
-        partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
+        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
 
         /// <summary>View all route types and their names</summary>
         /// <param name="token">Please ignore</param>
@@ -19,10 +29,10 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>All route types (i.e. identifiers of transport modes) and their names.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<RouteTypesResponse> GetRouteTypesAsync(string token, string devid,
+        public Task<RouteTypesResponse> GetRouteTypesAsync(string token, string devid,
             string signature)
         {
-            return GetRouteTypesAsync(token, devid, signature, System.Threading.CancellationToken.None);
+            return GetRouteTypesAsync(token, devid, signature, CancellationToken.None);
         }
 
         /// <summary>View all route types and their names</summary>
@@ -33,52 +43,55 @@ namespace PtvApi
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public RouteTypesResponse GetRouteTypes(string token, string devid, string signature)
         {
-            return System.Threading.Tasks.Task
+            return Task
                 .Run(async () => await GetRouteTypesAsync(token, devid, signature,
-                    System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+                    CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all route types and their names</summary>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of
+        ///     cancellation.
+        /// </param>
         /// <returns>All route types (i.e. identifiers of transport modes) and their names.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<RouteTypesResponse> GetRouteTypesAsync(string token, string devid,
-            string signature, System.Threading.CancellationToken cancellationToken)
+        public async Task<RouteTypesResponse> GetRouteTypesAsync(string token, string devid,
+            string signature, CancellationToken cancellationToken)
         {
-            var urlBuilder = new System.Text.StringBuilder();
+            var urlBuilder = new StringBuilder();
             urlBuilder.Append(BaseUrl).Append("/v3/route_types?");
             if (token != null)
-                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
             if (devid != null)
-                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
             if (signature != null)
-                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
             urlBuilder.Length--;
 
-            var client = new System.Net.Http.HttpClient();
+            var client = new HttpClient();
             try
             {
-                using (var request = new System.Net.Http.HttpRequestMessage())
+                using (var request = new HttpRequestMessage())
                 {
-                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Method = new HttpMethod("GET");
                     request.Headers.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        new MediaTypeWithQualityHeaderValue("application/json"));
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
-                            System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
+                            HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
                         var headers =
-                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                            Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -92,10 +105,10 @@ namespace PtvApi
                             try
                             {
                                 result =
-                                    Newtonsoft.Json.JsonConvert.DeserializeObject<RouteTypesResponse>(responseData);
+                                    JsonConvert.DeserializeObject<RouteTypesResponse>(responseData);
                                 return result;
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -107,9 +120,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -123,9 +136,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -156,6 +169,5 @@ namespace PtvApi
                     client.Dispose();
             }
         }
-
     }
 }

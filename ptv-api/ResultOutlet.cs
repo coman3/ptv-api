@@ -1,21 +1,26 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class ResultOutlet : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class ResultOutlet : INotifyPropertyChanged
     {
-        private double? _outletDistance;
-        private string _outletName;
         private string _outletBusiness;
+        private double? _outletDistance;
         private double? _outletLatitude;
         private double? _outletLongitude;
+        private string _outletName;
         private string _outletSuburb;
 
         /// <summary>Distance of outlet from input location (in metres); returns 0 if no location is input</summary>
-        [Newtonsoft.Json.JsonProperty("outlet_distance", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("outlet_distance", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? OutletDistance
         {
-            get { return _outletDistance; }
+            get => _outletDistance;
             set
             {
                 if (_outletDistance != value)
@@ -27,11 +32,11 @@ namespace PtvApi
         }
 
         /// <summary>The location name of the outlet</summary>
-        [Newtonsoft.Json.JsonProperty("outlet_name", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("outlet_name", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string OutletName
         {
-            get { return _outletName; }
+            get => _outletName;
             set
             {
                 if (_outletName != value)
@@ -43,11 +48,11 @@ namespace PtvApi
         }
 
         /// <summary>The business name of the outlet</summary>
-        [Newtonsoft.Json.JsonProperty("outlet_business", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("outlet_business", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string OutletBusiness
         {
-            get { return _outletBusiness; }
+            get => _outletBusiness;
             set
             {
                 if (_outletBusiness != value)
@@ -59,11 +64,11 @@ namespace PtvApi
         }
 
         /// <summary>Geographic coordinate of latitude at outlet</summary>
-        [Newtonsoft.Json.JsonProperty("outlet_latitude", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("outlet_latitude", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? OutletLatitude
         {
-            get { return _outletLatitude; }
+            get => _outletLatitude;
             set
             {
                 if (_outletLatitude != value)
@@ -75,11 +80,11 @@ namespace PtvApi
         }
 
         /// <summary>Geographic coordinate of longitude at outlet</summary>
-        [Newtonsoft.Json.JsonProperty("outlet_longitude", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("outlet_longitude", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? OutletLongitude
         {
-            get { return _outletLongitude; }
+            get => _outletLongitude;
             set
             {
                 if (_outletLongitude != value)
@@ -91,11 +96,11 @@ namespace PtvApi
         }
 
         /// <summary>The suburb the outlet is in</summary>
-        [Newtonsoft.Json.JsonProperty("outlet_suburb", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("outlet_suburb", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string OutletSuburb
         {
-            get { return _outletSuburb; }
+            get => _outletSuburb;
             set
             {
                 if (_outletSuburb != value)
@@ -106,24 +111,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static ResultOutlet FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<ResultOutlet>(data);
+            return JsonConvert.DeserializeObject<ResultOutlet>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

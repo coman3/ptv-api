@@ -1,19 +1,24 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class Route : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class Route : INotifyPropertyChanged
     {
-        private int? _routeType;
         private int? _routeId;
         private string _routeName;
         private string _routeNumber;
+        private int? _routeType;
 
         /// <summary>Transport mode identifier</summary>
-        [Newtonsoft.Json.JsonProperty("route_type", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_type", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RouteTypes
         {
-            get { return _routeType; }
+            get => _routeType;
             set
             {
                 if (_routeType != value)
@@ -25,11 +30,11 @@ namespace PtvApi
         }
 
         /// <summary>Route identifier</summary>
-        [Newtonsoft.Json.JsonProperty("route_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RouteId
         {
-            get { return _routeId; }
+            get => _routeId;
             set
             {
                 if (_routeId != value)
@@ -41,11 +46,11 @@ namespace PtvApi
         }
 
         /// <summary>Name of route</summary>
-        [Newtonsoft.Json.JsonProperty("route_name", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_name", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string RouteName
         {
-            get { return _routeName; }
+            get => _routeName;
             set
             {
                 if (_routeName != value)
@@ -57,11 +62,11 @@ namespace PtvApi
         }
 
         /// <summary>Route number presented to public (nb. not route_id)</summary>
-        [Newtonsoft.Json.JsonProperty("route_number", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_number", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string RouteNumber
         {
-            get { return _routeNumber; }
+            get => _routeNumber;
             set
             {
                 if (_routeNumber != value)
@@ -72,24 +77,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static Route FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Route>(data);
+            return JsonConvert.DeserializeObject<Route>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

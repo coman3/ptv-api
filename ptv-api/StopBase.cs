@@ -1,17 +1,22 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class StopBase : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class StopBase : INotifyPropertyChanged
     {
         private int? _stopId;
         private string _stopName;
 
         /// <summary>Stop identifier</summary>
-        [Newtonsoft.Json.JsonProperty("stop_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("stop_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? StopId
         {
-            get { return _stopId; }
+            get => _stopId;
             set
             {
                 if (_stopId != value)
@@ -23,11 +28,11 @@ namespace PtvApi
         }
 
         /// <summary>Name of stop</summary>
-        [Newtonsoft.Json.JsonProperty("stop_name", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("stop_name", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string StopName
         {
-            get { return _stopName; }
+            get => _stopName;
             set
             {
                 if (_stopName != value)
@@ -38,24 +43,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static StopBase FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<StopBase>(data);
+            return JsonConvert.DeserializeObject<StopBase>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

@@ -1,20 +1,34 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Globalization;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "10.6.6324.28497")]
+    [GeneratedCode("NSwag", "10.6.6324.28497")]
     public partial class PatternsClient
     {
         public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
             string url);
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
-            System.Text.StringBuilder urlBuilder);
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
+            StringBuilder urlBuilder);
 
-        partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
+        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
 
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
-        /// <param name="runId">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
+        /// <param name="runId">
+        ///     Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures
+        ///     API
+        /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
         /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
         /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
@@ -23,15 +37,18 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int runId, RouteTypes routeType,
-            int? stopId, System.DateTime? dateUtc, string token, string devid, string signature)
+        public Task<StoppingPattern> GetPatternByRunAsync(int runId, RouteTypes routeType,
+            int? stopId, DateTime? dateUtc, string token, string devid, string signature)
         {
             return GetPatternByRunAsync(runId, routeType, stopId, dateUtc, token, devid, signature,
-                System.Threading.CancellationToken.None);
+                CancellationToken.None);
         }
 
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
-        /// <param name="runId">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
+        /// <param name="runId">
+        ///     Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures
+        ///     API
+        /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
         /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
         /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
@@ -41,73 +58,73 @@ namespace PtvApi
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public StoppingPattern GetPatternByRun(int runId, RouteTypes routeType, int? stopId,
-            System.DateTime? dateUtc, string token, string devid, string signature)
+            DateTime? dateUtc, string token, string devid, string signature)
         {
-            return System.Threading.Tasks.Task.Run(async () => await GetPatternByRunAsync(runId, routeType, stopId,
-                dateUtc, token, devid, signature, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await GetPatternByRunAsync(runId, routeType, stopId,
+                dateUtc, token, devid, signature, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
-        /// <param name="runId">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
+        /// <param name="runId">
+        ///     Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures
+        ///     API
+        /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
         /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
         /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of
+        ///     cancellation.
+        /// </param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int runId,
-            RouteTypes routeType, int? stopId, System.DateTime? dateUtc, string token, string devid,
-            string signature, System.Threading.CancellationToken cancellationToken)
+        public async Task<StoppingPattern> GetPatternByRunAsync(int runId,
+            RouteTypes routeType, int? stopId, DateTime? dateUtc, string token, string devid,
+            string signature, CancellationToken cancellationToken)
         {
-            if (runId == null)
-                throw new System.ArgumentNullException("runId");
-
-            if (routeType == null)
-                throw new System.ArgumentNullException("routeType");
-
-            var urlBuilder = new System.Text.StringBuilder();
+            var urlBuilder = new StringBuilder();
             urlBuilder.Append(BaseUrl).Append("/v3/pattern/run/{run_id}/route_type/{route_type}?");
-            urlBuilder.Replace("{run_id}", System.Uri.EscapeDataString(runId.ToString()));
-            urlBuilder.Replace("{route_type}", System.Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{run_id}", Uri.EscapeDataString(runId.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
             if (stopId != null)
-                urlBuilder.Append("stop_id=").Append(System.Uri.EscapeDataString(stopId.Value.ToString()))
+                urlBuilder.Append("stop_id=").Append(Uri.EscapeDataString(stopId.Value.ToString()))
                     .Append("&");
             if (dateUtc != null)
                 urlBuilder.Append("date_utc=")
-                    .Append(System.Uri.EscapeDataString(
-                        dateUtc.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                    .Append(Uri.EscapeDataString(
+                        dateUtc.Value.ToString("s", CultureInfo.InvariantCulture))).Append("&");
             if (token != null)
-                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
             if (devid != null)
-                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
             if (signature != null)
-                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
             urlBuilder.Length--;
 
-            var client = new System.Net.Http.HttpClient();
+            var client = new HttpClient();
             try
             {
-                using (var request = new System.Net.Http.HttpRequestMessage())
+                using (var request = new HttpRequestMessage())
                 {
-                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Method = new HttpMethod("GET");
                     request.Headers.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        new MediaTypeWithQualityHeaderValue("application/json"));
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
-                            System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
+                            HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
                         var headers =
-                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                            response.Headers.ToDictionary(h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -120,10 +137,10 @@ namespace PtvApi
                             var result = default(StoppingPattern);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<StoppingPattern>(responseData);
+                                result = JsonConvert.DeserializeObject<StoppingPattern>(responseData);
                                 return result;
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -135,9 +152,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -151,9 +168,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -173,17 +190,14 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
         }
-
     }
 }

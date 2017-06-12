@@ -1,19 +1,24 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class DisruptionDirection : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class DisruptionDirection : INotifyPropertyChanged
     {
-        private int? _routeDirectionId;
         private int? _directionId;
         private string _directionName;
+        private int? _routeDirectionId;
         private string _serviceTime;
 
         /// <summary>Route and direction of travel combination identifier</summary>
-        [Newtonsoft.Json.JsonProperty("route_direction_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_direction_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RouteDirectionId
         {
-            get { return _routeDirectionId; }
+            get => _routeDirectionId;
             set
             {
                 if (_routeDirectionId != value)
@@ -25,11 +30,11 @@ namespace PtvApi
         }
 
         /// <summary>Direction of travel identifier</summary>
-        [Newtonsoft.Json.JsonProperty("direction_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("direction_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? DirectionId
         {
-            get { return _directionId; }
+            get => _directionId;
             set
             {
                 if (_directionId != value)
@@ -41,11 +46,11 @@ namespace PtvApi
         }
 
         /// <summary>Name of direction of travel</summary>
-        [Newtonsoft.Json.JsonProperty("direction_name", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("direction_name", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string DirectionName
         {
-            get { return _directionName; }
+            get => _directionName;
             set
             {
                 if (_directionName != value)
@@ -56,12 +61,15 @@ namespace PtvApi
             }
         }
 
-        /// <summary>Time of service to which disruption applies, in 24 hour clock format (HH:MM:SS) AEDT/AEST; returns null if disruption applies to multiple (or no) services</summary>
-        [Newtonsoft.Json.JsonProperty("service_time", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        /// <summary>
+        ///     Time of service to which disruption applies, in 24 hour clock format (HH:MM:SS) AEDT/AEST; returns null if
+        ///     disruption applies to multiple (or no) services
+        /// </summary>
+        [JsonProperty("service_time", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string ServiceTime
         {
-            get { return _serviceTime; }
+            get => _serviceTime;
             set
             {
                 if (_serviceTime != value)
@@ -72,24 +80,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static DisruptionDirection FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<DisruptionDirection>(data);
+            return JsonConvert.DeserializeObject<DisruptionDirection>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

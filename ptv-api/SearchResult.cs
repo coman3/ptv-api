@@ -1,19 +1,25 @@
+using System.CodeDom.Compiler;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class SearchResult : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class SearchResult : INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<ResultStop> _stops;
-        private System.Collections.ObjectModel.ObservableCollection<ResultRoute> _routes;
-        private System.Collections.ObjectModel.ObservableCollection<ResultOutlet> _outlets;
+        private ObservableCollection<ResultOutlet> _outlets;
+        private ObservableCollection<ResultRoute> _routes;
         private Status _status;
+        private ObservableCollection<ResultStop> _stops;
 
         /// <summary>Train stations, tram stops, bus stops, regional coach stops or Night Bus stops</summary>
-        [Newtonsoft.Json.JsonProperty("stops", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<ResultStop> Stops
+        [JsonProperty("stops", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public ObservableCollection<ResultStop> Stops
         {
-            get { return _stops; }
+            get => _stops;
             set
             {
                 if (_stops != value)
@@ -25,11 +31,11 @@ namespace PtvApi
         }
 
         /// <summary>Train lines, tram routes, bus routes, regional coach routes, Night Bus routes</summary>
-        [Newtonsoft.Json.JsonProperty("routes", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<ResultRoute> Routes
+        [JsonProperty("routes", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public ObservableCollection<ResultRoute> Routes
         {
-            get { return _routes; }
+            get => _routes;
             set
             {
                 if (_routes != value)
@@ -41,11 +47,11 @@ namespace PtvApi
         }
 
         /// <summary>myki ticket outlets</summary>
-        [Newtonsoft.Json.JsonProperty("outlets", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<ResultOutlet> Outlets
+        [JsonProperty("outlets", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public ObservableCollection<ResultOutlet> Outlets
         {
-            get { return _outlets; }
+            get => _outlets;
             set
             {
                 if (_outlets != value)
@@ -57,11 +63,11 @@ namespace PtvApi
         }
 
         /// <summary>API Status / Metadata</summary>
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("status", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public Status Status
         {
-            get { return _status; }
+            get => _status;
             set
             {
                 if (_status != value)
@@ -72,24 +78,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static SearchResult FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<SearchResult>(data);
+            return JsonConvert.DeserializeObject<SearchResult>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

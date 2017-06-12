@@ -1,20 +1,25 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class DisruptionRoute : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class DisruptionRoute : INotifyPropertyChanged
     {
-        private int? _routeType;
+        private DisruptionDirection _direction;
         private int? _routeId;
         private string _routeName;
         private string _routeNumber;
-        private DisruptionDirection _direction;
+        private int? _routeType;
 
         /// <summary>Transport mode identifier</summary>
-        [Newtonsoft.Json.JsonProperty("route_type", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_type", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RouteTypes
         {
-            get { return _routeType; }
+            get => _routeType;
             set
             {
                 if (_routeType != value)
@@ -26,11 +31,11 @@ namespace PtvApi
         }
 
         /// <summary>Route identifier</summary>
-        [Newtonsoft.Json.JsonProperty("route_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RouteId
         {
-            get { return _routeId; }
+            get => _routeId;
             set
             {
                 if (_routeId != value)
@@ -42,11 +47,11 @@ namespace PtvApi
         }
 
         /// <summary>Name of route</summary>
-        [Newtonsoft.Json.JsonProperty("route_name", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_name", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string RouteName
         {
-            get { return _routeName; }
+            get => _routeName;
             set
             {
                 if (_routeName != value)
@@ -58,11 +63,11 @@ namespace PtvApi
         }
 
         /// <summary>Route number presented to public (i.e. not route_id)</summary>
-        [Newtonsoft.Json.JsonProperty("route_number", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_number", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string RouteNumber
         {
-            get { return _routeNumber; }
+            get => _routeNumber;
             set
             {
                 if (_routeNumber != value)
@@ -74,11 +79,11 @@ namespace PtvApi
         }
 
         /// <summary>Direction of travel relevant to a disruption (if applicable)</summary>
-        [Newtonsoft.Json.JsonProperty("direction", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("direction", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public DisruptionDirection Direction
         {
-            get { return _direction; }
+            get => _direction;
             set
             {
                 if (_direction != value)
@@ -89,24 +94,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static DisruptionRoute FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<DisruptionRoute>(data);
+            return JsonConvert.DeserializeObject<DisruptionRoute>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

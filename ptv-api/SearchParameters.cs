@@ -1,21 +1,30 @@
+using System.CodeDom.Compiler;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class SearchParameters : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class SearchParameters : INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<RouteTypes> _routeTypes;
+        private bool? _includeAddresses;
+        private bool? _includeOutlets;
         private double? _latitude;
         private double? _longitude;
         private double? _maxDistance;
-        private bool? _includeAddresses;
-        private bool? _includeOutlets;
+        private ObservableCollection<RouteTypes> _routeTypes;
 
-        /// <summary>Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types specified)</summary>
-        [Newtonsoft.Json.JsonProperty("route_types", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<RouteTypes> RouteTypess
+        /// <summary>
+        ///     Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types
+        ///     specified)
+        /// </summary>
+        [JsonProperty("route_types", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public ObservableCollection<RouteTypes> RouteTypess
         {
-            get { return _routeTypes; }
+            get => _routeTypes;
             set
             {
                 if (_routeTypes != value)
@@ -27,11 +36,11 @@ namespace PtvApi
         }
 
         /// <summary>Filter by geographic coordinate of latitude</summary>
-        [Newtonsoft.Json.JsonProperty("latitude", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("latitude", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? Latitude
         {
-            get { return _latitude; }
+            get => _latitude;
             set
             {
                 if (_latitude != value)
@@ -43,11 +52,11 @@ namespace PtvApi
         }
 
         /// <summary>Filter by geographic coordinate of longitude</summary>
-        [Newtonsoft.Json.JsonProperty("longitude", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("longitude", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? Longitude
         {
-            get { return _longitude; }
+            get => _longitude;
             set
             {
                 if (_longitude != value)
@@ -59,11 +68,11 @@ namespace PtvApi
         }
 
         /// <summary>Filter by maximum distance (in metres) from location specified via latitude and longitude parameters</summary>
-        [Newtonsoft.Json.JsonProperty("max_distance", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("max_distance", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? MaxDistance
         {
-            get { return _maxDistance; }
+            get => _maxDistance;
             set
             {
                 if (_maxDistance != value)
@@ -75,11 +84,11 @@ namespace PtvApi
         }
 
         /// <summary>Placeholder for future development; currently unavailable</summary>
-        [Newtonsoft.Json.JsonProperty("include_addresses", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("include_addresses", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public bool? IncludeAddresses
         {
-            get { return _includeAddresses; }
+            get => _includeAddresses;
             set
             {
                 if (_includeAddresses != value)
@@ -91,11 +100,11 @@ namespace PtvApi
         }
 
         /// <summary>Indicates if outlets will be returned in response (default = true)</summary>
-        [Newtonsoft.Json.JsonProperty("include_outlets", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("include_outlets", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public bool? IncludeOutlets
         {
-            get { return _includeOutlets; }
+            get => _includeOutlets;
             set
             {
                 if (_includeOutlets != value)
@@ -106,24 +115,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static SearchParameters FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<SearchParameters>(data);
+            return JsonConvert.DeserializeObject<SearchParameters>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

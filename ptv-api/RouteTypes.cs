@@ -1,6 +1,8 @@
+using System.CodeDom.Compiler;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public enum RouteTypes
     {
         _0 = 0,
@@ -11,7 +13,6 @@ namespace PtvApi
 
         _3 = 3,
 
-        _4 = 4,
-
+        _4 = 4
     }
 }

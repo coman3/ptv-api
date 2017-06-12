@@ -1,17 +1,23 @@
+using System.CodeDom.Compiler;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class StopsOnRouteResponse : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class StopsOnRouteResponse : INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<StopOnRoute> _stops;
         private Status _status;
+        private ObservableCollection<StopOnRoute> _stops;
 
         /// <summary>Train stations, tram stops, bus stops, regional coach stops or Night Bus stops</summary>
-        [Newtonsoft.Json.JsonProperty("stops", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<StopOnRoute> Stops
+        [JsonProperty("stops", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public ObservableCollection<StopOnRoute> Stops
         {
-            get { return _stops; }
+            get => _stops;
             set
             {
                 if (_stops != value)
@@ -23,11 +29,11 @@ namespace PtvApi
         }
 
         /// <summary>API Status / Metadata</summary>
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("status", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public Status Status
         {
-            get { return _status; }
+            get => _status;
             set
             {
                 if (_status != value)
@@ -38,24 +44,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static StopsOnRouteResponse FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<StopsOnRouteResponse>(data);
+            return JsonConvert.DeserializeObject<StopsOnRouteResponse>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

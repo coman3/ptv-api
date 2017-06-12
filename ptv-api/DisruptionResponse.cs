@@ -1,17 +1,22 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class DisruptionResponse : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class DisruptionResponse : INotifyPropertyChanged
     {
         private Disruption _disruption;
         private Status _status;
 
         /// <summary>Disruption information applicable to relevant routes or stops</summary>
-        [Newtonsoft.Json.JsonProperty("disruption", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("disruption", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public Disruption Disruption
         {
-            get { return _disruption; }
+            get => _disruption;
             set
             {
                 if (_disruption != value)
@@ -23,11 +28,11 @@ namespace PtvApi
         }
 
         /// <summary>API Status / Metadata</summary>
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("status", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public Status Status
         {
-            get { return _status; }
+            get => _status;
             set
             {
                 if (_status != value)
@@ -38,24 +43,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static DisruptionResponse FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<DisruptionResponse>(data);
+            return JsonConvert.DeserializeObject<DisruptionResponse>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

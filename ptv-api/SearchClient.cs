@@ -1,137 +1,185 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "10.6.6324.28497")]
+    [GeneratedCode("NSwag", "10.6.6324.28497")]
     public partial class SearchClient
     {
         public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
             string url);
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
-            System.Text.StringBuilder urlBuilder);
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
+            StringBuilder urlBuilder);
 
-        partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
+        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
 
         /// <summary>View stops, routes and myki ticket outlets that match the search term</summary>
-        /// <param name="searchTerm">Search text (note: if search text is numeric and/or less than 3 characters, the API will only return routes)</param>
-        /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types specified)</param>
+        /// <param name="searchTerm">
+        ///     Search text (note: if search text is numeric and/or less than 3 characters, the API will only
+        ///     return routes)
+        /// </param>
+        /// <param name="routeTypes">
+        ///     Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered
+        ///     by route_types specified)
+        /// </param>
         /// <param name="latitude">Filter by geographic coordinate of latitude</param>
         /// <param name="longitude">Filter by geographic coordinate of longitude</param>
-        /// <param name="maxDistance">Filter by maximum distance (in metres) from location specified via latitude and longitude parameters</param>
+        /// <param name="maxDistance">
+        ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
+        ///     parameters
+        /// </param>
         /// <param name="includeAddresses">Placeholder for future development; currently unavailable</param>
         /// <param name="includeOutlets">Indicates if outlets will be returned in response (default = true)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <returns>Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by route_type by default).</returns>
+        /// <returns>
+        ///     Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by
+        ///     route_type by default).
+        /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<SearchResult> SearchAsync(string searchTerm,
-            System.Collections.Generic.IEnumerable<RouteTypes> routeTypes, double? latitude, double? longitude,
+        public Task<SearchResult> SearchAsync(string searchTerm,
+            IEnumerable<RouteTypes> routeTypes, double? latitude, double? longitude,
             double? maxDistance, bool? includeAddresses, bool? includeOutlets, string token, string devid,
             string signature)
         {
             return SearchAsync(searchTerm, routeTypes, latitude, longitude, maxDistance, includeAddresses,
-                includeOutlets, token, devid, signature, System.Threading.CancellationToken.None);
+                includeOutlets, token, devid, signature, CancellationToken.None);
         }
 
         /// <summary>View stops, routes and myki ticket outlets that match the search term</summary>
-        /// <param name="searchTerm">Search text (note: if search text is numeric and/or less than 3 characters, the API will only return routes)</param>
-        /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types specified)</param>
+        /// <param name="searchTerm">
+        ///     Search text (note: if search text is numeric and/or less than 3 characters, the API will only
+        ///     return routes)
+        /// </param>
+        /// <param name="routeTypes">
+        ///     Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered
+        ///     by route_types specified)
+        /// </param>
         /// <param name="latitude">Filter by geographic coordinate of latitude</param>
         /// <param name="longitude">Filter by geographic coordinate of longitude</param>
-        /// <param name="maxDistance">Filter by maximum distance (in metres) from location specified via latitude and longitude parameters</param>
+        /// <param name="maxDistance">
+        ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
+        ///     parameters
+        /// </param>
         /// <param name="includeAddresses">Placeholder for future development; currently unavailable</param>
         /// <param name="includeOutlets">Indicates if outlets will be returned in response (default = true)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <returns>Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by route_type by default).</returns>
+        /// <returns>
+        ///     Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by
+        ///     route_type by default).
+        /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public SearchResult Search(string searchTerm, System.Collections.Generic.IEnumerable<RouteTypes> routeTypes,
+        public SearchResult Search(string searchTerm, IEnumerable<RouteTypes> routeTypes,
             double? latitude, double? longitude, double? maxDistance, bool? includeAddresses, bool? includeOutlets,
             string token, string devid, string signature)
         {
-            return System.Threading.Tasks.Task.Run(async () => await SearchAsync(searchTerm, routeTypes, latitude,
+            return Task.Run(async () => await SearchAsync(searchTerm, routeTypes, latitude,
                 longitude, maxDistance, includeAddresses, includeOutlets, token, devid, signature,
-                System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+                CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View stops, routes and myki ticket outlets that match the search term</summary>
-        /// <param name="searchTerm">Search text (note: if search text is numeric and/or less than 3 characters, the API will only return routes)</param>
-        /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types specified)</param>
+        /// <param name="searchTerm">
+        ///     Search text (note: if search text is numeric and/or less than 3 characters, the API will only
+        ///     return routes)
+        /// </param>
+        /// <param name="routeTypes">
+        ///     Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered
+        ///     by route_types specified)
+        /// </param>
         /// <param name="latitude">Filter by geographic coordinate of latitude</param>
         /// <param name="longitude">Filter by geographic coordinate of longitude</param>
-        /// <param name="maxDistance">Filter by maximum distance (in metres) from location specified via latitude and longitude parameters</param>
+        /// <param name="maxDistance">
+        ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
+        ///     parameters
+        /// </param>
         /// <param name="includeAddresses">Placeholder for future development; currently unavailable</param>
         /// <param name="includeOutlets">Indicates if outlets will be returned in response (default = true)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by route_type by default).</returns>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of
+        ///     cancellation.
+        /// </param>
+        /// <returns>
+        ///     Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by
+        ///     route_type by default).
+        /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<SearchResult> SearchAsync(string searchTerm,
-            System.Collections.Generic.IEnumerable<RouteTypes> routeTypes, double? latitude, double? longitude,
+        public async Task<SearchResult> SearchAsync(string searchTerm,
+            IEnumerable<RouteTypes> routeTypes, double? latitude, double? longitude,
             double? maxDistance, bool? includeAddresses, bool? includeOutlets, string token, string devid,
-            string signature, System.Threading.CancellationToken cancellationToken)
+            string signature, CancellationToken cancellationToken)
         {
             if (searchTerm == null)
-                throw new System.ArgumentNullException("searchTerm");
+                throw new ArgumentNullException("searchTerm");
 
-            var urlBuilder = new System.Text.StringBuilder();
+            var urlBuilder = new StringBuilder();
             urlBuilder.Append(BaseUrl).Append("/v3/search/{search_term}?");
-            urlBuilder.Replace("{search_term}", System.Uri.EscapeDataString(searchTerm.ToString()));
+            urlBuilder.Replace("{search_term}", Uri.EscapeDataString(searchTerm));
             if (routeTypes != null)
                 foreach (var item in routeTypes)
-                {
-                    urlBuilder.Append("route_types=").Append(System.Uri.EscapeDataString(item.ToString()))
+                    urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(item.ToString()))
                         .Append("&");
-                }
             if (latitude != null)
-                urlBuilder.Append("latitude=").Append(System.Uri.EscapeDataString(latitude.Value.ToString()))
+                urlBuilder.Append("latitude=").Append(Uri.EscapeDataString(latitude.Value.ToString()))
                     .Append("&");
             if (longitude != null)
-                urlBuilder.Append("longitude=").Append(System.Uri.EscapeDataString(longitude.Value.ToString()))
+                urlBuilder.Append("longitude=").Append(Uri.EscapeDataString(longitude.Value.ToString()))
                     .Append("&");
             if (maxDistance != null)
-                urlBuilder.Append("max_distance=").Append(System.Uri.EscapeDataString(maxDistance.Value.ToString()))
+                urlBuilder.Append("max_distance=").Append(Uri.EscapeDataString(maxDistance.Value.ToString()))
                     .Append("&");
             if (includeAddresses != null)
                 urlBuilder.Append("include_addresses=")
-                    .Append(System.Uri.EscapeDataString(includeAddresses.Value.ToString())).Append("&");
+                    .Append(Uri.EscapeDataString(includeAddresses.Value.ToString())).Append("&");
             if (includeOutlets != null)
                 urlBuilder.Append("include_outlets=")
-                    .Append(System.Uri.EscapeDataString(includeOutlets.Value.ToString())).Append("&");
+                    .Append(Uri.EscapeDataString(includeOutlets.Value.ToString())).Append("&");
             if (token != null)
-                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
             if (devid != null)
-                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
             if (signature != null)
-                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
             urlBuilder.Length--;
 
-            var client = new System.Net.Http.HttpClient();
+            var client = new HttpClient();
             try
             {
-                using (var request = new System.Net.Http.HttpRequestMessage())
+                using (var request = new HttpRequestMessage())
                 {
-                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Method = new HttpMethod("GET");
                     request.Headers.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        new MediaTypeWithQualityHeaderValue("application/json"));
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
-                            System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
+                            HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
                         var headers =
-                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                            Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -144,10 +192,10 @@ namespace PtvApi
                             var result = default(SearchResult);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<SearchResult>(responseData);
+                                result = JsonConvert.DeserializeObject<SearchResult>(responseData);
                                 return result;
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -159,9 +207,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -175,9 +223,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -208,6 +256,5 @@ namespace PtvApi
                     client.Dispose();
             }
         }
-
     }
 }

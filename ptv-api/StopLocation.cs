@@ -1,16 +1,21 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class StopLocation : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class StopLocation : INotifyPropertyChanged
     {
         private StopGps _gps;
 
         /// <summary>GPS coordinates of the stop</summary>
-        [Newtonsoft.Json.JsonProperty("gps", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("gps", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public StopGps Gps
         {
-            get { return _gps; }
+            get => _gps;
             set
             {
                 if (_gps != value)
@@ -21,24 +26,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static StopLocation FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<StopLocation>(data);
+            return JsonConvert.DeserializeObject<StopLocation>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

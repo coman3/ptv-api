@@ -1,17 +1,28 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NSwag", "10.6.6324.28497")]
+    [GeneratedCode("NSwag", "10.6.6324.28497")]
     public partial class StopsClient
     {
         public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
             string url);
 
-        partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
-            System.Text.StringBuilder urlBuilder);
+        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
+            StringBuilder urlBuilder);
 
-        partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
+        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
 
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
         /// <param name="stopId">Identifier of stop; values returned by Stops API</param>
@@ -24,14 +35,17 @@ namespace PtvApi
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <returns>Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line stations only).</returns>
+        /// <returns>
+        ///     Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line
+        ///     stations only).
+        /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<StopResponse> StopDetailsAsync(int stopId, RouteTypes routeType,
+        public Task<StopResponse> StopDetailsAsync(int stopId, RouteTypes routeType,
             bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, bool? stopContact, bool? stopTicket,
             string token, string devid, string signature)
         {
             return StopDetailsAsync(stopId, routeType, stopLocation, stopAmenities, stopAccessibility,
-                stopContact, stopTicket, token, devid, signature, System.Threading.CancellationToken.None);
+                stopContact, stopTicket, token, devid, signature, CancellationToken.None);
         }
 
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
@@ -45,15 +59,18 @@ namespace PtvApi
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <returns>Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line stations only).</returns>
+        /// <returns>
+        ///     Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line
+        ///     stations only).
+        /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public StopResponse StopDetails(int stopId, RouteTypes routeType, bool? stopLocation, bool? stopAmenities,
             bool? stopAccessibility, bool? stopContact, bool? stopTicket, string token, string devid,
             string signature)
         {
-            return System.Threading.Tasks.Task.Run(async () => await StopDetailsAsync(stopId, routeType,
+            return Task.Run(async () => await StopDetailsAsync(stopId, routeType,
                 stopLocation, stopAmenities, stopAccessibility, stopContact, stopTicket, token, devid, signature,
-                System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+                CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
@@ -67,67 +84,66 @@ namespace PtvApi
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <returns>Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line stations only).</returns>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of
+        ///     cancellation.
+        /// </param>
+        /// <returns>
+        ///     Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line
+        ///     stations only).
+        /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<StopResponse> StopDetailsAsync(int stopId, RouteTypes routeType,
+        public async Task<StopResponse> StopDetailsAsync(int stopId, RouteTypes routeType,
             bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, bool? stopContact, bool? stopTicket,
-            string token, string devid, string signature, System.Threading.CancellationToken cancellationToken)
+            string token, string devid, string signature, CancellationToken cancellationToken)
         {
-            if (stopId == null)
-                throw new System.ArgumentNullException("stopId");
-
-            if (routeType == null)
-                throw new System.ArgumentNullException("routeType");
-
-            var urlBuilder = new System.Text.StringBuilder();
+            var urlBuilder = new StringBuilder();
             urlBuilder.Append(BaseUrl).Append("/v3/stops/{stop_id}/route_type/{route_type}?");
-            urlBuilder.Replace("{stop_id}", System.Uri.EscapeDataString(stopId.ToString()));
-            urlBuilder.Replace("{route_type}", System.Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{stop_id}", Uri.EscapeDataString(stopId.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
             if (stopLocation != null)
-                urlBuilder.Append("stop_location=").Append(System.Uri.EscapeDataString(stopLocation.Value.ToString()))
+                urlBuilder.Append("stop_location=").Append(Uri.EscapeDataString(stopLocation.Value.ToString()))
                     .Append("&");
             if (stopAmenities != null)
                 urlBuilder.Append("stop_amenities=")
-                    .Append(System.Uri.EscapeDataString(stopAmenities.Value.ToString())).Append("&");
+                    .Append(Uri.EscapeDataString(stopAmenities.Value.ToString())).Append("&");
             if (stopAccessibility != null)
                 urlBuilder.Append("stop_accessibility=")
-                    .Append(System.Uri.EscapeDataString(stopAccessibility.Value.ToString())).Append("&");
+                    .Append(Uri.EscapeDataString(stopAccessibility.Value.ToString())).Append("&");
             if (stopContact != null)
-                urlBuilder.Append("stop_contact=").Append(System.Uri.EscapeDataString(stopContact.Value.ToString()))
+                urlBuilder.Append("stop_contact=").Append(Uri.EscapeDataString(stopContact.Value.ToString()))
                     .Append("&");
             if (stopTicket != null)
-                urlBuilder.Append("stop_ticket=").Append(System.Uri.EscapeDataString(stopTicket.Value.ToString()))
+                urlBuilder.Append("stop_ticket=").Append(Uri.EscapeDataString(stopTicket.Value.ToString()))
                     .Append("&");
             if (token != null)
-                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
             if (devid != null)
-                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
             if (signature != null)
-                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
             urlBuilder.Length--;
 
-            var client = new System.Net.Http.HttpClient();
+            var client = new HttpClient();
             try
             {
-                using (var request = new System.Net.Http.HttpRequestMessage())
+                using (var request = new HttpRequestMessage())
                 {
-                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Method = new HttpMethod("GET");
                     request.Headers.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        new MediaTypeWithQualityHeaderValue("application/json"));
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
-                            System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
+                            HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
-                        var headers =
-                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                        var headers = response.Headers.ToDictionary(h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -140,10 +156,10 @@ namespace PtvApi
                             var result = default(StopResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<StopResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<StopResponse>(responseData);
                                 return result;
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -155,9 +171,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -171,9 +187,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -193,15 +209,13 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
         }
 
@@ -213,11 +227,11 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>All stops on the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<StopsOnRouteResponse> StopsForRouteAsync(int routeId,
+        public Task<StopsOnRouteResponse> StopsForRouteAsync(int routeId,
             RouteTypes routeType, string token, string devid, string signature)
         {
             return StopsForRouteAsync(routeId, routeType, token, devid, signature,
-                System.Threading.CancellationToken.None);
+                CancellationToken.None);
         }
 
         /// <summary>View all stops on a specific route</summary>
@@ -231,8 +245,8 @@ namespace PtvApi
         public StopsOnRouteResponse StopsForRoute(int routeId, RouteTypes routeType, string token, string devid,
             string signature)
         {
-            return System.Threading.Tasks.Task.Run(async () => await StopsForRouteAsync(routeId, routeType, token,
-                devid, signature, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await StopsForRouteAsync(routeId, routeType, token,
+                devid, signature, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all stops on a specific route</summary>
@@ -241,52 +255,48 @@ namespace PtvApi
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of
+        ///     cancellation.
+        /// </param>
         /// <returns>All stops on the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<StopsOnRouteResponse> StopsForRouteAsync(int routeId,
+        public async Task<StopsOnRouteResponse> StopsForRouteAsync(int routeId,
             RouteTypes routeType, string token, string devid, string signature,
-            System.Threading.CancellationToken cancellationToken)
+            CancellationToken cancellationToken)
         {
-            if (routeId == null)
-                throw new System.ArgumentNullException("routeId");
-
-            if (routeType == null)
-                throw new System.ArgumentNullException("routeType");
-
-            var urlBuilder = new System.Text.StringBuilder();
+            var urlBuilder = new StringBuilder();
             urlBuilder.Append(BaseUrl).Append("/v3/stops/route/{route_id}/route_type/{route_type}?");
-            urlBuilder.Replace("{route_id}", System.Uri.EscapeDataString(routeId.ToString()));
-            urlBuilder.Replace("{route_type}", System.Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
             if (token != null)
-                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
             if (devid != null)
-                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
             if (signature != null)
-                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
             urlBuilder.Length--;
 
-            var client = new System.Net.Http.HttpClient();
+            var client = new HttpClient();
             try
             {
-                using (var request = new System.Net.Http.HttpRequestMessage())
+                using (var request = new HttpRequestMessage())
                 {
-                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Method = new HttpMethod("GET");
                     request.Headers.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        new MediaTypeWithQualityHeaderValue("application/json"));
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
-                            System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
+                            HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
-                        var headers =
-                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                        var headers = response.Headers.ToDictionary(h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -300,10 +310,10 @@ namespace PtvApi
                             try
                             {
                                 result =
-                                    Newtonsoft.Json.JsonConvert.DeserializeObject<StopsOnRouteResponse>(responseData);
+                                    JsonConvert.DeserializeObject<StopsOnRouteResponse>(responseData);
                                 return result;
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -315,9 +325,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -331,9 +341,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -353,15 +363,13 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
         }
 
@@ -370,18 +378,21 @@ namespace PtvApi
         /// <param name="longitude">Geographic coordinate of longitude</param>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="maxResults">Maximum number of results returned (default = 30)</param>
-        /// <param name="maxDistance">Filter by maximum distance (in metres) from location specified via latitude and longitude parameters (default = 300)</param>
+        /// <param name="maxDistance">
+        ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
+        ///     parameters (default = 300)
+        /// </param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<StopsByDistanceResponse> StopsByGeolocationAsync(double latitude,
-            double longitude, System.Collections.Generic.IEnumerable<RouteTypes> routeTypes, int? maxResults,
+        public Task<StopsByDistanceResponse> StopsByGeolocationAsync(double latitude,
+            double longitude, IEnumerable<RouteTypes> routeTypes, int? maxResults,
             double? maxDistance, string token, string devid, string signature)
         {
             return StopsByGeolocationAsync(latitude, longitude, routeTypes, maxResults, maxDistance, token, devid,
-                signature, System.Threading.CancellationToken.None);
+                signature, CancellationToken.None);
         }
 
         /// <summary>View all stops near a specific location</summary>
@@ -389,19 +400,22 @@ namespace PtvApi
         /// <param name="longitude">Geographic coordinate of longitude</param>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="maxResults">Maximum number of results returned (default = 30)</param>
-        /// <param name="maxDistance">Filter by maximum distance (in metres) from location specified via latitude and longitude parameters (default = 300)</param>
+        /// <param name="maxDistance">
+        ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
+        ///     parameters (default = 300)
+        /// </param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public StopsByDistanceResponse StopsByGeolocation(double latitude, double longitude,
-            System.Collections.Generic.IEnumerable<RouteTypes> routeTypes, int? maxResults, double? maxDistance,
+            IEnumerable<RouteTypes> routeTypes, int? maxResults, double? maxDistance,
             string token, string devid, string signature)
         {
-            return System.Threading.Tasks.Task.Run(async () => await StopsByGeolocationAsync(latitude, longitude,
+            return Task.Run(async () => await StopsByGeolocationAsync(latitude, longitude,
                 routeTypes, maxResults, maxDistance, token, devid, signature,
-                System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+                CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all stops near a specific location</summary>
@@ -409,69 +423,66 @@ namespace PtvApi
         /// <param name="longitude">Geographic coordinate of longitude</param>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="maxResults">Maximum number of results returned (default = 30)</param>
-        /// <param name="maxDistance">Filter by maximum distance (in metres) from location specified via latitude and longitude parameters (default = 300)</param>
+        /// <param name="maxDistance">
+        ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
+        ///     parameters (default = 300)
+        /// </param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of
+        ///     cancellation.
+        /// </param>
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<StopsByDistanceResponse> StopsByGeolocationAsync(double latitude,
-            double longitude, System.Collections.Generic.IEnumerable<RouteTypes> routeTypes, int? maxResults,
+        public async Task<StopsByDistanceResponse> StopsByGeolocationAsync(double latitude,
+            double longitude, IEnumerable<RouteTypes> routeTypes, int? maxResults,
             double? maxDistance, string token, string devid, string signature,
-            System.Threading.CancellationToken cancellationToken)
+            CancellationToken cancellationToken)
         {
-            if (latitude == null)
-                throw new System.ArgumentNullException("latitude");
-
-            if (longitude == null)
-                throw new System.ArgumentNullException("longitude");
-
-            var urlBuilder = new System.Text.StringBuilder();
+            var urlBuilder = new StringBuilder();
             urlBuilder.Append(BaseUrl).Append("/v3/stops/location/{latitude},{longitude}?");
-            urlBuilder.Replace("{latitude}", System.Uri.EscapeDataString(latitude.ToString()));
-            urlBuilder.Replace("{longitude}", System.Uri.EscapeDataString(longitude.ToString()));
+            urlBuilder.Replace("{latitude}", Uri.EscapeDataString(latitude.ToString()));
+            urlBuilder.Replace("{longitude}", Uri.EscapeDataString(longitude.ToString()));
             if (routeTypes != null)
                 foreach (var item in routeTypes)
-                {
-                    urlBuilder.Append("route_types=").Append(System.Uri.EscapeDataString(item.ToString()))
+                    urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(item.ToString()))
                         .Append("&");
-                }
             if (maxResults != null)
-                urlBuilder.Append("max_results=").Append(System.Uri.EscapeDataString(maxResults.Value.ToString()))
+                urlBuilder.Append("max_results=").Append(Uri.EscapeDataString(maxResults.Value.ToString()))
                     .Append("&");
             if (maxDistance != null)
-                urlBuilder.Append("max_distance=").Append(System.Uri.EscapeDataString(maxDistance.Value.ToString()))
+                urlBuilder.Append("max_distance=").Append(Uri.EscapeDataString(maxDistance.Value.ToString()))
                     .Append("&");
             if (token != null)
-                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
             if (devid != null)
-                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
             if (signature != null)
-                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
             urlBuilder.Length--;
 
-            var client = new System.Net.Http.HttpClient();
+            var client = new HttpClient();
             try
             {
-                using (var request = new System.Net.Http.HttpRequestMessage())
+                using (var request = new HttpRequestMessage())
                 {
-                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Method = new HttpMethod("GET");
                     request.Headers.Accept.Add(
-                        new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                        new MediaTypeWithQualityHeaderValue("application/json"));
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
-                            System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
+                            HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
-                        var headers =
-                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                        var headers = response.Headers.ToDictionary(h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -485,11 +496,11 @@ namespace PtvApi
                             try
                             {
                                 result =
-                                    Newtonsoft.Json.JsonConvert
+                                    JsonConvert
                                         .DeserializeObject<StopsByDistanceResponse>(responseData);
                                 return result;
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -501,9 +512,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -517,9 +528,9 @@ namespace PtvApi
                             var result = default(ErrorResponse);
                             try
                             {
-                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
+                                result = JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
-                            catch (System.Exception exception)
+                            catch (Exception exception)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", status,
                                     responseData, headers, exception);
@@ -539,17 +550,14 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
         }
-
     }
 }

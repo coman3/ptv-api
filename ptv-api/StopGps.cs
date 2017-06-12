@@ -1,17 +1,22 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class StopGps : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class StopGps : INotifyPropertyChanged
     {
         private double? _latitude;
         private double? _longitude;
 
         /// <summary>Geographic coordinate of latitude at stop</summary>
-        [Newtonsoft.Json.JsonProperty("latitude", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("latitude", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? Latitude
         {
-            get { return _latitude; }
+            get => _latitude;
             set
             {
                 if (_latitude != value)
@@ -23,11 +28,11 @@ namespace PtvApi
         }
 
         /// <summary>Geographic coordinate of longitude at stop</summary>
-        [Newtonsoft.Json.JsonProperty("longitude", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("longitude", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? Longitude
         {
-            get { return _longitude; }
+            get => _longitude;
             set
             {
                 if (_longitude != value)
@@ -38,24 +43,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static StopGps FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<StopGps>(data);
+            return JsonConvert.DeserializeObject<StopGps>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

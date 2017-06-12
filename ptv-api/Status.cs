@@ -1,17 +1,22 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class Status : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class Status : INotifyPropertyChanged
     {
-        private string _version;
         private StatusHealth? _health;
+        private string _version;
 
         /// <summary>API Version number</summary>
-        [Newtonsoft.Json.JsonProperty("version", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("version", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string Version
         {
-            get { return _version; }
+            get => _version;
             set
             {
                 if (_version != value)
@@ -23,11 +28,11 @@ namespace PtvApi
         }
 
         /// <summary>API system health status (0=offline, 1=online)</summary>
-        [Newtonsoft.Json.JsonProperty("health", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("health", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public StatusHealth? Health
         {
-            get { return _health; }
+            get => _health;
             set
             {
                 if (_health != value)
@@ -38,24 +43,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static Status FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Status>(data);
+            return JsonConvert.DeserializeObject<Status>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

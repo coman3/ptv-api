@@ -1,22 +1,29 @@
+using System.CodeDom.Compiler;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class DeparturesResponse : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class DeparturesResponse : INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<Departure> _departures;
-        private System.Collections.Generic.Dictionary<string, ResultStop> _stops;
-        private System.Collections.Generic.Dictionary<string, Route> _routes;
-        private System.Collections.Generic.Dictionary<string, Run> _runs;
-        private System.Collections.Generic.Dictionary<string, Direction> _directions;
-        private System.Collections.Generic.Dictionary<string, Disruption> _disruptions;
+        private ObservableCollection<Departure> _departures;
+        private Dictionary<string, Direction> _directions;
+        private Dictionary<string, Disruption> _disruptions;
+        private Dictionary<string, Route> _routes;
+        private Dictionary<string, Run> _runs;
         private Status _status;
+        private Dictionary<string, ResultStop> _stops;
 
         /// <summary>Timetabled and real-time service departures</summary>
-        [Newtonsoft.Json.JsonProperty("departures", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Departure> Departures
+        [JsonProperty("departures", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public ObservableCollection<Departure> Departures
         {
-            get { return _departures; }
+            get => _departures;
             set
             {
                 if (_departures != value)
@@ -28,11 +35,11 @@ namespace PtvApi
         }
 
         /// <summary>A train station, tram stop, bus stop, regional coach stop or Night Bus stop</summary>
-        [Newtonsoft.Json.JsonProperty("stops", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.Dictionary<string, ResultStop> Stops
+        [JsonProperty("stops", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, ResultStop> Stops
         {
-            get { return _stops; }
+            get => _stops;
             set
             {
                 if (_stops != value)
@@ -44,11 +51,11 @@ namespace PtvApi
         }
 
         /// <summary>Train lines, tram routes, bus routes, regional coach routes, Night Bus routes</summary>
-        [Newtonsoft.Json.JsonProperty("routes", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.Dictionary<string, Route> Routes
+        [JsonProperty("routes", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, Route> Routes
         {
-            get { return _routes; }
+            get => _routes;
             set
             {
                 if (_routes != value)
@@ -60,11 +67,11 @@ namespace PtvApi
         }
 
         /// <summary>Individual trips/services of a route</summary>
-        [Newtonsoft.Json.JsonProperty("runs", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.Dictionary<string, Run> Runs
+        [JsonProperty("runs", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, Run> Runs
         {
-            get { return _runs; }
+            get => _runs;
             set
             {
                 if (_runs != value)
@@ -76,11 +83,11 @@ namespace PtvApi
         }
 
         /// <summary>Directions of travel of route</summary>
-        [Newtonsoft.Json.JsonProperty("directions", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.Dictionary<string, Direction> Directions
+        [JsonProperty("directions", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, Direction> Directions
         {
-            get { return _directions; }
+            get => _directions;
             set
             {
                 if (_directions != value)
@@ -92,11 +99,11 @@ namespace PtvApi
         }
 
         /// <summary>Disruption information applicable to relevant routes or stops</summary>
-        [Newtonsoft.Json.JsonProperty("disruptions", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.Dictionary<string, Disruption> Disruptions
+        [JsonProperty("disruptions", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public Dictionary<string, Disruption> Disruptions
         {
-            get { return _disruptions; }
+            get => _disruptions;
             set
             {
                 if (_disruptions != value)
@@ -108,11 +115,11 @@ namespace PtvApi
         }
 
         /// <summary>API Status / Metadata</summary>
-        [Newtonsoft.Json.JsonProperty("status", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("status", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public Status Status
         {
-            get { return _status; }
+            get => _status;
             set
             {
                 if (_status != value)
@@ -123,24 +130,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static DeparturesResponse FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<DeparturesResponse>(data);
+            return JsonConvert.DeserializeObject<DeparturesResponse>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

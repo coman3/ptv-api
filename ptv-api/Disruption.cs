@@ -1,26 +1,33 @@
+using System;
+using System.CodeDom.Compiler;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class Disruption : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class Disruption : INotifyPropertyChanged
     {
-        private long? _disruptionId;
-        private string _title;
-        private string _url;
         private string _description;
+        private long? _disruptionId;
         private string _disruptionStatus;
         private string _disruptionType;
-        private System.DateTime? _publishedOn;
-        private System.DateTime? _lastUpdated;
-        private System.DateTime? _fromDate;
-        private System.DateTime? _toDate;
-        private System.Collections.ObjectModel.ObservableCollection<DisruptionRoute> _routes;
+        private DateTime? _fromDate;
+        private DateTime? _lastUpdated;
+        private DateTime? _publishedOn;
+        private ObservableCollection<DisruptionRoute> _routes;
+        private string _title;
+        private DateTime? _toDate;
+        private string _url;
 
         /// <summary>Disruption information identifier</summary>
-        [Newtonsoft.Json.JsonProperty("disruption_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("disruption_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public long? DisruptionId
         {
-            get { return _disruptionId; }
+            get => _disruptionId;
             set
             {
                 if (_disruptionId != value)
@@ -32,11 +39,11 @@ namespace PtvApi
         }
 
         /// <summary>Headline title summarising disruption information</summary>
-        [Newtonsoft.Json.JsonProperty("title", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("title", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string Title
         {
-            get { return _title; }
+            get => _title;
             set
             {
                 if (_title != value)
@@ -48,11 +55,11 @@ namespace PtvApi
         }
 
         /// <summary>URL of relevant article on PTV website</summary>
-        [Newtonsoft.Json.JsonProperty("url", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("url", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string Url
         {
-            get { return _url; }
+            get => _url;
             set
             {
                 if (_url != value)
@@ -64,11 +71,11 @@ namespace PtvApi
         }
 
         /// <summary>Description of the disruption</summary>
-        [Newtonsoft.Json.JsonProperty("description", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("description", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string Description
         {
-            get { return _description; }
+            get => _description;
             set
             {
                 if (_description != value)
@@ -80,11 +87,11 @@ namespace PtvApi
         }
 
         /// <summary>Status of the disruption (e.g. "Planned", "Current")</summary>
-        [Newtonsoft.Json.JsonProperty("disruption_status", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("disruption_status", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string DisruptionStatus
         {
-            get { return _disruptionStatus; }
+            get => _disruptionStatus;
             set
             {
                 if (_disruptionStatus != value)
@@ -96,11 +103,11 @@ namespace PtvApi
         }
 
         /// <summary>Type of disruption</summary>
-        [Newtonsoft.Json.JsonProperty("disruption_type", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("disruption_type", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string DisruptionType
         {
-            get { return _disruptionType; }
+            get => _disruptionType;
             set
             {
                 if (_disruptionType != value)
@@ -112,11 +119,11 @@ namespace PtvApi
         }
 
         /// <summary>Date and time disruption information is published on PTV website, in ISO 8601 UTC format</summary>
-        [Newtonsoft.Json.JsonProperty("published_on", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? PublishedOn
+        [JsonProperty("published_on", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? PublishedOn
         {
-            get { return _publishedOn; }
+            get => _publishedOn;
             set
             {
                 if (_publishedOn != value)
@@ -128,11 +135,11 @@ namespace PtvApi
         }
 
         /// <summary>Date and time disruption information was last updated by PTV, in ISO 8601 UTC format</summary>
-        [Newtonsoft.Json.JsonProperty("last_updated", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? LastUpdated
+        [JsonProperty("last_updated", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? LastUpdated
         {
-            get { return _lastUpdated; }
+            get => _lastUpdated;
             set
             {
                 if (_lastUpdated != value)
@@ -144,11 +151,11 @@ namespace PtvApi
         }
 
         /// <summary>Date and time at which disruption begins, in ISO 8601 UTC format</summary>
-        [Newtonsoft.Json.JsonProperty("from_date", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? FromDate
+        [JsonProperty("from_date", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? FromDate
         {
-            get { return _fromDate; }
+            get => _fromDate;
             set
             {
                 if (_fromDate != value)
@@ -160,11 +167,11 @@ namespace PtvApi
         }
 
         /// <summary>Date and time at which disruption ends, in ISO 8601 UTC format (returns null if unknown)</summary>
-        [Newtonsoft.Json.JsonProperty("to_date", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? ToDate
+        [JsonProperty("to_date", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public DateTime? ToDate
         {
-            get { return _toDate; }
+            get => _toDate;
             set
             {
                 if (_toDate != value)
@@ -176,11 +183,11 @@ namespace PtvApi
         }
 
         /// <summary>Route relevant to a disruption (if applicable)</summary>
-        [Newtonsoft.Json.JsonProperty("routes", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<DisruptionRoute> Routes
+        [JsonProperty("routes", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
+        public ObservableCollection<DisruptionRoute> Routes
         {
-            get { return _routes; }
+            get => _routes;
             set
             {
                 if (_routes != value)
@@ -191,24 +198,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static Disruption FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<Disruption>(data);
+            return JsonConvert.DeserializeObject<Disruption>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

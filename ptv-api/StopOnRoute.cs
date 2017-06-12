@@ -1,20 +1,25 @@
+using System.CodeDom.Compiler;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public partial class StopOnRoute : System.ComponentModel.INotifyPropertyChanged
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    public class StopOnRoute : INotifyPropertyChanged
     {
-        private string _stopName;
-        private int? _stopId;
         private int? _routeType;
+        private int? _stopId;
         private double? _stopLatitude;
         private double? _stopLongitude;
+        private string _stopName;
 
         /// <summary>Name of stop</summary>
-        [Newtonsoft.Json.JsonProperty("stop_name", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("stop_name", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public string StopName
         {
-            get { return _stopName; }
+            get => _stopName;
             set
             {
                 if (_stopName != value)
@@ -26,11 +31,11 @@ namespace PtvApi
         }
 
         /// <summary>Stop identifier</summary>
-        [Newtonsoft.Json.JsonProperty("stop_id", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("stop_id", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? StopId
         {
-            get { return _stopId; }
+            get => _stopId;
             set
             {
                 if (_stopId != value)
@@ -42,11 +47,11 @@ namespace PtvApi
         }
 
         /// <summary>Transport mode identifier</summary>
-        [Newtonsoft.Json.JsonProperty("route_type", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("route_type", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public int? RouteTypes
         {
-            get { return _routeType; }
+            get => _routeType;
             set
             {
                 if (_routeType != value)
@@ -58,11 +63,11 @@ namespace PtvApi
         }
 
         /// <summary>Geographic coordinate of latitude at stop</summary>
-        [Newtonsoft.Json.JsonProperty("stop_latitude", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("stop_latitude", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? StopLatitude
         {
-            get { return _stopLatitude; }
+            get => _stopLatitude;
             set
             {
                 if (_stopLatitude != value)
@@ -74,11 +79,11 @@ namespace PtvApi
         }
 
         /// <summary>Geographic coordinate of longitude at stop</summary>
-        [Newtonsoft.Json.JsonProperty("stop_longitude", Required = Newtonsoft.Json.Required.Default,
-            NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [JsonProperty("stop_longitude", Required = Required.Default,
+            NullValueHandling = NullValueHandling.Ignore)]
         public double? StopLongitude
         {
-            get { return _stopLongitude; }
+            get => _stopLongitude;
             set
             {
                 if (_stopLongitude != value)
@@ -89,24 +94,24 @@ namespace PtvApi
             }
         }
 
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            return JsonConvert.SerializeObject(this);
         }
 
         public static StopOnRoute FromJson(string data)
         {
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<StopOnRoute>(data);
+            return JsonConvert.DeserializeObject<StopOnRoute>(data);
         }
 
         protected virtual void RaisePropertyChanged(
-            [System.Runtime.CompilerServices.CallerMemberName] string propertyName = null)
+            [CallerMemberName] string propertyName = null)
         {
             var handler = PropertyChanged;
             if (handler != null)
-                handler(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

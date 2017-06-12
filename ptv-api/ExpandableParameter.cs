@@ -1,19 +1,21 @@
+using System.CodeDom.Compiler;
+using System.Runtime.Serialization;
+
 namespace PtvApi
 {
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public enum ExpandableParameter
     {
-        [System.Runtime.Serialization.EnumMember(Value = "All")] All = 0,
+        [EnumMember(Value = "All")] All = 0,
 
-        [System.Runtime.Serialization.EnumMember(Value = "Stop")] Stop = 1,
+        [EnumMember(Value = "Stop")] Stop = 1,
 
-        [System.Runtime.Serialization.EnumMember(Value = "Route")] Route = 2,
+        [EnumMember(Value = "Route")] Route = 2,
 
-        [System.Runtime.Serialization.EnumMember(Value = "Run")] Run = 3,
+        [EnumMember(Value = "Run")] Run = 3,
 
-        [System.Runtime.Serialization.EnumMember(Value = "Direction")] Direction = 4,
+        [EnumMember(Value = "Direction")] Direction = 4,
 
-        [System.Runtime.Serialization.EnumMember(Value = "Disruption")] Disruption = 5,
-
+        [EnumMember(Value = "Disruption")] Disruption = 5
     }
 }
