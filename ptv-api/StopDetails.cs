@@ -3,26 +3,26 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class StopDetails : System.ComponentModel.INotifyPropertyChanged
     {
-        private string _station_type;
-        private string _station_description;
-        private int? _route_type;
-        private StopLocation _stop_location;
-        private StopAmenityDetails _stop_amenities;
-        private StopAccessibility _stop_accessibility;
-        private int? _stop_id;
-        private string _stop_name;
+        private string _stationType;
+        private string _stationDescription;
+        private int? _routeType;
+        private StopLocation _stopLocation;
+        private StopAmenityDetails _stopAmenities;
+        private StopAccessibility _stopAccessibility;
+        private int? _stopId;
+        private string _stopName;
 
         /// <summary>Type of metropolitan train station (i.e. "Premium", "Host" or "Unstaffed" station); returns null for V/Line train</summary>
         [Newtonsoft.Json.JsonProperty("station_type", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Station_type
+        public string StationType
         {
-            get { return _station_type; }
+            get { return _stationType; }
             set
             {
-                if (_station_type != value)
+                if (_stationType != value)
                 {
-                    _station_type = value;
+                    _stationType = value;
                     RaisePropertyChanged();
                 }
             }
@@ -31,14 +31,14 @@ namespace PtvApi
         /// <summary>The definition applicable to the station_type; returns null for V/Line train</summary>
         [Newtonsoft.Json.JsonProperty("station_description", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Station_description
+        public string StationDescription
         {
-            get { return _station_description; }
+            get { return _stationDescription; }
             set
             {
-                if (_station_description != value)
+                if (_stationDescription != value)
                 {
-                    _station_description = value;
+                    _stationDescription = value;
                     RaisePropertyChanged();
                 }
             }
@@ -49,12 +49,12 @@ namespace PtvApi
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? RouteTypes
         {
-            get { return _route_type; }
+            get { return _routeType; }
             set
             {
-                if (_route_type != value)
+                if (_routeType != value)
                 {
-                    _route_type = value;
+                    _routeType = value;
                     RaisePropertyChanged();
                 }
             }
@@ -63,14 +63,14 @@ namespace PtvApi
         /// <summary>Location details of the stop</summary>
         [Newtonsoft.Json.JsonProperty("stop_location", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public StopLocation Stop_location
+        public StopLocation StopLocation
         {
-            get { return _stop_location; }
+            get { return _stopLocation; }
             set
             {
-                if (_stop_location != value)
+                if (_stopLocation != value)
                 {
-                    _stop_location = value;
+                    _stopLocation = value;
                     RaisePropertyChanged();
                 }
             }
@@ -79,14 +79,14 @@ namespace PtvApi
         /// <summary>Amenity and facility details at the stop</summary>
         [Newtonsoft.Json.JsonProperty("stop_amenities", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public StopAmenityDetails Stop_amenities
+        public StopAmenityDetails StopAmenities
         {
-            get { return _stop_amenities; }
+            get { return _stopAmenities; }
             set
             {
-                if (_stop_amenities != value)
+                if (_stopAmenities != value)
                 {
-                    _stop_amenities = value;
+                    _stopAmenities = value;
                     RaisePropertyChanged();
                 }
             }
@@ -95,14 +95,14 @@ namespace PtvApi
         /// <summary>Facilities relating to the accessibility of the stop</summary>
         [Newtonsoft.Json.JsonProperty("stop_accessibility", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public StopAccessibility Stop_accessibility
+        public StopAccessibility StopAccessibility
         {
-            get { return _stop_accessibility; }
+            get { return _stopAccessibility; }
             set
             {
-                if (_stop_accessibility != value)
+                if (_stopAccessibility != value)
                 {
-                    _stop_accessibility = value;
+                    _stopAccessibility = value;
                     RaisePropertyChanged();
                 }
             }
@@ -111,14 +111,14 @@ namespace PtvApi
         /// <summary>Stop identifier</summary>
         [Newtonsoft.Json.JsonProperty("stop_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Stop_id
+        public int? StopId
         {
-            get { return _stop_id; }
+            get { return _stopId; }
             set
             {
-                if (_stop_id != value)
+                if (_stopId != value)
                 {
-                    _stop_id = value;
+                    _stopId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -127,14 +127,14 @@ namespace PtvApi
         /// <summary>Name of stop</summary>
         [Newtonsoft.Json.JsonProperty("stop_name", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Stop_name
+        public string StopName
         {
-            get { return _stop_name; }
+            get { return _stopName; }
             set
             {
-                if (_stop_name != value)
+                if (_stopName != value)
                 {
-                    _stop_name = value;
+                    _stopName = value;
                     RaisePropertyChanged();
                 }
             }

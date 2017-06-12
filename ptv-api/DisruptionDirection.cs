@@ -3,22 +3,22 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class DisruptionDirection : System.ComponentModel.INotifyPropertyChanged
     {
-        private int? _route_direction_id;
-        private int? _direction_id;
-        private string _direction_name;
-        private string _service_time;
+        private int? _routeDirectionId;
+        private int? _directionId;
+        private string _directionName;
+        private string _serviceTime;
 
         /// <summary>Route and direction of travel combination identifier</summary>
         [Newtonsoft.Json.JsonProperty("route_direction_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Route_direction_id
+        public int? RouteDirectionId
         {
-            get { return _route_direction_id; }
+            get { return _routeDirectionId; }
             set
             {
-                if (_route_direction_id != value)
+                if (_routeDirectionId != value)
                 {
-                    _route_direction_id = value;
+                    _routeDirectionId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -27,14 +27,14 @@ namespace PtvApi
         /// <summary>Direction of travel identifier</summary>
         [Newtonsoft.Json.JsonProperty("direction_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Direction_id
+        public int? DirectionId
         {
-            get { return _direction_id; }
+            get { return _directionId; }
             set
             {
-                if (_direction_id != value)
+                if (_directionId != value)
                 {
-                    _direction_id = value;
+                    _directionId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -43,14 +43,14 @@ namespace PtvApi
         /// <summary>Name of direction of travel</summary>
         [Newtonsoft.Json.JsonProperty("direction_name", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Direction_name
+        public string DirectionName
         {
-            get { return _direction_name; }
+            get { return _directionName; }
             set
             {
-                if (_direction_name != value)
+                if (_directionName != value)
                 {
-                    _direction_name = value;
+                    _directionName = value;
                     RaisePropertyChanged();
                 }
             }
@@ -59,14 +59,14 @@ namespace PtvApi
         /// <summary>Time of service to which disruption applies, in 24 hour clock format (HH:MM:SS) AEDT/AEST; returns null if disruption applies to multiple (or no) services</summary>
         [Newtonsoft.Json.JsonProperty("service_time", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Service_time
+        public string ServiceTime
         {
-            get { return _service_time; }
+            get { return _serviceTime; }
             set
             {
-                if (_service_time != value)
+                if (_serviceTime != value)
                 {
-                    _service_time = value;
+                    _serviceTime = value;
                     RaisePropertyChanged();
                 }
             }

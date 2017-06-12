@@ -2,7 +2,7 @@ namespace PtvApi
 {
     /// <summary>Filter by status of disruption</summary>
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public enum Disruption_status
+    public enum DisruptionStatus
     {
         [System.Runtime.Serialization.EnumMember(Value = "current")] Current = 0,
 

@@ -3,24 +3,24 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class Run : System.ComponentModel.INotifyPropertyChanged
     {
-        private int? _run_id;
-        private int? _route_id;
-        private int? _route_type;
-        private int? _final_stop_id;
-        private string _destination_name;
+        private int? _runId;
+        private int? _routeId;
+        private int? _routeType;
+        private int? _finalStopId;
+        private string _destinationName;
         private string _status;
 
         /// <summary>Trip/service run identifier</summary>
         [Newtonsoft.Json.JsonProperty("run_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Run_id
+        public int? RunId
         {
-            get { return _run_id; }
+            get { return _runId; }
             set
             {
-                if (_run_id != value)
+                if (_runId != value)
                 {
-                    _run_id = value;
+                    _runId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -29,14 +29,14 @@ namespace PtvApi
         /// <summary>Route identifier</summary>
         [Newtonsoft.Json.JsonProperty("route_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Route_id
+        public int? RouteId
         {
-            get { return _route_id; }
+            get { return _routeId; }
             set
             {
-                if (_route_id != value)
+                if (_routeId != value)
                 {
-                    _route_id = value;
+                    _routeId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -47,12 +47,12 @@ namespace PtvApi
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? RouteTypes
         {
-            get { return _route_type; }
+            get { return _routeType; }
             set
             {
-                if (_route_type != value)
+                if (_routeType != value)
                 {
-                    _route_type = value;
+                    _routeType = value;
                     RaisePropertyChanged();
                 }
             }
@@ -61,14 +61,14 @@ namespace PtvApi
         /// <summary>stop_id of final stop of run</summary>
         [Newtonsoft.Json.JsonProperty("final_stop_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Final_stop_id
+        public int? FinalStopId
         {
-            get { return _final_stop_id; }
+            get { return _finalStopId; }
             set
             {
-                if (_final_stop_id != value)
+                if (_finalStopId != value)
                 {
-                    _final_stop_id = value;
+                    _finalStopId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -77,14 +77,14 @@ namespace PtvApi
         /// <summary>Name of destination of run</summary>
         [Newtonsoft.Json.JsonProperty("destination_name", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Destination_name
+        public string DestinationName
         {
-            get { return _destination_name; }
+            get { return _destinationName; }
             set
             {
-                if (_destination_name != value)
+                if (_destinationName != value)
                 {
-                    _destination_name = value;
+                    _destinationName = value;
                     RaisePropertyChanged();
                 }
             }

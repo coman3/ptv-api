@@ -4,8 +4,8 @@ namespace PtvApi
     public partial class StopAmenityDetails : System.ComponentModel.INotifyPropertyChanged
     {
         private bool? _toilet;
-        private bool? _taxi_rank;
-        private string _car_parking;
+        private bool? _taxiRank;
+        private string _carParking;
         private bool? _cctv;
 
         /// <summary>Indicates if there is a public toilet at or near the stop</summary>
@@ -27,14 +27,14 @@ namespace PtvApi
         /// <summary>Indicates if there is a taxi rank at or near the stop</summary>
         [Newtonsoft.Json.JsonProperty("taxi_rank", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Taxi_rank
+        public bool? TaxiRank
         {
-            get { return _taxi_rank; }
+            get { return _taxiRank; }
             set
             {
-                if (_taxi_rank != value)
+                if (_taxiRank != value)
                 {
-                    _taxi_rank = value;
+                    _taxiRank = value;
                     RaisePropertyChanged();
                 }
             }
@@ -43,14 +43,14 @@ namespace PtvApi
         /// <summary>The number of free car parking spots at the stop</summary>
         [Newtonsoft.Json.JsonProperty("car_parking", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Car_parking
+        public string CarParking
         {
-            get { return _car_parking; }
+            get { return _carParking; }
             set
             {
-                if (_car_parking != value)
+                if (_carParking != value)
                 {
-                    _car_parking = value;
+                    _carParking = value;
                     RaisePropertyChanged();
                 }
             }

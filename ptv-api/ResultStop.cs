@@ -3,24 +3,24 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class ResultStop : System.ComponentModel.INotifyPropertyChanged
     {
-        private double? _stop_distance;
-        private string _stop_name;
-        private int? _stop_id;
-        private int? _route_type;
-        private double? _stop_latitude;
-        private double? _stop_longitude;
+        private double? _stopDistance;
+        private string _stopName;
+        private int? _stopId;
+        private int? _routeType;
+        private double? _stopLatitude;
+        private double? _stopLongitude;
 
         /// <summary>Distance of stop from input location (in metres); returns 0 if no location is input</summary>
         [Newtonsoft.Json.JsonProperty("stop_distance", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Stop_distance
+        public double? StopDistance
         {
-            get { return _stop_distance; }
+            get { return _stopDistance; }
             set
             {
-                if (_stop_distance != value)
+                if (_stopDistance != value)
                 {
-                    _stop_distance = value;
+                    _stopDistance = value;
                     RaisePropertyChanged();
                 }
             }
@@ -29,14 +29,14 @@ namespace PtvApi
         /// <summary>Name of stop</summary>
         [Newtonsoft.Json.JsonProperty("stop_name", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Stop_name
+        public string StopName
         {
-            get { return _stop_name; }
+            get { return _stopName; }
             set
             {
-                if (_stop_name != value)
+                if (_stopName != value)
                 {
-                    _stop_name = value;
+                    _stopName = value;
                     RaisePropertyChanged();
                 }
             }
@@ -45,14 +45,14 @@ namespace PtvApi
         /// <summary>Stop identifier</summary>
         [Newtonsoft.Json.JsonProperty("stop_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Stop_id
+        public int? StopId
         {
-            get { return _stop_id; }
+            get { return _stopId; }
             set
             {
-                if (_stop_id != value)
+                if (_stopId != value)
                 {
-                    _stop_id = value;
+                    _stopId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -63,12 +63,12 @@ namespace PtvApi
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? RouteTypes
         {
-            get { return _route_type; }
+            get { return _routeType; }
             set
             {
-                if (_route_type != value)
+                if (_routeType != value)
                 {
-                    _route_type = value;
+                    _routeType = value;
                     RaisePropertyChanged();
                 }
             }
@@ -77,14 +77,14 @@ namespace PtvApi
         /// <summary>Geographic coordinate of latitude at stop</summary>
         [Newtonsoft.Json.JsonProperty("stop_latitude", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Stop_latitude
+        public double? StopLatitude
         {
-            get { return _stop_latitude; }
+            get { return _stopLatitude; }
             set
             {
-                if (_stop_latitude != value)
+                if (_stopLatitude != value)
                 {
-                    _stop_latitude = value;
+                    _stopLatitude = value;
                     RaisePropertyChanged();
                 }
             }
@@ -93,14 +93,14 @@ namespace PtvApi
         /// <summary>Geographic coordinate of longitude at stop</summary>
         [Newtonsoft.Json.JsonProperty("stop_longitude", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Stop_longitude
+        public double? StopLongitude
         {
-            get { return _stop_longitude; }
+            get { return _stopLongitude; }
             set
             {
-                if (_stop_longitude != value)
+                if (_stopLongitude != value)
                 {
-                    _stop_longitude = value;
+                    _stopLongitude = value;
                     RaisePropertyChanged();
                 }
             }

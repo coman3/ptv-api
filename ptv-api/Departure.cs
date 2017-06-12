@@ -3,28 +3,28 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class Departure : System.ComponentModel.INotifyPropertyChanged
     {
-        private int? _stop_id;
-        private int? _route_id;
-        private int? _run_id;
-        private int? _direction_id;
-        private System.Collections.ObjectModel.ObservableCollection<int> _disruption_ids;
-        private System.DateTime? _scheduled_departure_utc;
-        private System.DateTime? _estimated_departure_utc;
-        private bool? _at_platform;
-        private string _platform_number;
+        private int? _stopId;
+        private int? _routeId;
+        private int? _runId;
+        private int? _directionId;
+        private System.Collections.ObjectModel.ObservableCollection<int> _disruptionIds;
+        private System.DateTime? _scheduledDepartureUtc;
+        private System.DateTime? _estimatedDepartureUtc;
+        private bool? _atPlatform;
+        private string _platformNumber;
         private string _flags;
 
         /// <summary>Stop identifier</summary>
         [Newtonsoft.Json.JsonProperty("stop_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Stop_id
+        public int? StopId
         {
-            get { return _stop_id; }
+            get { return _stopId; }
             set
             {
-                if (_stop_id != value)
+                if (_stopId != value)
                 {
-                    _stop_id = value;
+                    _stopId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -33,14 +33,14 @@ namespace PtvApi
         /// <summary>Route identifier</summary>
         [Newtonsoft.Json.JsonProperty("route_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Route_id
+        public int? RouteId
         {
-            get { return _route_id; }
+            get { return _routeId; }
             set
             {
-                if (_route_id != value)
+                if (_routeId != value)
                 {
-                    _route_id = value;
+                    _routeId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -49,14 +49,14 @@ namespace PtvApi
         /// <summary>Trip/service run identifier</summary>
         [Newtonsoft.Json.JsonProperty("run_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Run_id
+        public int? RunId
         {
-            get { return _run_id; }
+            get { return _runId; }
             set
             {
-                if (_run_id != value)
+                if (_runId != value)
                 {
-                    _run_id = value;
+                    _runId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -65,14 +65,14 @@ namespace PtvApi
         /// <summary>Direction of travel identifier</summary>
         [Newtonsoft.Json.JsonProperty("direction_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Direction_id
+        public int? DirectionId
         {
-            get { return _direction_id; }
+            get { return _directionId; }
             set
             {
-                if (_direction_id != value)
+                if (_directionId != value)
                 {
-                    _direction_id = value;
+                    _directionId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -81,14 +81,14 @@ namespace PtvApi
         /// <summary>Disruption information identifier(s)</summary>
         [Newtonsoft.Json.JsonProperty("disruption_ids", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<int> Disruption_ids
+        public System.Collections.ObjectModel.ObservableCollection<int> DisruptionIds
         {
-            get { return _disruption_ids; }
+            get { return _disruptionIds; }
             set
             {
-                if (_disruption_ids != value)
+                if (_disruptionIds != value)
                 {
-                    _disruption_ids = value;
+                    _disruptionIds = value;
                     RaisePropertyChanged();
                 }
             }
@@ -97,14 +97,14 @@ namespace PtvApi
         /// <summary>Scheduled (i.e. timetabled) departure time and date in ISO 8601 UTC format</summary>
         [Newtonsoft.Json.JsonProperty("scheduled_departure_utc", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? Scheduled_departure_utc
+        public System.DateTime? ScheduledDepartureUtc
         {
-            get { return _scheduled_departure_utc; }
+            get { return _scheduledDepartureUtc; }
             set
             {
-                if (_scheduled_departure_utc != value)
+                if (_scheduledDepartureUtc != value)
                 {
-                    _scheduled_departure_utc = value;
+                    _scheduledDepartureUtc = value;
                     RaisePropertyChanged();
                 }
             }
@@ -113,14 +113,14 @@ namespace PtvApi
         /// <summary>Real-time estimate of departure time and date in ISO 8601 UTC format</summary>
         [Newtonsoft.Json.JsonProperty("estimated_departure_utc", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? Estimated_departure_utc
+        public System.DateTime? EstimatedDepartureUtc
         {
-            get { return _estimated_departure_utc; }
+            get { return _estimatedDepartureUtc; }
             set
             {
-                if (_estimated_departure_utc != value)
+                if (_estimatedDepartureUtc != value)
                 {
-                    _estimated_departure_utc = value;
+                    _estimatedDepartureUtc = value;
                     RaisePropertyChanged();
                 }
             }
@@ -129,14 +129,14 @@ namespace PtvApi
         /// <summary>Indicates if the metropolitan train service is at the platform at the time of query; returns false for other modes</summary>
         [Newtonsoft.Json.JsonProperty("at_platform", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? At_platform
+        public bool? AtPlatform
         {
-            get { return _at_platform; }
+            get { return _atPlatform; }
             set
             {
-                if (_at_platform != value)
+                if (_atPlatform != value)
                 {
-                    _at_platform = value;
+                    _atPlatform = value;
                     RaisePropertyChanged();
                 }
             }
@@ -145,14 +145,14 @@ namespace PtvApi
         /// <summary>Platform number at stop (metropolitan train only; returns null for other modes)</summary>
         [Newtonsoft.Json.JsonProperty("platform_number", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Platform_number
+        public string PlatformNumber
         {
-            get { return _platform_number; }
+            get { return _platformNumber; }
             set
             {
-                if (_platform_number != value)
+                if (_platformNumber != value)
                 {
-                    _platform_number = value;
+                    _platformNumber = value;
                     RaisePropertyChanged();
                 }
             }

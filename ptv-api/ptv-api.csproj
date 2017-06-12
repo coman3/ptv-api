@@ -64,7 +64,6 @@
     <Compile Include="RouteType.cs" />
     <Compile Include="RouteTypesClient.cs" />
     <Compile Include="RouteTypesResponse.cs" />
-    <Compile Include="Route_type.cs" />
     <Compile Include="Run.cs" />
     <Compile Include="RunResponse.cs" />
     <Compile Include="RunsClient.cs" />

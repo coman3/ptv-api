@@ -3,24 +3,24 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class SearchParameters : System.ComponentModel.INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<RouteTypes> _route_types;
+        private System.Collections.ObjectModel.ObservableCollection<RouteTypes> _routeTypes;
         private double? _latitude;
         private double? _longitude;
-        private double? _max_distance;
-        private bool? _include_addresses;
-        private bool? _include_outlets;
+        private double? _maxDistance;
+        private bool? _includeAddresses;
+        private bool? _includeOutlets;
 
         /// <summary>Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types specified)</summary>
         [Newtonsoft.Json.JsonProperty("route_types", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.ObjectModel.ObservableCollection<RouteTypes> RouteTypess
         {
-            get { return _route_types; }
+            get { return _routeTypes; }
             set
             {
-                if (_route_types != value)
+                if (_routeTypes != value)
                 {
-                    _route_types = value;
+                    _routeTypes = value;
                     RaisePropertyChanged();
                 }
             }
@@ -61,14 +61,14 @@ namespace PtvApi
         /// <summary>Filter by maximum distance (in metres) from location specified via latitude and longitude parameters</summary>
         [Newtonsoft.Json.JsonProperty("max_distance", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public double? Max_distance
+        public double? MaxDistance
         {
-            get { return _max_distance; }
+            get { return _maxDistance; }
             set
             {
-                if (_max_distance != value)
+                if (_maxDistance != value)
                 {
-                    _max_distance = value;
+                    _maxDistance = value;
                     RaisePropertyChanged();
                 }
             }
@@ -77,14 +77,14 @@ namespace PtvApi
         /// <summary>Placeholder for future development; currently unavailable</summary>
         [Newtonsoft.Json.JsonProperty("include_addresses", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Include_addresses
+        public bool? IncludeAddresses
         {
-            get { return _include_addresses; }
+            get { return _includeAddresses; }
             set
             {
-                if (_include_addresses != value)
+                if (_includeAddresses != value)
                 {
-                    _include_addresses = value;
+                    _includeAddresses = value;
                     RaisePropertyChanged();
                 }
             }
@@ -93,14 +93,14 @@ namespace PtvApi
         /// <summary>Indicates if outlets will be returned in response (default = true)</summary>
         [Newtonsoft.Json.JsonProperty("include_outlets", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Include_outlets
+        public bool? IncludeOutlets
         {
-            get { return _include_outlets; }
+            get { return _includeOutlets; }
             set
             {
-                if (_include_outlets != value)
+                if (_includeOutlets != value)
                 {
-                    _include_outlets = value;
+                    _includeOutlets = value;
                     RaisePropertyChanged();
                 }
             }

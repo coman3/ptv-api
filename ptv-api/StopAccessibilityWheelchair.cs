@@ -3,22 +3,22 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class StopAccessibilityWheelchair : System.ComponentModel.INotifyPropertyChanged
     {
-        private bool? _accessible_ramp;
-        private bool? _accessible_parking;
-        private bool? _accessible_phone;
-        private bool? _accessible_toilet;
+        private bool? _accessibleRamp;
+        private bool? _accessibleParking;
+        private bool? _accessiblePhone;
+        private bool? _accessibleToilet;
 
         /// <summary>Indicates if there is a ramp at the stop that complies with the Disability Standards for Accessible Public Transport under the Disability Discrimination Act (1992)</summary>
         [Newtonsoft.Json.JsonProperty("accessible_ramp", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Accessible_ramp
+        public bool? AccessibleRamp
         {
-            get { return _accessible_ramp; }
+            get { return _accessibleRamp; }
             set
             {
-                if (_accessible_ramp != value)
+                if (_accessibleRamp != value)
                 {
-                    _accessible_ramp = value;
+                    _accessibleRamp = value;
                     RaisePropertyChanged();
                 }
             }
@@ -27,14 +27,14 @@ namespace PtvApi
         /// <summary>Indicates if there is at least one accessible parking spot at the stop that complies with the Disability Standards for Accessible Public Transport under the Disability Discrimination Act (1992)</summary>
         [Newtonsoft.Json.JsonProperty("accessible_parking", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Accessible_parking
+        public bool? AccessibleParking
         {
-            get { return _accessible_parking; }
+            get { return _accessibleParking; }
             set
             {
-                if (_accessible_parking != value)
+                if (_accessibleParking != value)
                 {
-                    _accessible_parking = value;
+                    _accessibleParking = value;
                     RaisePropertyChanged();
                 }
             }
@@ -43,14 +43,14 @@ namespace PtvApi
         /// <summary>Indicates if there is an accessible public telephone at the stop that complies with the Disability Standards for Accessible Public Transport under the Disability Discrimination Act (1992)</summary>
         [Newtonsoft.Json.JsonProperty("accessible_phone", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Accessible_phone
+        public bool? AccessiblePhone
         {
-            get { return _accessible_phone; }
+            get { return _accessiblePhone; }
             set
             {
-                if (_accessible_phone != value)
+                if (_accessiblePhone != value)
                 {
-                    _accessible_phone = value;
+                    _accessiblePhone = value;
                     RaisePropertyChanged();
                 }
             }
@@ -59,14 +59,14 @@ namespace PtvApi
         /// <summary>Indicates if there is an accessible public toilet at the stop that complies with the Disability Standards for Accessible Public Transport under the Disability Discrimination Act (1992)</summary>
         [Newtonsoft.Json.JsonProperty("accessible_toilet", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Accessible_toilet
+        public bool? AccessibleToilet
         {
-            get { return _accessible_toilet; }
+            get { return _accessibleToilet; }
             set
             {
-                if (_accessible_toilet != value)
+                if (_accessibleToilet != value)
                 {
-                    _accessible_toilet = value;
+                    _accessibleToilet = value;
                     RaisePropertyChanged();
                 }
             }

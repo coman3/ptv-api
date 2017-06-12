@@ -7,8 +7,8 @@ namespace PtvApi
         private bool? _stairs;
         private bool? _escalator;
         private bool? _lifts;
-        private bool? _hearing_loop;
-        private bool? _tactile_tiles;
+        private bool? _hearingLoop;
+        private bool? _tactileTiles;
         private StopAccessibilityWheelchair _wheelchair;
 
         /// <summary>Indicates if there is lighting at the stop</summary>
@@ -78,14 +78,14 @@ namespace PtvApi
         /// <summary>Indicates if there is a hearing loop facility at the stop</summary>
         [Newtonsoft.Json.JsonProperty("hearing_loop", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Hearing_loop
+        public bool? HearingLoop
         {
-            get { return _hearing_loop; }
+            get { return _hearingLoop; }
             set
             {
-                if (_hearing_loop != value)
+                if (_hearingLoop != value)
                 {
-                    _hearing_loop = value;
+                    _hearingLoop = value;
                     RaisePropertyChanged();
                 }
             }
@@ -94,14 +94,14 @@ namespace PtvApi
         /// <summary>Indicates if there are tactile tiles (also known as tactile ground surface indicators, or TGSIs) at the stop</summary>
         [Newtonsoft.Json.JsonProperty("tactile_tiles", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Tactile_tiles
+        public bool? TactileTiles
         {
-            get { return _tactile_tiles; }
+            get { return _tactileTiles; }
             set
             {
-                if (_tactile_tiles != value)
+                if (_tactileTiles != value)
                 {
-                    _tactile_tiles = value;
+                    _tactileTiles = value;
                     RaisePropertyChanged();
                 }
             }

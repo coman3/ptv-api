@@ -20,39 +20,39 @@ namespace PtvApi
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <summary>View route names and numbers for all routes</summary>
-        /// <param name="route_types">Filter by route_type; values returned via RouteTypes API</param>
-        /// <param name="route_name">Filter by name  of route (accepts partial route name matches)</param>
+        /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
+        /// <param name="routeName">Filter by name  of route (accepts partial route name matches)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<RouteResponse> OneOrMoreRoutesAsync(
-            System.Collections.Generic.IEnumerable<RouteTypes> route_types, string route_name, string token,
+            System.Collections.Generic.IEnumerable<RouteTypes> routeTypes, string routeName, string token,
             string devid, string signature)
         {
-            return OneOrMoreRoutesAsync(route_types, route_name, token, devid, signature,
+            return OneOrMoreRoutesAsync(routeTypes, routeName, token, devid, signature,
                 System.Threading.CancellationToken.None);
         }
 
         /// <summary>View route names and numbers for all routes</summary>
-        /// <param name="route_types">Filter by route_type; values returned via RouteTypes API</param>
-        /// <param name="route_name">Filter by name  of route (accepts partial route name matches)</param>
+        /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
+        /// <param name="routeName">Filter by name  of route (accepts partial route name matches)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RouteResponse OneOrMoreRoutes(System.Collections.Generic.IEnumerable<RouteTypes> route_types,
-            string route_name, string token, string devid, string signature)
+        public RouteResponse OneOrMoreRoutes(System.Collections.Generic.IEnumerable<RouteTypes> routeTypes,
+            string routeName, string token, string devid, string signature)
         {
-            return System.Threading.Tasks.Task.Run(async () => await OneOrMoreRoutesAsync(route_types, route_name,
+            return System.Threading.Tasks.Task.Run(async () => await OneOrMoreRoutesAsync(routeTypes, routeName,
                 token, devid, signature, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View route names and numbers for all routes</summary>
-        /// <param name="route_types">Filter by route_type; values returned via RouteTypes API</param>
-        /// <param name="route_name">Filter by name  of route (accepts partial route name matches)</param>
+        /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
+        /// <param name="routeName">Filter by name  of route (accepts partial route name matches)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
@@ -60,273 +60,273 @@ namespace PtvApi
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<RouteResponse> OneOrMoreRoutesAsync(
-            System.Collections.Generic.IEnumerable<RouteTypes> route_types, string route_name, string token,
+            System.Collections.Generic.IEnumerable<RouteTypes> routeTypes, string routeName, string token,
             string devid, string signature, System.Threading.CancellationToken cancellationToken)
         {
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl).Append("/v3/routes?");
-            if (route_types != null)
-                foreach (var item_ in route_types)
+            var urlBuilder = new System.Text.StringBuilder();
+            urlBuilder.Append(BaseUrl).Append("/v3/routes?");
+            if (routeTypes != null)
+                foreach (var item in routeTypes)
                 {
-                    urlBuilder_.Append("route_types=").Append(System.Uri.EscapeDataString(item_.ToString()))
+                    urlBuilder.Append("route_types=").Append(System.Uri.EscapeDataString(item.ToString()))
                         .Append("&");
                 }
-            if (route_name != null)
-                urlBuilder_.Append("route_name=").Append(System.Uri.EscapeDataString(route_name.ToString()))
+            if (routeName != null)
+                urlBuilder.Append("route_name=").Append(System.Uri.EscapeDataString(routeName.ToString()))
                     .Append("&");
             if (token != null)
-                urlBuilder_.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
             if (devid != null)
-                urlBuilder_.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
             if (signature != null)
-                urlBuilder_.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
-            urlBuilder_.Length--;
+                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+            urlBuilder.Length--;
 
-            var client_ = new System.Net.Http.HttpClient();
+            var client = new System.Net.Http.HttpClient();
             try
             {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                using (var request = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(
+                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Headers.Accept.Add(
                         new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
+                    PrepareRequest(client, request, urlBuilder);
+                    var url = urlBuilder.ToString();
+                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client, request, url);
 
-                    var response_ = await client_.SendAsync(request_,
+                    var response = await client.SendAsync(request,
                             System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
-                        var headers_ =
-                            System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        foreach (var item_ in response_.Content.Headers)
-                            headers_[item_.Key] = item_.Value;
+                        var headers =
+                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                        foreach (var item in response.Content.Headers)
+                            headers[item.Key] = item.Value;
 
-                        ProcessResponse(client_, response_);
+                        ProcessResponse(client, response);
 
-                        var status_ = ((int) response_.StatusCode).ToString();
-                        if (status_ == "200")
+                        var status = ((int) response.StatusCode).ToString();
+                        if (status == "200")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(RouteResponse);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(RouteResponse);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<RouteResponse>(responseData_);
-                                return result_;
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<RouteResponse>(responseData);
+                                return result;
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
                         }
-                        else if (status_ == "400")
+                        else if (status == "400")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(ErrorResponse);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(ErrorResponse);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData_);
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
-                            throw new SwaggerException<ErrorResponse>("Invalid Request", status_, responseData_,
-                                headers_, result_, null);
+                            throw new SwaggerException<ErrorResponse>("Invalid Request", status, responseData,
+                                headers, result, null);
                         }
-                        else if (status_ == "403")
+                        else if (status == "403")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(ErrorResponse);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(ErrorResponse);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData_);
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
-                            throw new SwaggerException<ErrorResponse>("Access Denied", status_, responseData_, headers_,
-                                result_, null);
+                            throw new SwaggerException<ErrorResponse>("Access Denied", status, responseData, headers,
+                                result, null);
                         }
-                        else if (status_ != "200" && status_ != "204")
+                        else if (status != "200" && status != "204")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new SwaggerException(
-                                "The HTTP status code of the response was not expected (" + (int) response_.StatusCode +
-                                ").", status_, responseData_, headers_, null);
+                                "The HTTP status code of the response was not expected (" + (int) response.StatusCode +
+                                ").", status, responseData, headers, null);
                         }
 
                         return default(RouteResponse);
                     }
                     finally
                     {
-                        if (response_ != null)
-                            response_.Dispose();
+                        if (response != null)
+                            response.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
+                if (client != null)
+                    client.Dispose();
             }
         }
 
         /// <summary>View route name and number for specific route ID</summary>
-        /// <param name="route_id">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
+        /// <param name="routeId">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The route name and number for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<RouteResponse> RouteFromIdAsync(int route_id, string token, string devid,
+        public System.Threading.Tasks.Task<RouteResponse> RouteFromIdAsync(int routeId, string token, string devid,
             string signature)
         {
-            return RouteFromIdAsync(route_id, token, devid, signature, System.Threading.CancellationToken.None);
+            return RouteFromIdAsync(routeId, token, devid, signature, System.Threading.CancellationToken.None);
         }
 
         /// <summary>View route name and number for specific route ID</summary>
-        /// <param name="route_id">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
+        /// <param name="routeId">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The route name and number for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RouteResponse RouteFromId(int route_id, string token, string devid, string signature)
+        public RouteResponse RouteFromId(int routeId, string token, string devid, string signature)
         {
             return System.Threading.Tasks.Task
-                .Run(async () => await RouteFromIdAsync(route_id, token, devid, signature,
+                .Run(async () => await RouteFromIdAsync(routeId, token, devid, signature,
                     System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View route name and number for specific route ID</summary>
-        /// <param name="route_id">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
+        /// <param name="routeId">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The route name and number for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<RouteResponse> RouteFromIdAsync(int route_id, string token,
+        public async System.Threading.Tasks.Task<RouteResponse> RouteFromIdAsync(int routeId, string token,
             string devid, string signature, System.Threading.CancellationToken cancellationToken)
         {
-            if (route_id == null)
-                throw new System.ArgumentNullException("route_id");
+            if (routeId == null)
+                throw new System.ArgumentNullException("routeId");
 
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl).Append("/v3/routes/{route_id}?");
-            urlBuilder_.Replace("{route_id}", System.Uri.EscapeDataString(route_id.ToString()));
+            var urlBuilder = new System.Text.StringBuilder();
+            urlBuilder.Append(BaseUrl).Append("/v3/routes/{route_id}?");
+            urlBuilder.Replace("{route_id}", System.Uri.EscapeDataString(routeId.ToString()));
             if (token != null)
-                urlBuilder_.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
             if (devid != null)
-                urlBuilder_.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
             if (signature != null)
-                urlBuilder_.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
-            urlBuilder_.Length--;
+                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+            urlBuilder.Length--;
 
-            var client_ = new System.Net.Http.HttpClient();
+            var client = new System.Net.Http.HttpClient();
             try
             {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                using (var request = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(
+                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Headers.Accept.Add(
                         new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
+                    PrepareRequest(client, request, urlBuilder);
+                    var url = urlBuilder.ToString();
+                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client, request, url);
 
-                    var response_ = await client_.SendAsync(request_,
+                    var response = await client.SendAsync(request,
                             System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
-                        var headers_ =
-                            System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        foreach (var item_ in response_.Content.Headers)
-                            headers_[item_.Key] = item_.Value;
+                        var headers =
+                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                        foreach (var item in response.Content.Headers)
+                            headers[item.Key] = item.Value;
 
-                        ProcessResponse(client_, response_);
+                        ProcessResponse(client, response);
 
-                        var status_ = ((int) response_.StatusCode).ToString();
-                        if (status_ == "200")
+                        var status = ((int) response.StatusCode).ToString();
+                        if (status == "200")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(RouteResponse);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(RouteResponse);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<RouteResponse>(responseData_);
-                                return result_;
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<RouteResponse>(responseData);
+                                return result;
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
                         }
-                        else if (status_ == "400")
+                        else if (status == "400")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(ErrorResponse);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(ErrorResponse);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData_);
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
-                            throw new SwaggerException<ErrorResponse>("Invalid Request", status_, responseData_,
-                                headers_, result_, null);
+                            throw new SwaggerException<ErrorResponse>("Invalid Request", status, responseData,
+                                headers, result, null);
                         }
-                        else if (status_ == "403")
+                        else if (status == "403")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(ErrorResponse);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(ErrorResponse);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData_);
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
-                            throw new SwaggerException<ErrorResponse>("Access Denied", status_, responseData_, headers_,
-                                result_, null);
+                            throw new SwaggerException<ErrorResponse>("Access Denied", status, responseData, headers,
+                                result, null);
                         }
-                        else if (status_ != "200" && status_ != "204")
+                        else if (status != "200" && status != "204")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new SwaggerException(
-                                "The HTTP status code of the response was not expected (" + (int) response_.StatusCode +
-                                ").", status_, responseData_, headers_, null);
+                                "The HTTP status code of the response was not expected (" + (int) response.StatusCode +
+                                ").", status, responseData, headers, null);
                         }
 
                         return default(RouteResponse);
                     }
                     finally
                     {
-                        if (response_ != null)
-                            response_.Dispose();
+                        if (response != null)
+                            response.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
+                if (client != null)
+                    client.Dispose();
             }
         }
 

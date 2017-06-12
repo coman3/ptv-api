@@ -3,29 +3,29 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class Disruption : System.ComponentModel.INotifyPropertyChanged
     {
-        private long? _disruption_id;
+        private long? _disruptionId;
         private string _title;
         private string _url;
         private string _description;
-        private string _disruption_status;
-        private string _disruption_type;
-        private System.DateTime? _published_on;
-        private System.DateTime? _last_updated;
-        private System.DateTime? _from_date;
-        private System.DateTime? _to_date;
+        private string _disruptionStatus;
+        private string _disruptionType;
+        private System.DateTime? _publishedOn;
+        private System.DateTime? _lastUpdated;
+        private System.DateTime? _fromDate;
+        private System.DateTime? _toDate;
         private System.Collections.ObjectModel.ObservableCollection<DisruptionRoute> _routes;
 
         /// <summary>Disruption information identifier</summary>
         [Newtonsoft.Json.JsonProperty("disruption_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public long? Disruption_id
+        public long? DisruptionId
         {
-            get { return _disruption_id; }
+            get { return _disruptionId; }
             set
             {
-                if (_disruption_id != value)
+                if (_disruptionId != value)
                 {
-                    _disruption_id = value;
+                    _disruptionId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -82,14 +82,14 @@ namespace PtvApi
         /// <summary>Status of the disruption (e.g. "Planned", "Current")</summary>
         [Newtonsoft.Json.JsonProperty("disruption_status", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Disruption_status
+        public string DisruptionStatus
         {
-            get { return _disruption_status; }
+            get { return _disruptionStatus; }
             set
             {
-                if (_disruption_status != value)
+                if (_disruptionStatus != value)
                 {
-                    _disruption_status = value;
+                    _disruptionStatus = value;
                     RaisePropertyChanged();
                 }
             }
@@ -98,14 +98,14 @@ namespace PtvApi
         /// <summary>Type of disruption</summary>
         [Newtonsoft.Json.JsonProperty("disruption_type", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Disruption_type
+        public string DisruptionType
         {
-            get { return _disruption_type; }
+            get { return _disruptionType; }
             set
             {
-                if (_disruption_type != value)
+                if (_disruptionType != value)
                 {
-                    _disruption_type = value;
+                    _disruptionType = value;
                     RaisePropertyChanged();
                 }
             }
@@ -114,14 +114,14 @@ namespace PtvApi
         /// <summary>Date and time disruption information is published on PTV website, in ISO 8601 UTC format</summary>
         [Newtonsoft.Json.JsonProperty("published_on", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? Published_on
+        public System.DateTime? PublishedOn
         {
-            get { return _published_on; }
+            get { return _publishedOn; }
             set
             {
-                if (_published_on != value)
+                if (_publishedOn != value)
                 {
-                    _published_on = value;
+                    _publishedOn = value;
                     RaisePropertyChanged();
                 }
             }
@@ -130,14 +130,14 @@ namespace PtvApi
         /// <summary>Date and time disruption information was last updated by PTV, in ISO 8601 UTC format</summary>
         [Newtonsoft.Json.JsonProperty("last_updated", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? Last_updated
+        public System.DateTime? LastUpdated
         {
-            get { return _last_updated; }
+            get { return _lastUpdated; }
             set
             {
-                if (_last_updated != value)
+                if (_lastUpdated != value)
                 {
-                    _last_updated = value;
+                    _lastUpdated = value;
                     RaisePropertyChanged();
                 }
             }
@@ -146,14 +146,14 @@ namespace PtvApi
         /// <summary>Date and time at which disruption begins, in ISO 8601 UTC format</summary>
         [Newtonsoft.Json.JsonProperty("from_date", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? From_date
+        public System.DateTime? FromDate
         {
-            get { return _from_date; }
+            get { return _fromDate; }
             set
             {
-                if (_from_date != value)
+                if (_fromDate != value)
                 {
-                    _from_date = value;
+                    _fromDate = value;
                     RaisePropertyChanged();
                 }
             }
@@ -162,14 +162,14 @@ namespace PtvApi
         /// <summary>Date and time at which disruption ends, in ISO 8601 UTC format (returns null if unknown)</summary>
         [Newtonsoft.Json.JsonProperty("to_date", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? To_date
+        public System.DateTime? ToDate
         {
-            get { return _to_date; }
+            get { return _toDate; }
             set
             {
-                if (_to_date != value)
+                if (_toDate != value)
                 {
-                    _to_date = value;
+                    _toDate = value;
                     RaisePropertyChanged();
                 }
             }

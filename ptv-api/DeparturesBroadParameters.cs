@@ -3,25 +3,25 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class DeparturesBroadParameters : System.ComponentModel.INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<int> _platform_numbers;
-        private int? _direction_id;
-        private System.DateTime? _date_utc;
-        private int? _max_results;
+        private System.Collections.ObjectModel.ObservableCollection<int> _platformNumbers;
+        private int? _directionId;
+        private System.DateTime? _dateUtc;
+        private int? _maxResults;
         private bool? _gtfs;
-        private bool? _include_cancelled;
+        private bool? _includeCancelled;
         private System.Collections.ObjectModel.ObservableCollection<ExpandableParameter> _expand;
 
         /// <summary>Filter by platform number at stop</summary>
         [Newtonsoft.Json.JsonProperty("platform_numbers", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<int> Platform_numbers
+        public System.Collections.ObjectModel.ObservableCollection<int> PlatformNumbers
         {
-            get { return _platform_numbers; }
+            get { return _platformNumbers; }
             set
             {
-                if (_platform_numbers != value)
+                if (_platformNumbers != value)
                 {
-                    _platform_numbers = value;
+                    _platformNumbers = value;
                     RaisePropertyChanged();
                 }
             }
@@ -30,14 +30,14 @@ namespace PtvApi
         /// <summary>Filter by identifier of direction of travel; values returned by Directions API - /v3/directions/route/{route_id}</summary>
         [Newtonsoft.Json.JsonProperty("direction_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Direction_id
+        public int? DirectionId
         {
-            get { return _direction_id; }
+            get { return _directionId; }
             set
             {
-                if (_direction_id != value)
+                if (_directionId != value)
                 {
-                    _direction_id = value;
+                    _directionId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -46,14 +46,14 @@ namespace PtvApi
         /// <summary>Filter by the date and time of the request (ISO 8601 UTC format)</summary>
         [Newtonsoft.Json.JsonProperty("date_utc", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.DateTime? Date_utc
+        public System.DateTime? DateUtc
         {
-            get { return _date_utc; }
+            get { return _dateUtc; }
             set
             {
-                if (_date_utc != value)
+                if (_dateUtc != value)
                 {
-                    _date_utc = value;
+                    _dateUtc = value;
                     RaisePropertyChanged();
                 }
             }
@@ -62,14 +62,14 @@ namespace PtvApi
         /// <summary>Maximum number of results returned</summary>
         [Newtonsoft.Json.JsonProperty("max_results", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Max_results
+        public int? MaxResults
         {
-            get { return _max_results; }
+            get { return _maxResults; }
             set
             {
-                if (_max_results != value)
+                if (_maxResults != value)
                 {
-                    _max_results = value;
+                    _maxResults = value;
                     RaisePropertyChanged();
                 }
             }
@@ -94,14 +94,14 @@ namespace PtvApi
         /// <summary>Indicates if cancelled services (if they exist) are returned (default = false) - metropolitan train only</summary>
         [Newtonsoft.Json.JsonProperty("include_cancelled", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public bool? Include_cancelled
+        public bool? IncludeCancelled
         {
-            get { return _include_cancelled; }
+            get { return _includeCancelled; }
             set
             {
-                if (_include_cancelled != value)
+                if (_includeCancelled != value)
                 {
-                    _include_cancelled = value;
+                    _includeCancelled = value;
                     RaisePropertyChanged();
                 }
             }

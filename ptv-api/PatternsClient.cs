@@ -20,174 +20,174 @@ namespace PtvApi
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
 
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
-        /// <param name="run_id">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
-        /// <param name="route_type">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="stop_id">Filter by stop_id; values returned by Stops API</param>
-        /// <param name="date_utc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
+        /// <param name="runId">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
+        /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
+        /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
+        /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int run_id, RouteTypes route_type,
-            int? stop_id, System.DateTime? date_utc, string token, string devid, string signature)
+        public System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int runId, RouteTypes routeType,
+            int? stopId, System.DateTime? dateUtc, string token, string devid, string signature)
         {
-            return GetPatternByRunAsync(run_id, route_type, stop_id, date_utc, token, devid, signature,
+            return GetPatternByRunAsync(runId, routeType, stopId, dateUtc, token, devid, signature,
                 System.Threading.CancellationToken.None);
         }
 
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
-        /// <param name="run_id">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
-        /// <param name="route_type">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="stop_id">Filter by stop_id; values returned by Stops API</param>
-        /// <param name="date_utc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
+        /// <param name="runId">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
+        /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
+        /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
+        /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public StoppingPattern GetPatternByRun(int run_id, RouteTypes route_type, int? stop_id,
-            System.DateTime? date_utc, string token, string devid, string signature)
+        public StoppingPattern GetPatternByRun(int runId, RouteTypes routeType, int? stopId,
+            System.DateTime? dateUtc, string token, string devid, string signature)
         {
-            return System.Threading.Tasks.Task.Run(async () => await GetPatternByRunAsync(run_id, route_type, stop_id,
-                date_utc, token, devid, signature, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
+            return System.Threading.Tasks.Task.Run(async () => await GetPatternByRunAsync(runId, routeType, stopId,
+                dateUtc, token, devid, signature, System.Threading.CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
-        /// <param name="run_id">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
-        /// <param name="route_type">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="stop_id">Filter by stop_id; values returned by Stops API</param>
-        /// <param name="date_utc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
+        /// <param name="runId">Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures API</param>
+        /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
+        /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
+        /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
         /// <param name="token">Please ignore</param>
         /// <param name="devid">Your developer id</param>
         /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int run_id,
-            RouteTypes route_type, int? stop_id, System.DateTime? date_utc, string token, string devid,
+        public async System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int runId,
+            RouteTypes routeType, int? stopId, System.DateTime? dateUtc, string token, string devid,
             string signature, System.Threading.CancellationToken cancellationToken)
         {
-            if (run_id == null)
-                throw new System.ArgumentNullException("run_id");
+            if (runId == null)
+                throw new System.ArgumentNullException("runId");
 
-            if (route_type == null)
-                throw new System.ArgumentNullException("route_type");
+            if (routeType == null)
+                throw new System.ArgumentNullException("routeType");
 
-            var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append(BaseUrl).Append("/v3/pattern/run/{run_id}/route_type/{route_type}?");
-            urlBuilder_.Replace("{run_id}", System.Uri.EscapeDataString(run_id.ToString()));
-            urlBuilder_.Replace("{route_type}", System.Uri.EscapeDataString(route_type.ToString()));
-            if (stop_id != null)
-                urlBuilder_.Append("stop_id=").Append(System.Uri.EscapeDataString(stop_id.Value.ToString()))
+            var urlBuilder = new System.Text.StringBuilder();
+            urlBuilder.Append(BaseUrl).Append("/v3/pattern/run/{run_id}/route_type/{route_type}?");
+            urlBuilder.Replace("{run_id}", System.Uri.EscapeDataString(runId.ToString()));
+            urlBuilder.Replace("{route_type}", System.Uri.EscapeDataString(routeType.ToString()));
+            if (stopId != null)
+                urlBuilder.Append("stop_id=").Append(System.Uri.EscapeDataString(stopId.Value.ToString()))
                     .Append("&");
-            if (date_utc != null)
-                urlBuilder_.Append("date_utc=")
+            if (dateUtc != null)
+                urlBuilder.Append("date_utc=")
                     .Append(System.Uri.EscapeDataString(
-                        date_utc.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                        dateUtc.Value.ToString("s", System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             if (token != null)
-                urlBuilder_.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
+                urlBuilder.Append("token=").Append(System.Uri.EscapeDataString(token.ToString())).Append("&");
             if (devid != null)
-                urlBuilder_.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
+                urlBuilder.Append("devid=").Append(System.Uri.EscapeDataString(devid.ToString())).Append("&");
             if (signature != null)
-                urlBuilder_.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
-            urlBuilder_.Length--;
+                urlBuilder.Append("signature=").Append(System.Uri.EscapeDataString(signature.ToString())).Append("&");
+            urlBuilder.Length--;
 
-            var client_ = new System.Net.Http.HttpClient();
+            var client = new System.Net.Http.HttpClient();
             try
             {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                using (var request = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(
+                    request.Method = new System.Net.Http.HttpMethod("GET");
+                    request.Headers.Accept.Add(
                         new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                    PrepareRequest(client_, request_, urlBuilder_);
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-                    PrepareRequest(client_, request_, url_);
+                    PrepareRequest(client, request, urlBuilder);
+                    var url = urlBuilder.ToString();
+                    request.RequestUri = new System.Uri(url, System.UriKind.RelativeOrAbsolute);
+                    PrepareRequest(client, request, url);
 
-                    var response_ = await client_.SendAsync(request_,
+                    var response = await client.SendAsync(request,
                             System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken)
                         .ConfigureAwait(false);
                     try
                     {
-                        var headers_ =
-                            System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
-                        foreach (var item_ in response_.Content.Headers)
-                            headers_[item_.Key] = item_.Value;
+                        var headers =
+                            System.Linq.Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                        foreach (var item in response.Content.Headers)
+                            headers[item.Key] = item.Value;
 
-                        ProcessResponse(client_, response_);
+                        ProcessResponse(client, response);
 
-                        var status_ = ((int) response_.StatusCode).ToString();
-                        if (status_ == "200")
+                        var status = ((int) response.StatusCode).ToString();
+                        if (status == "200")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(StoppingPattern);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(StoppingPattern);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<StoppingPattern>(responseData_);
-                                return result_;
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<StoppingPattern>(responseData);
+                                return result;
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
                         }
-                        else if (status_ == "400")
+                        else if (status == "400")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(ErrorResponse);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(ErrorResponse);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData_);
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
-                            throw new SwaggerException<ErrorResponse>("Invalid Request", status_, responseData_,
-                                headers_, result_, null);
+                            throw new SwaggerException<ErrorResponse>("Invalid Request", status, responseData,
+                                headers, result, null);
                         }
-                        else if (status_ == "403")
+                        else if (status == "403")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            var result_ = default(ErrorResponse);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result = default(ErrorResponse);
                             try
                             {
-                                result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData_);
+                                result = Newtonsoft.Json.JsonConvert.DeserializeObject<ErrorResponse>(responseData);
                             }
                             catch (System.Exception exception)
                             {
-                                throw new SwaggerException("Could not deserialize the response body.", status_,
-                                    responseData_, headers_, exception);
+                                throw new SwaggerException("Could not deserialize the response body.", status,
+                                    responseData, headers, exception);
                             }
-                            throw new SwaggerException<ErrorResponse>("Access Denied", status_, responseData_, headers_,
-                                result_, null);
+                            throw new SwaggerException<ErrorResponse>("Access Denied", status, responseData, headers,
+                                result, null);
                         }
-                        else if (status_ != "200" && status_ != "204")
+                        else if (status != "200" && status != "204")
                         {
-                            var responseData_ = await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var responseData = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new SwaggerException(
-                                "The HTTP status code of the response was not expected (" + (int) response_.StatusCode +
-                                ").", status_, responseData_, headers_, null);
+                                "The HTTP status code of the response was not expected (" + (int) response.StatusCode +
+                                ").", status, responseData, headers, null);
                         }
 
                         return default(StoppingPattern);
                     }
                     finally
                     {
-                        if (response_ != null)
-                            response_.Dispose();
+                        if (response != null)
+                            response.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client_ != null)
-                    client_.Dispose();
+                if (client != null)
+                    client.Dispose();
             }
         }
 

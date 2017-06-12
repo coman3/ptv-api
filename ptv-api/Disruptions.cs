@@ -4,12 +4,12 @@ namespace PtvApi
     public partial class Disruptions : System.ComponentModel.INotifyPropertyChanged
     {
         private System.Collections.ObjectModel.ObservableCollection<Disruption> _general;
-        private System.Collections.ObjectModel.ObservableCollection<Disruption> _metro_train;
-        private System.Collections.ObjectModel.ObservableCollection<Disruption> _metro_tram;
-        private System.Collections.ObjectModel.ObservableCollection<Disruption> _metro_bus;
-        private System.Collections.ObjectModel.ObservableCollection<Disruption> _regional_train;
-        private System.Collections.ObjectModel.ObservableCollection<Disruption> _regional_coach;
-        private System.Collections.ObjectModel.ObservableCollection<Disruption> _regional_bus;
+        private System.Collections.ObjectModel.ObservableCollection<Disruption> _metroTrain;
+        private System.Collections.ObjectModel.ObservableCollection<Disruption> _metroTram;
+        private System.Collections.ObjectModel.ObservableCollection<Disruption> _metroBus;
+        private System.Collections.ObjectModel.ObservableCollection<Disruption> _regionalTrain;
+        private System.Collections.ObjectModel.ObservableCollection<Disruption> _regionalCoach;
+        private System.Collections.ObjectModel.ObservableCollection<Disruption> _regionalBus;
 
         /// <summary>Subset of disruption information applicable to multiple route_types</summary>
         [Newtonsoft.Json.JsonProperty("general", Required = Newtonsoft.Json.Required.Default,
@@ -30,14 +30,14 @@ namespace PtvApi
         /// <summary>Subset of disruption information applicable to metropolitan train</summary>
         [Newtonsoft.Json.JsonProperty("metro_train", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Disruption> Metro_train
+        public System.Collections.ObjectModel.ObservableCollection<Disruption> MetroTrain
         {
-            get { return _metro_train; }
+            get { return _metroTrain; }
             set
             {
-                if (_metro_train != value)
+                if (_metroTrain != value)
                 {
-                    _metro_train = value;
+                    _metroTrain = value;
                     RaisePropertyChanged();
                 }
             }
@@ -46,14 +46,14 @@ namespace PtvApi
         /// <summary>Subset of disruption information applicable to metropolitan tram</summary>
         [Newtonsoft.Json.JsonProperty("metro_tram", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Disruption> Metro_tram
+        public System.Collections.ObjectModel.ObservableCollection<Disruption> MetroTram
         {
-            get { return _metro_tram; }
+            get { return _metroTram; }
             set
             {
-                if (_metro_tram != value)
+                if (_metroTram != value)
                 {
-                    _metro_tram = value;
+                    _metroTram = value;
                     RaisePropertyChanged();
                 }
             }
@@ -62,14 +62,14 @@ namespace PtvApi
         /// <summary>Subset of disruption information applicable to metropolitan bus</summary>
         [Newtonsoft.Json.JsonProperty("metro_bus", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Disruption> Metro_bus
+        public System.Collections.ObjectModel.ObservableCollection<Disruption> MetroBus
         {
-            get { return _metro_bus; }
+            get { return _metroBus; }
             set
             {
-                if (_metro_bus != value)
+                if (_metroBus != value)
                 {
-                    _metro_bus = value;
+                    _metroBus = value;
                     RaisePropertyChanged();
                 }
             }
@@ -78,14 +78,14 @@ namespace PtvApi
         /// <summary>Subset of disruption information applicable to V/Line train</summary>
         [Newtonsoft.Json.JsonProperty("regional_train", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Disruption> Regional_train
+        public System.Collections.ObjectModel.ObservableCollection<Disruption> RegionalTrain
         {
-            get { return _regional_train; }
+            get { return _regionalTrain; }
             set
             {
-                if (_regional_train != value)
+                if (_regionalTrain != value)
                 {
-                    _regional_train = value;
+                    _regionalTrain = value;
                     RaisePropertyChanged();
                 }
             }
@@ -94,14 +94,14 @@ namespace PtvApi
         /// <summary>Subset of disruption information applicable to V/Line coach</summary>
         [Newtonsoft.Json.JsonProperty("regional_coach", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Disruption> Regional_coach
+        public System.Collections.ObjectModel.ObservableCollection<Disruption> RegionalCoach
         {
-            get { return _regional_coach; }
+            get { return _regionalCoach; }
             set
             {
-                if (_regional_coach != value)
+                if (_regionalCoach != value)
                 {
-                    _regional_coach = value;
+                    _regionalCoach = value;
                     RaisePropertyChanged();
                 }
             }
@@ -110,14 +110,14 @@ namespace PtvApi
         /// <summary>Subset of disruption information applicable to regional bus</summary>
         [Newtonsoft.Json.JsonProperty("regional_bus", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Disruption> Regional_bus
+        public System.Collections.ObjectModel.ObservableCollection<Disruption> RegionalBus
         {
-            get { return _regional_bus; }
+            get { return _regionalBus; }
             set
             {
-                if (_regional_bus != value)
+                if (_regionalBus != value)
                 {
-                    _regional_bus = value;
+                    _regionalBus = value;
                     RaisePropertyChanged();
                 }
             }

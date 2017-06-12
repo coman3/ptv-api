@@ -3,22 +3,22 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class Direction : System.ComponentModel.INotifyPropertyChanged
     {
-        private int? _direction_id;
-        private string _direction_name;
-        private int? _route_id;
-        private int? _route_type;
+        private int? _directionId;
+        private string _directionName;
+        private int? _routeId;
+        private int? _routeType;
 
         /// <summary>Direction of travel identifier</summary>
         [Newtonsoft.Json.JsonProperty("direction_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Direction_id
+        public int? DirectionId
         {
-            get { return _direction_id; }
+            get { return _directionId; }
             set
             {
-                if (_direction_id != value)
+                if (_directionId != value)
                 {
-                    _direction_id = value;
+                    _directionId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -27,14 +27,14 @@ namespace PtvApi
         /// <summary>Name of direction of travel</summary>
         [Newtonsoft.Json.JsonProperty("direction_name", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string Direction_name
+        public string DirectionName
         {
-            get { return _direction_name; }
+            get { return _directionName; }
             set
             {
-                if (_direction_name != value)
+                if (_directionName != value)
                 {
-                    _direction_name = value;
+                    _directionName = value;
                     RaisePropertyChanged();
                 }
             }
@@ -43,14 +43,14 @@ namespace PtvApi
         /// <summary>Route identifier</summary>
         [Newtonsoft.Json.JsonProperty("route_id", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public int? Route_id
+        public int? RouteId
         {
-            get { return _route_id; }
+            get { return _routeId; }
             set
             {
-                if (_route_id != value)
+                if (_routeId != value)
                 {
-                    _route_id = value;
+                    _routeId = value;
                     RaisePropertyChanged();
                 }
             }
@@ -61,12 +61,12 @@ namespace PtvApi
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int? RouteTypes
         {
-            get { return _route_type; }
+            get { return _routeType; }
             set
             {
-                if (_route_type != value)
+                if (_routeType != value)
                 {
-                    _route_type = value;
+                    _routeType = value;
                     RaisePropertyChanged();
                 }
             }

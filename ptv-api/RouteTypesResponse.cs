@@ -3,7 +3,7 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class RouteTypesResponse : System.ComponentModel.INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<RouteType> _route_types;
+        private System.Collections.ObjectModel.ObservableCollection<RouteType> _routeTypes;
         private Status _status;
 
         /// <summary>Transport mode identifiers</summary>
@@ -11,12 +11,12 @@ namespace PtvApi
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.ObjectModel.ObservableCollection<RouteType> RouteTypess
         {
-            get { return _route_types; }
+            get { return _routeTypes; }
             set
             {
-                if (_route_types != value)
+                if (_routeTypes != value)
                 {
-                    _route_types = value;
+                    _routeTypes = value;
                     RaisePropertyChanged();
                 }
             }
