@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ptv-api", "ptv-api\ptv-api.csproj", "{B121C036-E571-4A58-8482-E3FF57C82246}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ptv-api.Tests", "ptv-api.Tests\ptv-api.Tests.csproj", "{10FA68BD-F99F-47CD-B5DD-5212FAB59044}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B121C036-E571-4A58-8482-E3FF57C82246}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B121C036-E571-4A58-8482-E3FF57C82246}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B121C036-E571-4A58-8482-E3FF57C82246}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B121C036-E571-4A58-8482-E3FF57C82246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10FA68BD-F99F-47CD-B5DD-5212FAB59044}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FA68BD-F99F-47CD-B5DD-5212FAB59044}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FA68BD-F99F-47CD-B5DD-5212FAB59044}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FA68BD-F99F-47CD-B5DD-5212FAB59044}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
