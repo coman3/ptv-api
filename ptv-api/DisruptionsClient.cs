@@ -3,13 +3,7 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "10.6.6324.28497")]
     public partial class DisruptionsClient
     {
-        private string _baseUrl = "http://timetableapi.ptv.vic.gov.au";
-
-        public string BaseUrl
-        {
-            get { return _baseUrl; }
-            set { _baseUrl = value; }
-        }
+        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
 
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request,
             string url);
