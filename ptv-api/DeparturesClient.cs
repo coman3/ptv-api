@@ -37,7 +37,7 @@ namespace PtvApi
         public System.Threading.Tasks.Task<DeparturesResponse> GetForStopAsync(Route_type route_type, int stop_id,
             System.Collections.Generic.IEnumerable<int> platform_numbers, int? direction_id, System.DateTime? date_utc,
             int? max_results, bool? gtfs, bool? include_cancelled,
-            System.Collections.Generic.IEnumerable<Anonymous> expand, string token, string devid, string signature)
+            System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
         {
             return GetForStopAsync(route_type, stop_id, platform_numbers, direction_id, date_utc, max_results, gtfs,
                 include_cancelled, expand, token, devid, signature, System.Threading.CancellationToken.None);
@@ -61,7 +61,7 @@ namespace PtvApi
         public DeparturesResponse GetForStop(Route_type route_type, int stop_id,
             System.Collections.Generic.IEnumerable<int> platform_numbers, int? direction_id, System.DateTime? date_utc,
             int? max_results, bool? gtfs, bool? include_cancelled,
-            System.Collections.Generic.IEnumerable<Anonymous> expand, string token, string devid, string signature)
+            System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await GetForStopAsync(route_type, stop_id,
                 platform_numbers, direction_id, date_utc, max_results, gtfs, include_cancelled, expand, token, devid,
@@ -87,7 +87,7 @@ namespace PtvApi
         public async System.Threading.Tasks.Task<DeparturesResponse> GetForStopAsync(Route_type route_type, int stop_id,
             System.Collections.Generic.IEnumerable<int> platform_numbers, int? direction_id, System.DateTime? date_utc,
             int? max_results, bool? gtfs, bool? include_cancelled,
-            System.Collections.Generic.IEnumerable<Anonymous> expand, string token, string devid, string signature,
+            System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token, string devid, string signature,
             System.Threading.CancellationToken cancellationToken)
         {
             if (route_type == null)
@@ -250,7 +250,7 @@ namespace PtvApi
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<DeparturesResponse> GetForStopAndRouteAsync(Route_type2 route_type,
             int stop_id, string route_id, int? direction_id, System.DateTime? date_utc, int? max_results, bool? gtfs,
-            bool? include_cancelled, System.Collections.Generic.IEnumerable<Anonymous2> expand, string token,
+            bool? include_cancelled, System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token,
             string devid, string signature)
         {
             return GetForStopAndRouteAsync(route_type, stop_id, route_id, direction_id, date_utc, max_results, gtfs,
@@ -274,7 +274,7 @@ namespace PtvApi
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public DeparturesResponse GetForStopAndRoute(Route_type2 route_type, int stop_id, string route_id,
             int? direction_id, System.DateTime? date_utc, int? max_results, bool? gtfs, bool? include_cancelled,
-            System.Collections.Generic.IEnumerable<Anonymous2> expand, string token, string devid, string signature)
+            System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await GetForStopAndRouteAsync(route_type, stop_id,
                 route_id, direction_id, date_utc, max_results, gtfs, include_cancelled, expand, token, devid, signature,
@@ -299,7 +299,7 @@ namespace PtvApi
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<DeparturesResponse> GetForStopAndRouteAsync(Route_type2 route_type,
             int stop_id, string route_id, int? direction_id, System.DateTime? date_utc, int? max_results, bool? gtfs,
-            bool? include_cancelled, System.Collections.Generic.IEnumerable<Anonymous2> expand, string token,
+            bool? include_cancelled, System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token,
             string devid, string signature, System.Threading.CancellationToken cancellationToken)
         {
             if (route_type == null)

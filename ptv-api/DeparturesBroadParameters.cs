@@ -9,7 +9,7 @@ namespace PtvApi
         private int? _max_results;
         private bool? _gtfs;
         private bool? _include_cancelled;
-        private System.Collections.ObjectModel.ObservableCollection<Anonymous7> _expand;
+        private System.Collections.ObjectModel.ObservableCollection<ExpandableParameter> _expand;
 
         /// <summary>Filter by platform number at stop</summary>
         [Newtonsoft.Json.JsonProperty("platform_numbers", Required = Newtonsoft.Json.Required.Default,
@@ -111,7 +111,7 @@ namespace PtvApi
         [Newtonsoft.Json.JsonProperty("expand", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
             ItemConverterType = typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public System.Collections.ObjectModel.ObservableCollection<Anonymous7> Expand
+        public System.Collections.ObjectModel.ObservableCollection<ExpandableParameter> Expand
         {
             get { return _expand; }
             set

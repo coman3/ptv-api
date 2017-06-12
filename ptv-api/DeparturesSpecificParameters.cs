@@ -8,7 +8,7 @@ namespace PtvApi
         private int? _max_results;
         private bool? _gtfs;
         private bool? _include_cancelled;
-        private System.Collections.ObjectModel.ObservableCollection<Anonymous8> _expand;
+        private System.Collections.ObjectModel.ObservableCollection<ExpandableParameter> _expand;
 
         /// <summary>Filter by identifier of direction of travel; values returned by Directions API - /v3/directions/route/{route_id}</summary>
         [Newtonsoft.Json.JsonProperty("direction_id", Required = Newtonsoft.Json.Required.Default,
@@ -94,7 +94,7 @@ namespace PtvApi
         [Newtonsoft.Json.JsonProperty("expand", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore,
             ItemConverterType = typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
-        public System.Collections.ObjectModel.ObservableCollection<Anonymous8> Expand
+        public System.Collections.ObjectModel.ObservableCollection<ExpandableParameter> Expand
         {
             get { return _expand; }
             set

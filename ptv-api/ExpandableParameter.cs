@@ -1,7 +1,7 @@
 namespace PtvApi
 {
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public enum Anonymous7
+    public enum ExpandableParameter
     {
         [System.Runtime.Serialization.EnumMember(Value = "All")] All = 0,
 

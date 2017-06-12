@@ -34,12 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Anonymous.cs" />
-    <Compile Include="Anonymous2.cs" />
     <Compile Include="Anonymous3.cs" />
     <Compile Include="Anonymous4.cs" />
     <Compile Include="Anonymous5.cs" />
     <Compile Include="Anonymous6.cs" />
-    <Compile Include="Anonymous7.cs" />
     <Compile Include="Anonymous8.cs" />
     <Compile Include="Anonymous9.cs" />
     <Compile Include="Departure.cs" />
