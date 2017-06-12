@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ptv_api.Models
 {
-    [GeneratedCode("NSwag", "10.6.6324.28497")]
+    
     public class SwaggerException : Exception
     {
         public SwaggerException(string message, string statusCode, string response,
@@ -26,6 +26,16 @@ namespace ptv_api.Models
         public override string ToString()
         {
             return string.Format("HTTP Response: \n\n{0}\n\n{1}", Response, base.ToString());
+        }
+    }
+    public class SwaggerException<TResult> : SwaggerException
+    {
+        public TResult Result { get; }
+
+        public SwaggerException(string message, string statusCode, string response, Dictionary<string, IEnumerable<string>> headers, TResult result, Exception innerException)
+            : base(message, statusCode, response, headers, innerException)
+        {
+            Result = result;
         }
     }
 }

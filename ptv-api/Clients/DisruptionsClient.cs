@@ -13,8 +13,8 @@ using ptv_api.Models.Responses;
 
 namespace ptv_api.Clients
 {
-    [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class DisruptionsClient : PtvClient
+    
+    public class DisruptionsClient : PtvClient
     {
         /// <summary>View all disruptions for all route types</summary>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
@@ -67,7 +67,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -158,7 +158,7 @@ namespace ptv_api.Clients
         /// <param name="disruptionStatus">Filter by status of disruption</param>
         /// <returns>All disruption information (if any exists) for the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<DisruptionsResponse> GetDisruptionsByRouteAsync(int routeId, DisruptionStatus2? disruptionStatus)
+        public Task<DisruptionsResponse> GetDisruptionsByRouteAsync(int routeId, DisruptionStatus? disruptionStatus)
         {
             return GetDisruptionsByRouteAsync(routeId, disruptionStatus, 
                 CancellationToken.None);
@@ -169,7 +169,7 @@ namespace ptv_api.Clients
         /// <param name="disruptionStatus">Filter by status of disruption</param>
         /// <returns>All disruption information (if any exists) for the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DisruptionsResponse GetDisruptionsByRoute(int routeId, DisruptionStatus2? disruptionStatus)
+        public DisruptionsResponse GetDisruptionsByRoute(int routeId, DisruptionStatus? disruptionStatus)
         {
             return Task.Run(async () => await GetDisruptionsByRouteAsync(routeId, disruptionStatus, CancellationToken.None)).GetAwaiter().GetResult();
         }
@@ -183,7 +183,7 @@ namespace ptv_api.Clients
         /// </param>
         /// <returns>All disruption information (if any exists) for the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<DisruptionsResponse> GetDisruptionsByRouteAsync(int routeId, DisruptionStatus2? disruptionStatus, CancellationToken cancellationToken)
+        public async Task<DisruptionsResponse> GetDisruptionsByRouteAsync(int routeId, DisruptionStatus? disruptionStatus, CancellationToken cancellationToken)
         {
 
             var urlBuilder = new StringBuilder();
@@ -203,7 +203,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -341,7 +341,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,

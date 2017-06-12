@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace ptv_api.Models
 {
-    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    
     public class ResultOutlet : INotifyPropertyChanged
     {
         private string _outletBusiness;

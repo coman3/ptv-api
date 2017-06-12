@@ -13,7 +13,7 @@ using ptv_api.Models.Responses;
 
 namespace ptv_api.Clients
 {
-    [GeneratedCode("NSwag", "10.6.6324.28497")]
+    
     public class StopsClient : PtvClient
     {
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
@@ -22,18 +22,15 @@ namespace ptv_api.Clients
         /// <param name="stopLocation">Indicates if stop location information will be returned (default = false)</param>
         /// <param name="stopAmenities">Indicates if stop amenity information will be returned (default = false)</param>
         /// <param name="stopAccessibility">Indicates if stop accessibility information will be returned (default = false)</param>
-        /// <param name="stopContact">Placeholder for future development; currently unavailable</param>
-        /// <param name="stopTicket">Placeholder for future development; currently unavailable</param>
         /// <returns>
         ///     Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line
         ///     stations only).
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public Task<StopResponse> StopDetailsAsync(int stopId, RouteTypes routeType,
-            bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, bool? stopContact, bool? stopTicket)
+            bool? stopLocation, bool? stopAmenities, bool? stopAccessibility)
         {
-            return StopDetailsAsync(stopId, routeType, stopLocation, stopAmenities, stopAccessibility,
-                stopContact, stopTicket, CancellationToken.None);
+            return StopDetailsAsync(stopId, routeType, stopLocation, stopAmenities, stopAccessibility, CancellationToken.None);
         }
 
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
@@ -42,18 +39,16 @@ namespace ptv_api.Clients
         /// <param name="stopLocation">Indicates if stop location information will be returned (default = false)</param>
         /// <param name="stopAmenities">Indicates if stop amenity information will be returned (default = false)</param>
         /// <param name="stopAccessibility">Indicates if stop accessibility information will be returned (default = false)</param>
-        /// <param name="stopContact">Placeholder for future development; currently unavailable</param>
-        /// <param name="stopTicket">Placeholder for future development; currently unavailable</param>
         /// <returns>
         ///     Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line
         ///     stations only).
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public StopResponse StopDetails(int stopId, RouteTypes routeType, bool? stopLocation, bool? stopAmenities,
-            bool? stopAccessibility, bool? stopContact, bool? stopTicket)
+            bool? stopAccessibility)
         {
             return Task.Run(async () => await StopDetailsAsync(stopId, routeType,
-                stopLocation, stopAmenities, stopAccessibility, stopContact, stopTicket, CancellationToken.None)).GetAwaiter().GetResult();
+                stopLocation, stopAmenities, stopAccessibility, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
@@ -62,8 +57,6 @@ namespace ptv_api.Clients
         /// <param name="stopLocation">Indicates if stop location information will be returned (default = false)</param>
         /// <param name="stopAmenities">Indicates if stop amenity information will be returned (default = false)</param>
         /// <param name="stopAccessibility">Indicates if stop accessibility information will be returned (default = false)</param>
-        /// <param name="stopContact">Placeholder for future development; currently unavailable</param>
-        /// <param name="stopTicket">Placeholder for future development; currently unavailable</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
@@ -74,12 +67,12 @@ namespace ptv_api.Clients
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async Task<StopResponse> StopDetailsAsync(int stopId, RouteTypes routeType,
-            bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, bool? stopContact, bool? stopTicket, CancellationToken cancellationToken)
+            bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
             urlBuilder.Append("/v3/stops/{stop_id}/route_type/{route_type}?");
             urlBuilder.Replace("{stop_id}", Uri.EscapeDataString(stopId.ToString()));
-            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(((int)routeType).ToString()));
             if (stopLocation != null)
                 urlBuilder.Append("stop_location=").Append(Uri.EscapeDataString(stopLocation.Value.ToString())).Append("&");
             if (stopAmenities != null)
@@ -88,11 +81,6 @@ namespace ptv_api.Clients
             if (stopAccessibility != null)
                 urlBuilder.Append("stop_accessibility=")
                     .Append(Uri.EscapeDataString(stopAccessibility.Value.ToString())).Append("&");
-            if (stopContact != null)
-                urlBuilder.Append("stop_contact=").Append(Uri.EscapeDataString(stopContact.Value.ToString())).Append("&");
-            if (stopTicket != null)
-                urlBuilder.Append("stop_ticket=").Append(Uri.EscapeDataString(stopTicket.Value.ToString())).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -105,7 +93,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -223,7 +211,7 @@ namespace ptv_api.Clients
             var urlBuilder = new StringBuilder();
             urlBuilder.Append("/v3/stops/route/{route_id}/route_type/{route_type}?");
             urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId.ToString()));
-            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(((int)routeType).ToString()));
 
             var client = new HttpClient();
             try
@@ -236,7 +224,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -396,7 +384,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,

@@ -12,8 +12,8 @@ using ptv_api.Models.Responses;
 
 namespace ptv_api.Clients
 {
-    [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class DirectionsClient : PtvClient
+    
+    public class DirectionsClient : PtvClient
     {
         /// <summary>View directions that a route travels in</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
@@ -58,7 +58,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -196,7 +196,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -328,7 +328,7 @@ namespace ptv_api.Clients
             var urlBuilder = new StringBuilder();
             urlBuilder.Append("/v3/directions/{direction_id}/route_type/{route_type}?");
             urlBuilder.Replace("{direction_id}", Uri.EscapeDataString(directionId.ToString()));
-            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(((int)routeType).ToString()));
 
             var client = new HttpClient();
             try
@@ -341,7 +341,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,

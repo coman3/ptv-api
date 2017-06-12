@@ -13,8 +13,8 @@ using ptv_api.Models.Responses;
 
 namespace ptv_api.Clients
 {
-    [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class RoutesClient : PtvClient
+    
+    public class RoutesClient : PtvClient
     {
         /// <summary>View route names and numbers for all routes</summary>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
@@ -66,7 +66,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -195,7 +195,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,

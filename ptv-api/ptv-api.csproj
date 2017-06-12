@@ -51,9 +51,7 @@
     <Compile Include="Clients\DisruptionsClient.cs" />
     <Compile Include="Models\Responses\DisruptionsResponse.cs" />
     <Compile Include="Models\Disruption_status.cs" />
-    <Compile Include="Models\Disruption_status2.cs" />
     <Compile Include="Models\Responses\ErrorResponse.cs" />
-    <Compile Include="Models\Generated.cs" />
     <Compile Include="Clients\PatternsClient.cs" />
     <Compile Include="Models\ResultOutlet.cs" />
     <Compile Include="Models\ResultRoute.cs" />
@@ -90,6 +88,7 @@
     <Compile Include="Clients\StopsClient.cs" />
     <Compile Include="Models\Responses\StopsOnRouteResponse.cs" />
     <Compile Include="Models\SwaggerException.cs" />
+    <Compile Include="PtvApi.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">

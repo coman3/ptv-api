@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 namespace ptv_api.Models
 {
-    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    
     public class SearchParameters : INotifyPropertyChanged
     {
         private bool? _includeAddresses;

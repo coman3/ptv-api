@@ -13,8 +13,8 @@ using ptv_api.Models.Responses;
 
 namespace ptv_api.Clients
 {
-    [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class PatternsClient : PtvClient
+    
+    public class PatternsClient : PtvClient
     {
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
         /// <param name="runId">
@@ -65,7 +65,7 @@ namespace ptv_api.Clients
             var urlBuilder = new StringBuilder();
             urlBuilder.Append("/v3/pattern/run/{run_id}/route_type/{route_type}?");
             urlBuilder.Replace("{run_id}", Uri.EscapeDataString(runId.ToString()));
-            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(((int)routeType).ToString()));
             if (stopId != null)
                 urlBuilder.Append("stop_id=").Append(Uri.EscapeDataString(stopId.Value.ToString())).Append("&");
             if (dateUtc != null)
@@ -82,7 +82,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace ptv_api.Models
 {
-    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    
     public class Departure : INotifyPropertyChanged
     {
         private bool? _atPlatform;

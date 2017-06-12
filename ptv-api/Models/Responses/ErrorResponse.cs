@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 namespace ptv_api.Models.Responses
 {
     /// <summary>An error response</summary>
-    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    
     public class ErrorResponse : INotifyPropertyChanged
     {
         private string _message;

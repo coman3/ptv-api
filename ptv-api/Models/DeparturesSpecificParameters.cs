@@ -8,7 +8,7 @@ using Newtonsoft.Json.Converters;
 
 namespace ptv_api.Models
 {
-    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    
     public class DeparturesSpecificParameters : INotifyPropertyChanged
     {
         private DateTime? _dateUtc;

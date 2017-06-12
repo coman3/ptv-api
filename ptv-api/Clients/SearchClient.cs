@@ -13,7 +13,7 @@ using ptv_api.Models.Responses;
 
 namespace ptv_api.Clients
 {
-    [GeneratedCode("NSwag", "10.6.6324.28497")]
+    
     public class SearchClient : PtvClient
     {
         /// <summary>View stops, routes and myki ticket outlets that match the search term</summary>
@@ -110,7 +110,7 @@ namespace ptv_api.Clients
             urlBuilder.Append("/v3/search/{search_term}?");
             urlBuilder.Replace("{search_term}", Uri.EscapeDataString(searchTerm));
             if (routeTypes != null)
-                urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(string.Join(",", routeTypes))).Append("&");
+                urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(string.Join(",", routeTypes.Select(x=> (int)x)))).Append("&");
             if (latitude != null)
                 urlBuilder.Append("latitude=").Append(Uri.EscapeDataString(latitude.Value.ToString())).Append("&");
             if (longitude != null)

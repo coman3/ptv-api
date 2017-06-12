@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace ptv_api.Models.Responses
 {
-    [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
+    
     public class RouteResponse : INotifyPropertyChanged
     {
         private Route _route;

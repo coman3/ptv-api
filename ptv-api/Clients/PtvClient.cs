@@ -27,9 +27,10 @@ namespace ptv_api.Clients
             if (DeveloperId == null || DeveloperKey == null)
                 throw new ArgumentNullException(nameof(DeveloperId) + "|" + nameof(DeveloperKey));
 
+            urlBuilder.Append("devid=").Append(Uri.EscapeDataString(DeveloperId));
             var currentUrl = urlBuilder.ToString();
-            urlBuilder.Append("devid=").Append(Uri.EscapeDataString(DeveloperId)).Append("&");
-            urlBuilder.Append("signature=").Append(Uri.EscapeDataString(SignRequestUrl(currentUrl)));
+            
+            urlBuilder.Append("&").Append("signature=").Append(Uri.EscapeDataString(SignRequestUrl(currentUrl)));
         }
 
         protected void PrepareRequest(HttpClient client, HttpRequestMessage request, string url)

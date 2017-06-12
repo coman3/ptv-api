@@ -14,8 +14,8 @@ using ptv_api.Models.Responses;
 
 namespace ptv_api.Clients
 {
-    [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class DeparturesClient : PtvClient
+    
+    public class DeparturesClient : PtvClient
     {
         /// <summary>View departures for all routes from a stop</summary>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
@@ -117,7 +117,7 @@ namespace ptv_api.Clients
         {
             var urlBuilder = new StringBuilder();
             urlBuilder.Append("/v3/departures/route_type/{route_type}/stop/{stop_id}?");
-            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(((int)routeType).ToString()));
             urlBuilder.Replace("{stop_id}", Uri.EscapeDataString(stopId.ToString()));
             if (platformNumbers != null)
                 foreach (var item in platformNumbers)
@@ -153,7 +153,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -335,7 +335,7 @@ namespace ptv_api.Clients
             var urlBuilder = new StringBuilder();
             urlBuilder
                 .Append("/v3/departures/route_type/{route_type}/stop/{stop_id}/route/{route_id}?");
-            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
+            urlBuilder.Replace("{route_type}", Uri.EscapeDataString(((int)routeType).ToString()));
             urlBuilder.Replace("{stop_id}", Uri.EscapeDataString(stopId.ToString()));
             urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId));
             if (directionId != null)
@@ -362,7 +362,7 @@ namespace ptv_api.Clients
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
