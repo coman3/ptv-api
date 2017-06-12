@@ -327,7 +327,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The trip/service run details for the run ID and route type specified.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<RunResponse> ForRunAndRouteTypeAsync(int run_id, Route_type5 route_type,
+        public System.Threading.Tasks.Task<RunResponse> ForRunAndRouteTypeAsync(int run_id, RouteTypes route_type,
             string token, string devid, string signature)
         {
             return ForRunAndRouteTypeAsync(run_id, route_type, token, devid, signature,
@@ -342,7 +342,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The trip/service run details for the run ID and route type specified.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RunResponse ForRunAndRouteType(int run_id, Route_type5 route_type, string token, string devid,
+        public RunResponse ForRunAndRouteType(int run_id, RouteTypes route_type, string token, string devid,
             string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await ForRunAndRouteTypeAsync(run_id, route_type, token,
@@ -359,7 +359,7 @@ namespace PtvApi
         /// <returns>The trip/service run details for the run ID and route type specified.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<RunResponse> ForRunAndRouteTypeAsync(int run_id,
-            Route_type5 route_type, string token, string devid, string signature,
+            RouteTypes route_type, string token, string devid, string signature,
             System.Threading.CancellationToken cancellationToken)
         {
             if (run_id == null)

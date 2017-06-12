@@ -34,7 +34,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Service departures from the specified stop for all routes of the specified route type; departures are timetabled and real-time (if applicable).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<DeparturesResponse> GetForStopAsync(Route_type route_type, int stop_id,
+        public System.Threading.Tasks.Task<DeparturesResponse> GetForStopAsync(RouteTypes route_type, int stop_id,
             System.Collections.Generic.IEnumerable<int> platform_numbers, int? direction_id, System.DateTime? date_utc,
             int? max_results, bool? gtfs, bool? include_cancelled,
             System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
@@ -58,7 +58,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Service departures from the specified stop for all routes of the specified route type; departures are timetabled and real-time (if applicable).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DeparturesResponse GetForStop(Route_type route_type, int stop_id,
+        public DeparturesResponse GetForStop(RouteTypes route_type, int stop_id,
             System.Collections.Generic.IEnumerable<int> platform_numbers, int? direction_id, System.DateTime? date_utc,
             int? max_results, bool? gtfs, bool? include_cancelled,
             System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
@@ -84,7 +84,7 @@ namespace PtvApi
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Service departures from the specified stop for all routes of the specified route type; departures are timetabled and real-time (if applicable).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<DeparturesResponse> GetForStopAsync(Route_type route_type, int stop_id,
+        public async System.Threading.Tasks.Task<DeparturesResponse> GetForStopAsync(RouteTypes route_type, int stop_id,
             System.Collections.Generic.IEnumerable<int> platform_numbers, int? direction_id, System.DateTime? date_utc,
             int? max_results, bool? gtfs, bool? include_cancelled,
             System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token, string devid, string signature,
@@ -248,7 +248,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Service departures from the specified stop for the specified route (and route type); departures are timetabled and real-time (if applicable).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<DeparturesResponse> GetForStopAndRouteAsync(Route_type2 route_type,
+        public System.Threading.Tasks.Task<DeparturesResponse> GetForStopAndRouteAsync(RouteTypes route_type,
             int stop_id, string route_id, int? direction_id, System.DateTime? date_utc, int? max_results, bool? gtfs,
             bool? include_cancelled, System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token,
             string devid, string signature)
@@ -272,7 +272,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Service departures from the specified stop for the specified route (and route type); departures are timetabled and real-time (if applicable).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DeparturesResponse GetForStopAndRoute(Route_type2 route_type, int stop_id, string route_id,
+        public DeparturesResponse GetForStopAndRoute(RouteTypes route_type, int stop_id, string route_id,
             int? direction_id, System.DateTime? date_utc, int? max_results, bool? gtfs, bool? include_cancelled,
             System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
         {
@@ -297,7 +297,7 @@ namespace PtvApi
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Service departures from the specified stop for the specified route (and route type); departures are timetabled and real-time (if applicable).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<DeparturesResponse> GetForStopAndRouteAsync(Route_type2 route_type,
+        public async System.Threading.Tasks.Task<DeparturesResponse> GetForStopAndRouteAsync(RouteTypes route_type,
             int stop_id, string route_id, int? direction_id, System.DateTime? date_utc, int? max_results, bool? gtfs,
             bool? include_cancelled, System.Collections.Generic.IEnumerable<ExpandableParameter> expand, string token,
             string devid, string signature, System.Threading.CancellationToken cancellationToken)

@@ -9,7 +9,7 @@ namespace PtvApi
         /// <summary>Transport mode identifiers</summary>
         [Newtonsoft.Json.JsonProperty("route_types", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<RouteType> Route_types
+        public System.Collections.ObjectModel.ObservableCollection<RouteType> RouteTypess
         {
             get { return _route_types; }
             set

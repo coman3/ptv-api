@@ -3,7 +3,7 @@ namespace PtvApi
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public partial class SearchParameters : System.ComponentModel.INotifyPropertyChanged
     {
-        private System.Collections.ObjectModel.ObservableCollection<Anonymous9> _route_types;
+        private System.Collections.ObjectModel.ObservableCollection<RouteTypes> _route_types;
         private double? _latitude;
         private double? _longitude;
         private double? _max_distance;
@@ -13,7 +13,7 @@ namespace PtvApi
         /// <summary>Filter by route_type; values returned via RouteTypes API (note: stops and routes are ordered by route_types specified)</summary>
         [Newtonsoft.Json.JsonProperty("route_types", Required = Newtonsoft.Json.Required.Default,
             NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.ObjectModel.ObservableCollection<Anonymous9> Route_types
+        public System.Collections.ObjectModel.ObservableCollection<RouteTypes> RouteTypess
         {
             get { return _route_types; }
             set

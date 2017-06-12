@@ -330,7 +330,7 @@ namespace PtvApi
         /// <returns>All routes of the specified route type that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<DirectionsResponse> ForDirectionAndTypeAsync(int direction_id,
-            Route_type3 route_type, string token, string devid, string signature)
+            RouteTypes route_type, string token, string devid, string signature)
         {
             return ForDirectionAndTypeAsync(direction_id, route_type, token, devid, signature,
                 System.Threading.CancellationToken.None);
@@ -344,7 +344,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>All routes of the specified route type that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DirectionsResponse ForDirectionAndType(int direction_id, Route_type3 route_type, string token,
+        public DirectionsResponse ForDirectionAndType(int direction_id, RouteTypes route_type, string token,
             string devid, string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await ForDirectionAndTypeAsync(direction_id, route_type,
@@ -361,7 +361,7 @@ namespace PtvApi
         /// <returns>All routes of the specified route type that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<DirectionsResponse> ForDirectionAndTypeAsync(int direction_id,
-            Route_type3 route_type, string token, string devid, string signature,
+            RouteTypes route_type, string token, string devid, string signature,
             System.Threading.CancellationToken cancellationToken)
         {
             if (direction_id == null)

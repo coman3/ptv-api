@@ -29,7 +29,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int run_id, Route_type4 route_type,
+        public System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int run_id, RouteTypes route_type,
             int? stop_id, System.DateTime? date_utc, string token, string devid, string signature)
         {
             return GetPatternByRunAsync(run_id, route_type, stop_id, date_utc, token, devid, signature,
@@ -46,7 +46,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public StoppingPattern GetPatternByRun(int run_id, Route_type4 route_type, int? stop_id,
+        public StoppingPattern GetPatternByRun(int run_id, RouteTypes route_type, int? stop_id,
             System.DateTime? date_utc, string token, string devid, string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await GetPatternByRunAsync(run_id, route_type, stop_id,
@@ -65,7 +65,7 @@ namespace PtvApi
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<StoppingPattern> GetPatternByRunAsync(int run_id,
-            Route_type4 route_type, int? stop_id, System.DateTime? date_utc, string token, string devid,
+            RouteTypes route_type, int? stop_id, System.DateTime? date_utc, string token, string devid,
             string signature, System.Threading.CancellationToken cancellationToken)
         {
             if (run_id == null)

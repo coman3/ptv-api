@@ -32,7 +32,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line stations only).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public System.Threading.Tasks.Task<StopResponse> StopDetailsAsync(int stop_id, Route_type6 route_type,
+        public System.Threading.Tasks.Task<StopResponse> StopDetailsAsync(int stop_id, RouteTypes route_type,
             bool? stop_location, bool? stop_amenities, bool? stop_accessibility, bool? stop_contact, bool? stop_ticket,
             string token, string devid, string signature)
         {
@@ -53,7 +53,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line stations only).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public StopResponse StopDetails(int stop_id, Route_type6 route_type, bool? stop_location, bool? stop_amenities,
+        public StopResponse StopDetails(int stop_id, RouteTypes route_type, bool? stop_location, bool? stop_amenities,
             bool? stop_accessibility, bool? stop_contact, bool? stop_ticket, string token, string devid,
             string signature)
         {
@@ -76,7 +76,7 @@ namespace PtvApi
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line stations only).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async System.Threading.Tasks.Task<StopResponse> StopDetailsAsync(int stop_id, Route_type6 route_type,
+        public async System.Threading.Tasks.Task<StopResponse> StopDetailsAsync(int stop_id, RouteTypes route_type,
             bool? stop_location, bool? stop_amenities, bool? stop_accessibility, bool? stop_contact, bool? stop_ticket,
             string token, string devid, string signature, System.Threading.CancellationToken cancellationToken)
         {
@@ -220,7 +220,7 @@ namespace PtvApi
         /// <returns>All stops on the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<StopsOnRouteResponse> StopsForRouteAsync(int route_id,
-            Route_type7 route_type, string token, string devid, string signature)
+            RouteTypes route_type, string token, string devid, string signature)
         {
             return StopsForRouteAsync(route_id, route_type, token, devid, signature,
                 System.Threading.CancellationToken.None);
@@ -234,7 +234,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>All stops on the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public StopsOnRouteResponse StopsForRoute(int route_id, Route_type7 route_type, string token, string devid,
+        public StopsOnRouteResponse StopsForRoute(int route_id, RouteTypes route_type, string token, string devid,
             string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await StopsForRouteAsync(route_id, route_type, token,
@@ -251,7 +251,7 @@ namespace PtvApi
         /// <returns>All stops on the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<StopsOnRouteResponse> StopsForRouteAsync(int route_id,
-            Route_type7 route_type, string token, string devid, string signature,
+            RouteTypes route_type, string token, string devid, string signature,
             System.Threading.CancellationToken cancellationToken)
         {
             if (route_id == null)
@@ -383,7 +383,7 @@ namespace PtvApi
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<StopsByDistanceResponse> StopsByGeolocationAsync(double latitude,
-            double longitude, System.Collections.Generic.IEnumerable<Anonymous6> route_types, int? max_results,
+            double longitude, System.Collections.Generic.IEnumerable<RouteTypes> route_types, int? max_results,
             double? max_distance, string token, string devid, string signature)
         {
             return StopsByGeolocationAsync(latitude, longitude, route_types, max_results, max_distance, token, devid,
@@ -402,7 +402,7 @@ namespace PtvApi
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public StopsByDistanceResponse StopsByGeolocation(double latitude, double longitude,
-            System.Collections.Generic.IEnumerable<Anonymous6> route_types, int? max_results, double? max_distance,
+            System.Collections.Generic.IEnumerable<RouteTypes> route_types, int? max_results, double? max_distance,
             string token, string devid, string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await StopsByGeolocationAsync(latitude, longitude,
@@ -423,7 +423,7 @@ namespace PtvApi
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<StopsByDistanceResponse> StopsByGeolocationAsync(double latitude,
-            double longitude, System.Collections.Generic.IEnumerable<Anonymous6> route_types, int? max_results,
+            double longitude, System.Collections.Generic.IEnumerable<RouteTypes> route_types, int? max_results,
             double? max_distance, string token, string devid, string signature,
             System.Threading.CancellationToken cancellationToken)
         {

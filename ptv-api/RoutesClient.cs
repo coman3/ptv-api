@@ -28,7 +28,7 @@ namespace PtvApi
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<RouteResponse> OneOrMoreRoutesAsync(
-            System.Collections.Generic.IEnumerable<Anonymous4> route_types, string route_name, string token,
+            System.Collections.Generic.IEnumerable<RouteTypes> route_types, string route_name, string token,
             string devid, string signature)
         {
             return OneOrMoreRoutesAsync(route_types, route_name, token, devid, signature,
@@ -43,7 +43,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RouteResponse OneOrMoreRoutes(System.Collections.Generic.IEnumerable<Anonymous4> route_types,
+        public RouteResponse OneOrMoreRoutes(System.Collections.Generic.IEnumerable<RouteTypes> route_types,
             string route_name, string token, string devid, string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await OneOrMoreRoutesAsync(route_types, route_name,
@@ -60,7 +60,7 @@ namespace PtvApi
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<RouteResponse> OneOrMoreRoutesAsync(
-            System.Collections.Generic.IEnumerable<Anonymous4> route_types, string route_name, string token,
+            System.Collections.Generic.IEnumerable<RouteTypes> route_types, string route_name, string token,
             string devid, string signature, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();

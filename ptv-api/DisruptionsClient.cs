@@ -28,7 +28,7 @@ namespace PtvApi
         /// <returns>All disruption information for all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<DisruptionsResponse> GetAllDisruptionsAsync(
-            System.Collections.Generic.IEnumerable<Anonymous3> route_types, Disruption_status? disruption_status,
+            System.Collections.Generic.IEnumerable<RouteTypes> route_types, Disruption_status? disruption_status,
             string token, string devid, string signature)
         {
             return GetAllDisruptionsAsync(route_types, disruption_status, token, devid, signature,
@@ -43,7 +43,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>All disruption information for all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DisruptionsResponse GetAllDisruptions(System.Collections.Generic.IEnumerable<Anonymous3> route_types,
+        public DisruptionsResponse GetAllDisruptions(System.Collections.Generic.IEnumerable<RouteTypes> route_types,
             Disruption_status? disruption_status, string token, string devid, string signature)
         {
             return System.Threading.Tasks.Task.Run(async () => await GetAllDisruptionsAsync(route_types,
@@ -61,7 +61,7 @@ namespace PtvApi
         /// <returns>All disruption information for all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<DisruptionsResponse> GetAllDisruptionsAsync(
-            System.Collections.Generic.IEnumerable<Anonymous3> route_types, Disruption_status? disruption_status,
+            System.Collections.Generic.IEnumerable<RouteTypes> route_types, Disruption_status? disruption_status,
             string token, string devid, string signature, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();

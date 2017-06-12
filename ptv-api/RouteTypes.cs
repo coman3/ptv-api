@@ -1,7 +1,7 @@
 namespace PtvApi
 {
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "8.33.6323.36213")]
-    public enum Anonymous5
+    public enum RouteTypes
     {
         _0 = 0,
 

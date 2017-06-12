@@ -33,7 +33,7 @@ namespace PtvApi
         /// <returns>Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by route_type by default).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<SearchResult> SearchAsync(string search_term,
-            System.Collections.Generic.IEnumerable<Anonymous5> route_types, double? latitude, double? longitude,
+            System.Collections.Generic.IEnumerable<RouteTypes> route_types, double? latitude, double? longitude,
             double? max_distance, bool? include_addresses, bool? include_outlets, string token, string devid,
             string signature)
         {
@@ -54,7 +54,7 @@ namespace PtvApi
         /// <param name="signature">Authentication signature for request</param>
         /// <returns>Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by route_type by default).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public SearchResult Search(string search_term, System.Collections.Generic.IEnumerable<Anonymous5> route_types,
+        public SearchResult Search(string search_term, System.Collections.Generic.IEnumerable<RouteTypes> route_types,
             double? latitude, double? longitude, double? max_distance, bool? include_addresses, bool? include_outlets,
             string token, string devid, string signature)
         {
@@ -78,7 +78,7 @@ namespace PtvApi
         /// <returns>Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by route_type by default).</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async System.Threading.Tasks.Task<SearchResult> SearchAsync(string search_term,
-            System.Collections.Generic.IEnumerable<Anonymous5> route_types, double? latitude, double? longitude,
+            System.Collections.Generic.IEnumerable<RouteTypes> route_types, double? latitude, double? longitude,
             double? max_distance, bool? include_addresses, bool? include_outlets, string token, string devid,
             string signature, System.Threading.CancellationToken cancellationToken)
         {
