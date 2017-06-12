@@ -9,21 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class StopsClient
+    public class StopsClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
         /// <param name="stopId">Identifier of stop; values returned by Stops API</param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
@@ -32,20 +22,16 @@ namespace PtvApi
         /// <param name="stopAccessibility">Indicates if stop accessibility information will be returned (default = false)</param>
         /// <param name="stopContact">Placeholder for future development; currently unavailable</param>
         /// <param name="stopTicket">Placeholder for future development; currently unavailable</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>
         ///     Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line
         ///     stations only).
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public Task<StopResponse> StopDetailsAsync(int stopId, RouteTypes routeType,
-            bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, bool? stopContact, bool? stopTicket,
-            string token, string devid, string signature)
+            bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, bool? stopContact, bool? stopTicket)
         {
             return StopDetailsAsync(stopId, routeType, stopLocation, stopAmenities, stopAccessibility,
-                stopContact, stopTicket, token, devid, signature, CancellationToken.None);
+                stopContact, stopTicket, CancellationToken.None);
         }
 
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
@@ -56,21 +42,16 @@ namespace PtvApi
         /// <param name="stopAccessibility">Indicates if stop accessibility information will be returned (default = false)</param>
         /// <param name="stopContact">Placeholder for future development; currently unavailable</param>
         /// <param name="stopTicket">Placeholder for future development; currently unavailable</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>
         ///     Stop location, amenity and accessibility facility information for the specified stop (metropolitan and V/Line
         ///     stations only).
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public StopResponse StopDetails(int stopId, RouteTypes routeType, bool? stopLocation, bool? stopAmenities,
-            bool? stopAccessibility, bool? stopContact, bool? stopTicket, string token, string devid,
-            string signature)
+            bool? stopAccessibility, bool? stopContact, bool? stopTicket)
         {
             return Task.Run(async () => await StopDetailsAsync(stopId, routeType,
-                stopLocation, stopAmenities, stopAccessibility, stopContact, stopTicket, token, devid, signature,
-                CancellationToken.None)).GetAwaiter().GetResult();
+                stopLocation, stopAmenities, stopAccessibility, stopContact, stopTicket, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View facilities at a specific stop (Metro and V/Line stations only)</summary>
@@ -81,9 +62,6 @@ namespace PtvApi
         /// <param name="stopAccessibility">Indicates if stop accessibility information will be returned (default = false)</param>
         /// <param name="stopContact">Placeholder for future development; currently unavailable</param>
         /// <param name="stopTicket">Placeholder for future development; currently unavailable</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
@@ -94,16 +72,14 @@ namespace PtvApi
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async Task<StopResponse> StopDetailsAsync(int stopId, RouteTypes routeType,
-            bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, bool? stopContact, bool? stopTicket,
-            string token, string devid, string signature, CancellationToken cancellationToken)
+            bool? stopLocation, bool? stopAmenities, bool? stopAccessibility, bool? stopContact, bool? stopTicket, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/stops/{stop_id}/route_type/{route_type}?");
+            urlBuilder.Append("/v3/stops/{stop_id}/route_type/{route_type}?");
             urlBuilder.Replace("{stop_id}", Uri.EscapeDataString(stopId.ToString()));
             urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
             if (stopLocation != null)
-                urlBuilder.Append("stop_location=").Append(Uri.EscapeDataString(stopLocation.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("stop_location=").Append(Uri.EscapeDataString(stopLocation.Value.ToString())).Append("&");
             if (stopAmenities != null)
                 urlBuilder.Append("stop_amenities=")
                     .Append(Uri.EscapeDataString(stopAmenities.Value.ToString())).Append("&");
@@ -111,17 +87,9 @@ namespace PtvApi
                 urlBuilder.Append("stop_accessibility=")
                     .Append(Uri.EscapeDataString(stopAccessibility.Value.ToString())).Append("&");
             if (stopContact != null)
-                urlBuilder.Append("stop_contact=").Append(Uri.EscapeDataString(stopContact.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("stop_contact=").Append(Uri.EscapeDataString(stopContact.Value.ToString())).Append("&");
             if (stopTicket != null)
-                urlBuilder.Append("stop_ticket=").Append(Uri.EscapeDataString(stopTicket.Value.ToString()))
-                    .Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
+                urlBuilder.Append("stop_ticket=").Append(Uri.EscapeDataString(stopTicket.Value.ToString())).Append("&");
             urlBuilder.Length--;
 
             var client = new HttpClient();
@@ -222,60 +190,38 @@ namespace PtvApi
         /// <summary>View all stops on a specific route</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All stops on the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<StopsOnRouteResponse> StopsForRouteAsync(int routeId,
-            RouteTypes routeType, string token, string devid, string signature)
+        public Task<StopsOnRouteResponse> StopsForRouteAsync(int routeId, RouteTypes routeType)
         {
-            return StopsForRouteAsync(routeId, routeType, token, devid, signature,
-                CancellationToken.None);
+            return StopsForRouteAsync(routeId, routeType, CancellationToken.None);
         }
 
         /// <summary>View all stops on a specific route</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All stops on the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public StopsOnRouteResponse StopsForRoute(int routeId, RouteTypes routeType, string token, string devid,
-            string signature)
+        public StopsOnRouteResponse StopsForRoute(int routeId, RouteTypes routeType)
         {
-            return Task.Run(async () => await StopsForRouteAsync(routeId, routeType, token,
-                devid, signature, CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await StopsForRouteAsync(routeId, routeType, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all stops on a specific route</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>All stops on the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<StopsOnRouteResponse> StopsForRouteAsync(int routeId,
-            RouteTypes routeType, string token, string devid, string signature,
-            CancellationToken cancellationToken)
+        public async Task<StopsOnRouteResponse> StopsForRouteAsync(int routeId, RouteTypes routeType, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/stops/route/{route_id}/route_type/{route_type}?");
+            urlBuilder.Append("/v3/stops/route/{route_id}/route_type/{route_type}?");
             urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId.ToString()));
             urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -382,17 +328,12 @@ namespace PtvApi
         ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
         ///     parameters (default = 300)
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public Task<StopsByDistanceResponse> StopsByGeolocationAsync(double latitude,
-            double longitude, IEnumerable<RouteTypes> routeTypes, int? maxResults,
-            double? maxDistance, string token, string devid, string signature)
+            double longitude, IEnumerable<RouteTypes> routeTypes, int? maxResults, double? maxDistance)
         {
-            return StopsByGeolocationAsync(latitude, longitude, routeTypes, maxResults, maxDistance, token, devid,
-                signature, CancellationToken.None);
+            return StopsByGeolocationAsync(latitude, longitude, routeTypes, maxResults, maxDistance, CancellationToken.None);
         }
 
         /// <summary>View all stops near a specific location</summary>
@@ -404,18 +345,13 @@ namespace PtvApi
         ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
         ///     parameters (default = 300)
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public StopsByDistanceResponse StopsByGeolocation(double latitude, double longitude,
-            IEnumerable<RouteTypes> routeTypes, int? maxResults, double? maxDistance,
-            string token, string devid, string signature)
+            IEnumerable<RouteTypes> routeTypes, int? maxResults, double? maxDistance)
         {
             return Task.Run(async () => await StopsByGeolocationAsync(latitude, longitude,
-                routeTypes, maxResults, maxDistance, token, devid, signature,
-                CancellationToken.None)).GetAwaiter().GetResult();
+                routeTypes, maxResults, maxDistance, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all stops near a specific location</summary>
@@ -427,9 +363,6 @@ namespace PtvApi
         ///     Filter by maximum distance (in metres) from location specified via latitude and longitude
         ///     parameters (default = 300)
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
@@ -437,31 +370,18 @@ namespace PtvApi
         /// <returns>All stops near the specified location.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async Task<StopsByDistanceResponse> StopsByGeolocationAsync(double latitude,
-            double longitude, IEnumerable<RouteTypes> routeTypes, int? maxResults,
-            double? maxDistance, string token, string devid, string signature,
-            CancellationToken cancellationToken)
+            double longitude, IEnumerable<RouteTypes> routeTypes, int? maxResults, double? maxDistance, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/stops/location/{latitude},{longitude}?");
+            urlBuilder.Append("/v3/stops/location/{latitude},{longitude}?");
             urlBuilder.Replace("{latitude}", Uri.EscapeDataString(latitude.ToString()));
             urlBuilder.Replace("{longitude}", Uri.EscapeDataString(longitude.ToString()));
             if (routeTypes != null)
-                foreach (var item in routeTypes)
-                    urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(item.ToString()))
-                        .Append("&");
+                urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(string.Join(",", routeTypes))).Append("&");
             if (maxResults != null)
-                urlBuilder.Append("max_results=").Append(Uri.EscapeDataString(maxResults.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("max_results=").Append(Uri.EscapeDataString(maxResults.Value.ToString())).Append("&");
             if (maxDistance != null)
-                urlBuilder.Append("max_distance=").Append(Uri.EscapeDataString(maxDistance.Value.ToString()))
-                    .Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
+                urlBuilder.Append("max_distance=").Append(Uri.EscapeDataString(maxDistance.Value.ToString())).Append("&");
 
             var client = new HttpClient();
             try
@@ -558,6 +478,10 @@ namespace PtvApi
             {
                 client?.Dispose();
             }
+        }
+
+        public StopsClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

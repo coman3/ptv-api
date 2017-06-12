@@ -71,7 +71,7 @@
     <Compile Include="SearchClient.cs" />
     <Compile Include="SearchParameters.cs" />
     <Compile Include="SearchResult.cs" />
-    <Compile Include="SignUrl.cs" />
+    <Compile Include="PtvClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Status.cs" />
     <Compile Include="StatusHealth.cs" />

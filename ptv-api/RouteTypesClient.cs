@@ -8,68 +8,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class RouteTypesClient
+    public partial class RouteTypesClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View all route types and their names</summary>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All route types (i.e. identifiers of transport modes) and their names.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<RouteTypesResponse> GetRouteTypesAsync(string token, string devid,
-            string signature)
+        public Task<RouteTypesResponse> GetRouteTypesAsync()
         {
-            return GetRouteTypesAsync(token, devid, signature, CancellationToken.None);
+            return GetRouteTypesAsync(CancellationToken.None);
         }
 
         /// <summary>View all route types and their names</summary>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All route types (i.e. identifiers of transport modes) and their names.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RouteTypesResponse GetRouteTypes(string token, string devid, string signature)
+        public RouteTypesResponse GetRouteTypes()
         {
-            return Task
-                .Run(async () => await GetRouteTypesAsync(token, devid, signature,
-                    CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await GetRouteTypesAsync(CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all route types and their names</summary>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>All route types (i.e. identifiers of transport modes) and their names.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<RouteTypesResponse> GetRouteTypesAsync(string token, string devid,
-            string signature, CancellationToken cancellationToken)
+        public async Task<RouteTypesResponse> GetRouteTypesAsync(CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/route_types?");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
+            urlBuilder.Append("/v3/route_types?");
 
             var client = new HttpClient();
             try
@@ -158,16 +128,18 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
+        }
+
+        public RouteTypesClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

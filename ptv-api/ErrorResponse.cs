@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     /// <summary>An error response</summary>
     [GeneratedCode("NJsonSchema", "8.33.6323.36213")]

@@ -8,72 +8,42 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class DirectionsClient
+    public partial class DirectionsClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View directions that a route travels in</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>The directions that a specified route travels in.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<DirectionsResponse> ForRouteAsync(int routeId, string token, string devid,
-            string signature)
+        public Task<DirectionsResponse> ForRouteAsync(int routeId)
         {
-            return ForRouteAsync(routeId, token, devid, signature, CancellationToken.None);
+            return ForRouteAsync(routeId, CancellationToken.None);
         }
 
         /// <summary>View directions that a route travels in</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>The directions that a specified route travels in.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DirectionsResponse ForRoute(int routeId, string token, string devid, string signature)
+        public DirectionsResponse ForRoute(int routeId)
         {
-            return Task
-                .Run(async () => await ForRouteAsync(routeId, token, devid, signature,
-                    CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await ForRouteAsync(routeId, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View directions that a route travels in</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>The directions that a specified route travels in.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<DirectionsResponse> ForRouteAsync(int routeId, string token,
-            string devid, string signature, CancellationToken cancellationToken)
+        public async Task<DirectionsResponse> ForRouteAsync(int routeId, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/directions/route/{route_id}?");
+            urlBuilder.Append("/v3/directions/route/{route_id}?");
             urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -177,15 +147,11 @@ namespace PtvApi
         ///     Identifier of direction of travel; values returned by Directions API -
         ///     /v3/directions/route/{route_id}
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All routes that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<DirectionsResponse> ForDirectionAsync(int directionId, string token,
-            string devid, string signature)
+        public Task<DirectionsResponse> ForDirectionAsync(int directionId)
         {
-            return ForDirectionAsync(directionId, token, devid, signature, CancellationToken.None);
+            return ForDirectionAsync(directionId, CancellationToken.None);
         }
 
         /// <summary>View all routes for a direction of travel</summary>
@@ -193,16 +159,11 @@ namespace PtvApi
         ///     Identifier of direction of travel; values returned by Directions API -
         ///     /v3/directions/route/{route_id}
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All routes that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DirectionsResponse ForDirection(int directionId, string token, string devid, string signature)
+        public DirectionsResponse ForDirection(int directionId)
         {
-            return Task
-                .Run(async () => await ForDirectionAsync(directionId, token, devid, signature,
-                    CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await ForDirectionAsync(directionId, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all routes for a direction of travel</summary>
@@ -210,29 +171,17 @@ namespace PtvApi
         ///     Identifier of direction of travel; values returned by Directions API -
         ///     /v3/directions/route/{route_id}
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>All routes that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<DirectionsResponse> ForDirectionAsync(int directionId, string token,
-            string devid, string signature, CancellationToken cancellationToken)
+        public async Task<DirectionsResponse> ForDirectionAsync(int directionId, CancellationToken cancellationToken)
         {
-
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/directions/{direction_id}?");
+            urlBuilder.Append("/v3/directions/{direction_id}?");
             urlBuilder.Replace("{direction_id}", Uri.EscapeDataString(directionId.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -339,15 +288,11 @@ namespace PtvApi
         ///     /v3/directions/route/{route_id}
         /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All routes of the specified route type that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<DirectionsResponse> ForDirectionAndTypeAsync(int directionId,
-            RouteTypes routeType, string token, string devid, string signature)
+        public Task<DirectionsResponse> ForDirectionAndTypeAsync(int directionId, RouteTypes routeType)
         {
-            return ForDirectionAndTypeAsync(directionId, routeType, token, devid, signature,
+            return ForDirectionAndTypeAsync(directionId, routeType, 
                 CancellationToken.None);
         }
 
@@ -357,16 +302,11 @@ namespace PtvApi
         ///     /v3/directions/route/{route_id}
         /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All routes of the specified route type that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DirectionsResponse ForDirectionAndType(int directionId, RouteTypes routeType, string token,
-            string devid, string signature)
+        public DirectionsResponse ForDirectionAndType(int directionId, RouteTypes routeType)
         {
-            return Task.Run(async () => await ForDirectionAndTypeAsync(directionId, routeType,
-                token, devid, signature, CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await ForDirectionAndTypeAsync(directionId, routeType, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all routes of a particular type for a direction of travel</summary>
@@ -375,30 +315,18 @@ namespace PtvApi
         ///     /v3/directions/route/{route_id}
         /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>All routes of the specified route type that travel in the specified direction.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<DirectionsResponse> ForDirectionAndTypeAsync(int directionId,
-            RouteTypes routeType, string token, string devid, string signature,
-            CancellationToken cancellationToken)
+        public async Task<DirectionsResponse> ForDirectionAndTypeAsync(int directionId, RouteTypes routeType, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/directions/{direction_id}/route_type/{route_type}?");
+            urlBuilder.Append("/v3/directions/{direction_id}/route_type/{route_type}?");
             urlBuilder.Replace("{direction_id}", Uri.EscapeDataString(directionId.ToString()));
             urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -487,16 +415,18 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
+        }
+
+        public DirectionsClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

@@ -10,21 +10,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class DeparturesClient
+    public partial class DeparturesClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View departures for all routes from a stop</summary>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
         /// <param name="stopId">Identifier of stop; values returned by Stops API</param>
@@ -44,9 +34,6 @@ namespace PtvApi
         ///     List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run,
         ///     direction, disruption
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>
         ///     Service departures from the specified stop for all routes of the specified route type; departures are
         ///     timetabled and real-time (if applicable).
@@ -55,10 +42,10 @@ namespace PtvApi
         public Task<DeparturesResponse> GetForStopAsync(RouteTypes routeType, int stopId,
             IEnumerable<int> platformNumbers, int? directionId, DateTime? dateUtc,
             int? maxResults, bool? gtfs, bool? includeCancelled,
-            IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
+            IEnumerable<ExpandableParameter> expand)
         {
             return GetForStopAsync(routeType, stopId, platformNumbers, directionId, dateUtc, maxResults, gtfs,
-                includeCancelled, expand, token, devid, signature, CancellationToken.None);
+                includeCancelled, expand, CancellationToken.None);
         }
 
         /// <summary>View departures for all routes from a stop</summary>
@@ -80,9 +67,6 @@ namespace PtvApi
         ///     List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run,
         ///     direction, disruption
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>
         ///     Service departures from the specified stop for all routes of the specified route type; departures are
         ///     timetabled and real-time (if applicable).
@@ -91,11 +75,10 @@ namespace PtvApi
         public DeparturesResponse GetForStop(RouteTypes routeType, int stopId,
             IEnumerable<int> platformNumbers, int? directionId, DateTime? dateUtc,
             int? maxResults, bool? gtfs, bool? includeCancelled,
-            IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
+            IEnumerable<ExpandableParameter> expand)
         {
             return Task.Run(async () => await GetForStopAsync(routeType, stopId,
-                platformNumbers, directionId, dateUtc, maxResults, gtfs, includeCancelled, expand, token, devid,
-                signature, CancellationToken.None)).GetAwaiter().GetResult();
+                platformNumbers, directionId, dateUtc, maxResults, gtfs, includeCancelled, expand, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View departures for all routes from a stop</summary>
@@ -117,9 +100,6 @@ namespace PtvApi
         ///     List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run,
         ///     direction, disruption
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
@@ -130,13 +110,11 @@ namespace PtvApi
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async Task<DeparturesResponse> GetForStopAsync(RouteTypes routeType, int stopId,
-            IEnumerable<int> platformNumbers, int? directionId, DateTime? dateUtc,
-            int? maxResults, bool? gtfs, bool? includeCancelled,
-            IEnumerable<ExpandableParameter> expand, string token, string devid, string signature,
-            CancellationToken cancellationToken)
+            IEnumerable<int> platformNumbers, int? directionId, DateTime? dateUtc, 
+            int? maxResults, bool? gtfs, bool? includeCancelled, IEnumerable<ExpandableParameter> expand, CancellationToken cancellationToken) 
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/departures/route_type/{route_type}/stop/{stop_id}?");
+            urlBuilder.Append("/v3/departures/route_type/{route_type}/stop/{stop_id}?");
             urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
             urlBuilder.Replace("{stop_id}", Uri.EscapeDataString(stopId.ToString()));
             if (platformNumbers != null)
@@ -161,13 +139,6 @@ namespace PtvApi
             if (expand != null)
                 foreach (var item in expand)
                     urlBuilder.Append("expand=").Append(Uri.EscapeDataString(item.ToString())).Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -188,8 +159,7 @@ namespace PtvApi
                         .ConfigureAwait(false);
                     try
                     {
-                        var headers =
-                            Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                        var headers = response.Headers.ToDictionary(h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -256,15 +226,13 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
         }
 
@@ -287,9 +255,6 @@ namespace PtvApi
         ///     List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run,
         ///     direction, disruption
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>
         ///     Service departures from the specified stop for the specified route (and route type); departures are timetabled
         ///     and real-time (if applicable).
@@ -297,11 +262,9 @@ namespace PtvApi
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public Task<DeparturesResponse> GetForStopAndRouteAsync(RouteTypes routeType,
             int stopId, string routeId, int? directionId, DateTime? dateUtc, int? maxResults, bool? gtfs,
-            bool? includeCancelled, IEnumerable<ExpandableParameter> expand, string token,
-            string devid, string signature)
+            bool? includeCancelled, IEnumerable<ExpandableParameter> expand)
         {
-            return GetForStopAndRouteAsync(routeType, stopId, routeId, directionId, dateUtc, maxResults, gtfs,
-                includeCancelled, expand, token, devid, signature, CancellationToken.None);
+            return GetForStopAndRouteAsync(routeType, stopId, routeId, directionId, dateUtc, maxResults, gtfs, includeCancelled, expand, CancellationToken.None);
         }
 
         /// <summary>View departures for a specific route from a stop</summary>
@@ -323,21 +286,16 @@ namespace PtvApi
         ///     List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run,
         ///     direction, disruption
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>
         ///     Service departures from the specified stop for the specified route (and route type); departures are timetabled
         ///     and real-time (if applicable).
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public DeparturesResponse GetForStopAndRoute(RouteTypes routeType, int stopId, string routeId,
-            int? directionId, DateTime? dateUtc, int? maxResults, bool? gtfs, bool? includeCancelled,
-            IEnumerable<ExpandableParameter> expand, string token, string devid, string signature)
+            int? directionId, DateTime? dateUtc, int? maxResults, bool? gtfs, bool? includeCancelled, IEnumerable<ExpandableParameter> expand)
         {
-            return Task.Run(async () => await GetForStopAndRouteAsync(routeType, stopId,
-                routeId, directionId, dateUtc, maxResults, gtfs, includeCancelled, expand, token, devid, signature,
-                CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await GetForStopAndRouteAsync(routeType, stopId, 
+                routeId, directionId, dateUtc, maxResults, gtfs, includeCancelled, expand, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View departures for a specific route from a stop</summary>
@@ -359,9 +317,6 @@ namespace PtvApi
         ///     List objects to be returned in full (i.e. expanded) - options include: all, stop, route, run,
         ///     direction, disruption
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
@@ -373,40 +328,26 @@ namespace PtvApi
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async Task<DeparturesResponse> GetForStopAndRouteAsync(RouteTypes routeType,
             int stopId, string routeId, int? directionId, DateTime? dateUtc, int? maxResults, bool? gtfs,
-            bool? includeCancelled, IEnumerable<ExpandableParameter> expand, string token,
-            string devid, string signature, CancellationToken cancellationToken)
+            bool? includeCancelled, IEnumerable<ExpandableParameter> expand, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl)
+            urlBuilder
                 .Append("/v3/departures/route_type/{route_type}/stop/{stop_id}/route/{route_id}?");
             urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
             urlBuilder.Replace("{stop_id}", Uri.EscapeDataString(stopId.ToString()));
             urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId));
             if (directionId != null)
-                urlBuilder.Append("direction_id=").Append(Uri.EscapeDataString(directionId.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("direction_id=").Append(Uri.EscapeDataString(directionId.Value.ToString())).Append("&");
             if (dateUtc != null)
-                urlBuilder.Append("date_utc=")
-                    .Append(Uri.EscapeDataString(
-                        dateUtc.Value.ToString("s", CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder.Append("date_utc=").Append(Uri.EscapeDataString(dateUtc.Value.ToString("s", CultureInfo.InvariantCulture))).Append("&");
             if (maxResults != null)
-                urlBuilder.Append("max_results=").Append(Uri.EscapeDataString(maxResults.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("max_results=").Append(Uri.EscapeDataString(maxResults.Value.ToString())).Append("&");
             if (gtfs != null)
                 urlBuilder.Append("gtfs=").Append(Uri.EscapeDataString(gtfs.Value.ToString())).Append("&");
             if (includeCancelled != null)
-                urlBuilder.Append("include_cancelled=")
-                    .Append(Uri.EscapeDataString(includeCancelled.Value.ToString())).Append("&");
+                urlBuilder.Append("include_cancelled=").Append(Uri.EscapeDataString(includeCancelled.Value.ToString())).Append("&");
             if (expand != null)
-                foreach (var item in expand)
-                    urlBuilder.Append("expand=").Append(Uri.EscapeDataString(item.ToString())).Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
+                urlBuilder.Append("expand=").Append(Uri.EscapeDataString(string.Join(",", expand))).Append("&");
 
             var client = new HttpClient();
             try
@@ -428,7 +369,7 @@ namespace PtvApi
                     try
                     {
                         var headers =
-                            Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                            response.Headers.ToDictionary(h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -495,16 +436,18 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
+        }
+
+        public DeparturesClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

@@ -9,59 +9,34 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class DisruptionsClient
+    public partial class DisruptionsClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View all disruptions for all route types</summary>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="disruptionStatus">Filter by status of disruption</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All disruption information for all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<DisruptionsResponse> GetAllDisruptionsAsync(
-            IEnumerable<RouteTypes> routeTypes, DisruptionStatus? disruptionStatus,
-            string token, string devid, string signature)
+        public Task<DisruptionsResponse> GetAllDisruptionsAsync(IEnumerable<RouteTypes> routeTypes, DisruptionStatus? disruptionStatus)
         {
-            return GetAllDisruptionsAsync(routeTypes, disruptionStatus, token, devid, signature,
-                CancellationToken.None);
+            return GetAllDisruptionsAsync(routeTypes, disruptionStatus, CancellationToken.None);
         }
 
         /// <summary>View all disruptions for all route types</summary>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="disruptionStatus">Filter by status of disruption</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All disruption information for all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DisruptionsResponse GetAllDisruptions(IEnumerable<RouteTypes> routeTypes,
-            DisruptionStatus? disruptionStatus, string token, string devid, string signature)
+        public DisruptionsResponse GetAllDisruptions(IEnumerable<RouteTypes> routeTypes, DisruptionStatus? disruptionStatus)
         {
-            return Task.Run(async () => await GetAllDisruptionsAsync(routeTypes,
-                    disruptionStatus, token, devid, signature, CancellationToken.None)).GetAwaiter()
-                .GetResult();
+            return Task.Run(async () => await GetAllDisruptionsAsync(routeTypes, disruptionStatus,  CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all disruptions for all route types</summary>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="disruptionStatus">Filter by status of disruption</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
@@ -69,25 +44,15 @@ namespace PtvApi
         /// <returns>All disruption information for all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async Task<DisruptionsResponse> GetAllDisruptionsAsync(
-            IEnumerable<RouteTypes> routeTypes, DisruptionStatus? disruptionStatus,
-            string token, string devid, string signature, CancellationToken cancellationToken)
+            IEnumerable<RouteTypes> routeTypes, DisruptionStatus? disruptionStatus, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/disruptions?");
+            urlBuilder.Append("/v3/disruptions?");
             if (routeTypes != null)
-                foreach (var item in routeTypes)
-                    urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(item.ToString()))
-                        .Append("&");
+                urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(string.Join(",", routeTypes))).Append("&");
             if (disruptionStatus != null)
                 urlBuilder.Append("disruption_status=")
                     .Append(Uri.EscapeDataString(disruptionStatus.Value.ToString())).Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -189,64 +154,41 @@ namespace PtvApi
         /// <summary>View all disruptions for a particular route</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
         /// <param name="disruptionStatus">Filter by status of disruption</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All disruption information (if any exists) for the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<DisruptionsResponse> GetDisruptionsByRouteAsync(int routeId,
-            DisruptionStatus2? disruptionStatus, string token, string devid, string signature)
+        public Task<DisruptionsResponse> GetDisruptionsByRouteAsync(int routeId, DisruptionStatus2? disruptionStatus)
         {
-            return GetDisruptionsByRouteAsync(routeId, disruptionStatus, token, devid, signature,
+            return GetDisruptionsByRouteAsync(routeId, disruptionStatus, 
                 CancellationToken.None);
         }
 
         /// <summary>View all disruptions for a particular route</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
         /// <param name="disruptionStatus">Filter by status of disruption</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All disruption information (if any exists) for the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DisruptionsResponse GetDisruptionsByRoute(int routeId, DisruptionStatus2? disruptionStatus,
-            string token, string devid, string signature)
+        public DisruptionsResponse GetDisruptionsByRoute(int routeId, DisruptionStatus2? disruptionStatus)
         {
-            return Task.Run(async () => await GetDisruptionsByRouteAsync(routeId,
-                    disruptionStatus, token, devid, signature, CancellationToken.None)).GetAwaiter()
-                .GetResult();
+            return Task.Run(async () => await GetDisruptionsByRouteAsync(routeId, disruptionStatus, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all disruptions for a particular route</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes</param>
         /// <param name="disruptionStatus">Filter by status of disruption</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>All disruption information (if any exists) for the specified route.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<DisruptionsResponse> GetDisruptionsByRouteAsync(int routeId,
-            DisruptionStatus2? disruptionStatus, string token, string devid, string signature,
-            CancellationToken cancellationToken)
+        public async Task<DisruptionsResponse> GetDisruptionsByRouteAsync(int routeId, DisruptionStatus2? disruptionStatus, CancellationToken cancellationToken)
         {
 
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/disruptions/route/{route_id}?");
+            urlBuilder.Append("/v3/disruptions/route/{route_id}?");
             urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId.ToString()));
             if (disruptionStatus != null)
-                urlBuilder.Append("disruption_status=")
-                    .Append(Uri.EscapeDataString(disruptionStatus.Value.ToString())).Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
+                urlBuilder.Append("disruption_status=").Append(Uri.EscapeDataString(disruptionStatus.Value.ToString())).Append("&");
 
             var client = new HttpClient();
             try
@@ -350,16 +292,11 @@ namespace PtvApi
         ///     Identifier of disruption; values returned by Disruptions API - /v3/disruptions OR
         ///     /v3/disruptions/route/{route_id}
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>Disruption information for the specified disruption ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<DisruptionResponse> GetDisruptionByIdAsync(long disruptionId, string token,
-            string devid, string signature)
+        public Task<DisruptionResponse> GetDisruptionByIdAsync(long disruptionId)
         {
-            return GetDisruptionByIdAsync(disruptionId, token, devid, signature,
-                CancellationToken.None);
+            return GetDisruptionByIdAsync(disruptionId, CancellationToken.None);
         }
 
         /// <summary>View a specific disruption</summary>
@@ -367,15 +304,11 @@ namespace PtvApi
         ///     Identifier of disruption; values returned by Disruptions API - /v3/disruptions OR
         ///     /v3/disruptions/route/{route_id}
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>Disruption information for the specified disruption ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public DisruptionResponse GetDisruptionById(long disruptionId, string token, string devid, string signature)
+        public DisruptionResponse GetDisruptionById(long disruptionId)
         {
-            return Task.Run(async () => await GetDisruptionByIdAsync(disruptionId, token, devid,
-                signature, CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await GetDisruptionByIdAsync(disruptionId, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View a specific disruption</summary>
@@ -383,28 +316,17 @@ namespace PtvApi
         ///     Identifier of disruption; values returned by Disruptions API - /v3/disruptions OR
         ///     /v3/disruptions/route/{route_id}
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>Disruption information for the specified disruption ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<DisruptionResponse> GetDisruptionByIdAsync(long disruptionId,
-            string token, string devid, string signature, CancellationToken cancellationToken)
+        public async Task<DisruptionResponse> GetDisruptionByIdAsync(long disruptionId, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/disruptions/{disruption_id}?");
+            urlBuilder.Append("/v3/disruptions/{disruption_id}?");
             urlBuilder.Replace("{disruption_id}", Uri.EscapeDataString(disruptionId.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -500,6 +422,10 @@ namespace PtvApi
             {
                 client?.Dispose();
             }
+        }
+
+        public DisruptionsClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

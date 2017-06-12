@@ -4,7 +4,7 @@
 // </auto-generated>
 //----------------------
 
-namespace PtvApi
+namespace ptv_api
 {
 #pragma warning disable // Disable all warnings
 

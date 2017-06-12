@@ -2,7 +2,7 @@ using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
     public class SwaggerException : Exception

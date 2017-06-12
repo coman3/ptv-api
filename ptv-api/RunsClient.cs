@@ -8,72 +8,42 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class RunsClient
+    public partial class RunsClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View all trip/service runs for a specific route ID</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes.</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All trip/service run details for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<RunsResponse> ForRouteAsync(int routeId, string token, string devid,
-            string signature)
+        public Task<RunsResponse> ForRouteAsync(int routeId)
         {
-            return ForRouteAsync(routeId, token, devid, signature, CancellationToken.None);
+            return ForRouteAsync(routeId, CancellationToken.None);
         }
 
         /// <summary>View all trip/service runs for a specific route ID</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes.</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All trip/service run details for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RunsResponse ForRoute(int routeId, string token, string devid, string signature)
+        public RunsResponse ForRoute(int routeId)
         {
-            return Task
-                .Run(async () => await ForRouteAsync(routeId, token, devid, signature,
-                    CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await ForRouteAsync(routeId, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all trip/service runs for a specific route ID</summary>
         /// <param name="routeId">Identifier of route; values returned by Routes API - v3/routes.</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>All trip/service run details for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<RunsResponse> ForRouteAsync(int routeId, string token, string devid,
-            string signature, CancellationToken cancellationToken)
+        public async Task<RunsResponse> ForRouteAsync(int routeId, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/runs/route/{route_id}?");
+            urlBuilder.Append("/v3/runs/route/{route_id}?");
             urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -175,15 +145,11 @@ namespace PtvApi
         ///     Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures
         ///     API
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All trip/service run details for the specified run ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<RunsResponse> ForRunAsync(int runId, string token, string devid,
-            string signature)
+        public Task<RunsResponse> ForRunAsync(int runId)
         {
-            return ForRunAsync(runId, token, devid, signature, CancellationToken.None);
+            return ForRunAsync(runId, CancellationToken.None);
         }
 
         /// <summary>View all trip/service runs for a specific run ID</summary>
@@ -191,16 +157,11 @@ namespace PtvApi
         ///     Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures
         ///     API
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>All trip/service run details for the specified run ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RunsResponse ForRun(int runId, string token, string devid, string signature)
+        public RunsResponse ForRun(int runId)
         {
-            return Task
-                .Run(async () => await ForRunAsync(runId, token, devid, signature,
-                    CancellationToken.None)).GetAwaiter().GetResult();
+            return Task .Run(async () => await ForRunAsync(runId, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View all trip/service runs for a specific run ID</summary>
@@ -208,28 +169,17 @@ namespace PtvApi
         ///     Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures
         ///     API
         /// </param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>All trip/service run details for the specified run ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<RunsResponse> ForRunAsync(int runId, string token, string devid,
-            string signature, CancellationToken cancellationToken)
+        public async Task<RunsResponse> ForRunAsync(int runId, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/runs/{run_id}?");
+            urlBuilder.Append("/v3/runs/{run_id}?");
             urlBuilder.Replace("{run_id}", Uri.EscapeDataString(runId.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -332,16 +282,11 @@ namespace PtvApi
         ///     API
         /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>The trip/service run details for the run ID and route type specified.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<RunResponse> ForRunAndRouteTypeAsync(int runId, RouteTypes routeType,
-            string token, string devid, string signature)
+        public Task<RunResponse> ForRunAndRouteTypeAsync(int runId, RouteTypes routeType)
         {
-            return ForRunAndRouteTypeAsync(runId, routeType, token, devid, signature,
-                CancellationToken.None);
+            return ForRunAndRouteTypeAsync(runId, routeType, CancellationToken.None);
         }
 
         /// <summary>View the trip/service run for a specific run ID and route type</summary>
@@ -350,16 +295,11 @@ namespace PtvApi
         ///     API
         /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>The trip/service run details for the run ID and route type specified.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RunResponse ForRunAndRouteType(int runId, RouteTypes routeType, string token, string devid,
-            string signature)
+        public RunResponse ForRunAndRouteType(int runId, RouteTypes routeType)
         {
-            return Task.Run(async () => await ForRunAndRouteTypeAsync(runId, routeType, token,
-                devid, signature, CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await ForRunAndRouteTypeAsync(runId, routeType, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View the trip/service run for a specific run ID and route type</summary>
@@ -368,30 +308,18 @@ namespace PtvApi
         ///     API
         /// </param>
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>The trip/service run details for the run ID and route type specified.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<RunResponse> ForRunAndRouteTypeAsync(int runId,
-            RouteTypes routeType, string token, string devid, string signature,
-            CancellationToken cancellationToken)
+        public async Task<RunResponse> ForRunAndRouteTypeAsync(int runId, RouteTypes routeType, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/runs/{run_id}/route_type/{route_type}?");
+            urlBuilder.Append("/v3/runs/{run_id}/route_type/{route_type}?");
             urlBuilder.Replace("{run_id}", Uri.EscapeDataString(runId.ToString()));
             urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -486,6 +414,10 @@ namespace PtvApi
             {
                 client?.Dispose();
             }
+        }
+
+        public RunsClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

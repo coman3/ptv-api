@@ -9,58 +9,34 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class RoutesClient
+    public partial class RoutesClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View route names and numbers for all routes</summary>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="routeName">Filter by name  of route (accepts partial route name matches)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<RouteResponse> OneOrMoreRoutesAsync(
-            IEnumerable<RouteTypes> routeTypes, string routeName, string token,
-            string devid, string signature)
+        public Task<RouteResponse> OneOrMoreRoutesAsync(IEnumerable<RouteTypes> routeTypes, string routeName)
         {
-            return OneOrMoreRoutesAsync(routeTypes, routeName, token, devid, signature,
-                CancellationToken.None);
+            return OneOrMoreRoutesAsync(routeTypes, routeName, CancellationToken.None);
         }
 
         /// <summary>View route names and numbers for all routes</summary>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="routeName">Filter by name  of route (accepts partial route name matches)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RouteResponse OneOrMoreRoutes(IEnumerable<RouteTypes> routeTypes,
-            string routeName, string token, string devid, string signature)
+        public RouteResponse OneOrMoreRoutes(IEnumerable<RouteTypes> routeTypes, string routeName)
         {
-            return Task.Run(async () => await OneOrMoreRoutesAsync(routeTypes, routeName,
-                token, devid, signature, CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await OneOrMoreRoutesAsync(routeTypes, routeName, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View route names and numbers for all routes</summary>
         /// <param name="routeTypes">Filter by route_type; values returned via RouteTypes API</param>
         /// <param name="routeName">Filter by name  of route (accepts partial route name matches)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
@@ -68,25 +44,14 @@ namespace PtvApi
         /// <returns>Route names and numbers for all routes of all route types.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public async Task<RouteResponse> OneOrMoreRoutesAsync(
-            IEnumerable<RouteTypes> routeTypes, string routeName, string token,
-            string devid, string signature, CancellationToken cancellationToken)
+            IEnumerable<RouteTypes> routeTypes, string routeName, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/routes?");
+            urlBuilder.Append("/v3/routes?");
             if (routeTypes != null)
-                foreach (var item in routeTypes)
-                    urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(item.ToString()))
-                        .Append("&");
+                    urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(string.Join(",", routeTypes))).Append("&");
             if (routeName != null)
-                urlBuilder.Append("route_name=").Append(Uri.EscapeDataString(routeName))
-                    .Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
+                urlBuilder.Append("route_name=").Append(Uri.EscapeDataString(routeName)).Append("&");
 
             var client = new HttpClient();
             try
@@ -186,56 +151,36 @@ namespace PtvApi
 
         /// <summary>View route name and number for specific route ID</summary>
         /// <param name="routeId">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>The route name and number for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<RouteResponse> RouteFromIdAsync(int routeId, string token, string devid,
-            string signature)
+        public Task<RouteResponse> RouteFromIdAsync(int routeId)
         {
-            return RouteFromIdAsync(routeId, token, devid, signature, CancellationToken.None);
+            return RouteFromIdAsync(routeId, CancellationToken.None);
         }
 
         /// <summary>View route name and number for specific route ID</summary>
         /// <param name="routeId">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>The route name and number for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public RouteResponse RouteFromId(int routeId, string token, string devid, string signature)
+        public RouteResponse RouteFromId(int routeId)
         {
-            return Task
-                .Run(async () => await RouteFromIdAsync(routeId, token, devid, signature,
-                    CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await RouteFromIdAsync(routeId, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View route name and number for specific route ID</summary>
         /// <param name="routeId">Identifier of route; values returned by Departures, Directions and Disruptions APIs</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>The route name and number for the specified route ID.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<RouteResponse> RouteFromIdAsync(int routeId, string token,
-            string devid, string signature, CancellationToken cancellationToken)
+        public async Task<RouteResponse> RouteFromIdAsync(int routeId, CancellationToken cancellationToken)
         {
 
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/routes/{route_id}?");
+            urlBuilder.Append("/v3/routes/{route_id}?");
             urlBuilder.Replace("{route_id}", Uri.EscapeDataString(routeId.ToString()));
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
 
             var client = new HttpClient();
             try
@@ -330,6 +275,10 @@ namespace PtvApi
             {
                 client?.Dispose();
             }
+        }
+
+        public RoutesClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

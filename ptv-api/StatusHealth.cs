@@ -1,6 +1,6 @@
 using System.CodeDom.Compiler;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public enum StatusHealth

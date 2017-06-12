@@ -9,21 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class SearchClient
+    public class SearchClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View stops, routes and myki ticket outlets that match the search term</summary>
         /// <param name="searchTerm">
         ///     Search text (note: if search text is numeric and/or less than 3 characters, the API will only
@@ -41,21 +31,16 @@ namespace PtvApi
         /// </param>
         /// <param name="includeAddresses">Placeholder for future development; currently unavailable</param>
         /// <param name="includeOutlets">Indicates if outlets will be returned in response (default = true)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>
         ///     Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by
         ///     route_type by default).
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<SearchResult> SearchAsync(string searchTerm,
-            IEnumerable<RouteTypes> routeTypes, double? latitude, double? longitude,
-            double? maxDistance, bool? includeAddresses, bool? includeOutlets, string token, string devid,
-            string signature)
+        public Task<SearchResult> SearchAsync(string searchTerm, IEnumerable<RouteTypes> routeTypes, double? latitude, double? longitude, 
+            double? maxDistance, bool? includeAddresses, bool? includeOutlets)
         {
             return SearchAsync(searchTerm, routeTypes, latitude, longitude, maxDistance, includeAddresses,
-                includeOutlets, token, devid, signature, CancellationToken.None);
+                includeOutlets,  CancellationToken.None);
         }
 
         /// <summary>View stops, routes and myki ticket outlets that match the search term</summary>
@@ -75,20 +60,15 @@ namespace PtvApi
         /// </param>
         /// <param name="includeAddresses">Placeholder for future development; currently unavailable</param>
         /// <param name="includeOutlets">Indicates if outlets will be returned in response (default = true)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>
         ///     Stops, routes and myki ticket outlets that contain the search term (note: stops and routes are ordered by
         ///     route_type by default).
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public SearchResult Search(string searchTerm, IEnumerable<RouteTypes> routeTypes,
-            double? latitude, double? longitude, double? maxDistance, bool? includeAddresses, bool? includeOutlets,
-            string token, string devid, string signature)
+            double? latitude, double? longitude, double? maxDistance, bool? includeAddresses, bool? includeOutlets)
         {
-            return Task.Run(async () => await SearchAsync(searchTerm, routeTypes, latitude,
-                longitude, maxDistance, includeAddresses, includeOutlets, token, devid, signature,
+            return Task.Run(async () => await SearchAsync(searchTerm, routeTypes, latitude, longitude, maxDistance, includeAddresses, includeOutlets, 
                 CancellationToken.None)).GetAwaiter().GetResult();
         }
 
@@ -109,9 +89,6 @@ namespace PtvApi
         /// </param>
         /// <param name="includeAddresses">Placeholder for future development; currently unavailable</param>
         /// <param name="includeOutlets">Indicates if outlets will be returned in response (default = true)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
@@ -121,43 +98,27 @@ namespace PtvApi
         ///     route_type by default).
         /// </returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<SearchResult> SearchAsync(string searchTerm,
-            IEnumerable<RouteTypes> routeTypes, double? latitude, double? longitude,
-            double? maxDistance, bool? includeAddresses, bool? includeOutlets, string token, string devid,
-            string signature, CancellationToken cancellationToken)
+        public async Task<SearchResult> SearchAsync(string searchTerm, IEnumerable<RouteTypes> routeTypes, double? latitude, double? longitude,
+            double? maxDistance, bool? includeAddresses, bool? includeOutlets, CancellationToken cancellationToken)
         {
             if (searchTerm == null)
-                throw new ArgumentNullException("searchTerm");
+                throw new ArgumentNullException(nameof(searchTerm));
 
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/search/{search_term}?");
+            urlBuilder.Append("/v3/search/{search_term}?");
             urlBuilder.Replace("{search_term}", Uri.EscapeDataString(searchTerm));
             if (routeTypes != null)
-                foreach (var item in routeTypes)
-                    urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(item.ToString()))
-                        .Append("&");
+                urlBuilder.Append("route_types=").Append(Uri.EscapeDataString(string.Join(",", routeTypes))).Append("&");
             if (latitude != null)
-                urlBuilder.Append("latitude=").Append(Uri.EscapeDataString(latitude.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("latitude=").Append(Uri.EscapeDataString(latitude.Value.ToString())).Append("&");
             if (longitude != null)
-                urlBuilder.Append("longitude=").Append(Uri.EscapeDataString(longitude.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("longitude=").Append(Uri.EscapeDataString(longitude.Value.ToString())).Append("&");
             if (maxDistance != null)
-                urlBuilder.Append("max_distance=").Append(Uri.EscapeDataString(maxDistance.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("max_distance=").Append(Uri.EscapeDataString(maxDistance.Value.ToString())).Append("&");
             if (includeAddresses != null)
-                urlBuilder.Append("include_addresses=")
-                    .Append(Uri.EscapeDataString(includeAddresses.Value.ToString())).Append("&");
+                urlBuilder.Append("include_addresses=").Append(Uri.EscapeDataString(includeAddresses.Value.ToString())).Append("&");
             if (includeOutlets != null)
-                urlBuilder.Append("include_outlets=")
-                    .Append(Uri.EscapeDataString(includeOutlets.Value.ToString())).Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
+                urlBuilder.Append("include_outlets=").Append(Uri.EscapeDataString(includeOutlets.Value.ToString())).Append("&");
 
             var client = new HttpClient();
             try
@@ -170,7 +131,7 @@ namespace PtvApi
 
                     PrepareRequest(client, request, urlBuilder);
                     var url = urlBuilder.ToString();
-                    request.RequestUri = new Uri(url, UriKind.RelativeOrAbsolute);
+                    request.RequestUri = new Uri(BaseUrl + url, UriKind.RelativeOrAbsolute);
                     PrepareRequest(client, request, url);
 
                     var response = await client.SendAsync(request,
@@ -179,7 +140,7 @@ namespace PtvApi
                     try
                     {
                         var headers =
-                            Enumerable.ToDictionary(response.Headers, h => h.Key, h => h.Value);
+                            response.Headers.ToDictionary(h => h.Key, h => h.Value);
                         foreach (var item in response.Content.Headers)
                             headers[item.Key] = item.Value;
 
@@ -245,16 +206,18 @@ namespace PtvApi
                     }
                     finally
                     {
-                        if (response != null)
-                            response.Dispose();
+                        response?.Dispose();
                     }
                 }
             }
             finally
             {
-                if (client != null)
-                    client.Dispose();
+                client?.Dispose();
             }
+        }
+
+        public SearchClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

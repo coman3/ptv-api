@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public class DeparturesBroadParameters : INotifyPropertyChanged

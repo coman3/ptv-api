@@ -9,21 +9,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NSwag", "10.6.6324.28497")]
-    public partial class PatternsClient
+    public partial class PatternsClient : PtvClient
     {
-        public string BaseUrl { get; set; } = "http://timetableapi.ptv.vic.gov.au";
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            string url);
-
-        partial void PrepareRequest(HttpClient client, HttpRequestMessage request,
-            StringBuilder urlBuilder);
-
-        partial void ProcessResponse(HttpClient client, HttpResponseMessage response);
-
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
         /// <param name="runId">
         ///     Identifier of a trip/service run; values returned by Runs API - /v3/route/{route_id} and Departures
@@ -32,16 +22,11 @@ namespace PtvApi
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
         /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
         /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public Task<StoppingPattern> GetPatternByRunAsync(int runId, RouteTypes routeType,
-            int? stopId, DateTime? dateUtc, string token, string devid, string signature)
+        public Task<StoppingPattern> GetPatternByRunAsync(int runId, RouteTypes routeType, int? stopId, DateTime? dateUtc)
         {
-            return GetPatternByRunAsync(runId, routeType, stopId, dateUtc, token, devid, signature,
-                CancellationToken.None);
+            return GetPatternByRunAsync(runId, routeType, stopId, dateUtc, CancellationToken.None);
         }
 
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
@@ -52,16 +37,11 @@ namespace PtvApi
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
         /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
         /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public StoppingPattern GetPatternByRun(int runId, RouteTypes routeType, int? stopId,
-            DateTime? dateUtc, string token, string devid, string signature)
+        public StoppingPattern GetPatternByRun(int runId, RouteTypes routeType, int? stopId, DateTime? dateUtc)
         {
-            return Task.Run(async () => await GetPatternByRunAsync(runId, routeType, stopId,
-                dateUtc, token, devid, signature, CancellationToken.None)).GetAwaiter().GetResult();
+            return Task.Run(async () => await GetPatternByRunAsync(runId, routeType, stopId, dateUtc, CancellationToken.None)).GetAwaiter().GetResult();
         }
 
         /// <summary>View the stopping pattern for a specific trip/service run</summary>
@@ -72,37 +52,22 @@ namespace PtvApi
         /// <param name="routeType">Number identifying transport mode; values returned via RouteTypes API</param>
         /// <param name="stopId">Filter by stop_id; values returned by Stops API</param>
         /// <param name="dateUtc">Filter by the date and time of the request (ISO 8601 UTC format)</param>
-        /// <param name="token">Please ignore</param>
-        /// <param name="devid">Your developer id</param>
-        /// <param name="signature">Authentication signature for request</param>
         /// <param name="cancellationToken">
         ///     A cancellation token that can be used by other objects or threads to receive notice of
         ///     cancellation.
         /// </param>
         /// <returns>The stopping pattern of the specified trip/service run and route type.</returns>
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
-        public async Task<StoppingPattern> GetPatternByRunAsync(int runId,
-            RouteTypes routeType, int? stopId, DateTime? dateUtc, string token, string devid,
-            string signature, CancellationToken cancellationToken)
+        public async Task<StoppingPattern> GetPatternByRunAsync(int runId, RouteTypes routeType, int? stopId, DateTime? dateUtc, CancellationToken cancellationToken)
         {
             var urlBuilder = new StringBuilder();
-            urlBuilder.Append(BaseUrl).Append("/v3/pattern/run/{run_id}/route_type/{route_type}?");
+            urlBuilder.Append("/v3/pattern/run/{run_id}/route_type/{route_type}?");
             urlBuilder.Replace("{run_id}", Uri.EscapeDataString(runId.ToString()));
             urlBuilder.Replace("{route_type}", Uri.EscapeDataString(routeType.ToString()));
             if (stopId != null)
-                urlBuilder.Append("stop_id=").Append(Uri.EscapeDataString(stopId.Value.ToString()))
-                    .Append("&");
+                urlBuilder.Append("stop_id=").Append(Uri.EscapeDataString(stopId.Value.ToString())).Append("&");
             if (dateUtc != null)
-                urlBuilder.Append("date_utc=")
-                    .Append(Uri.EscapeDataString(
-                        dateUtc.Value.ToString("s", CultureInfo.InvariantCulture))).Append("&");
-            if (token != null)
-                urlBuilder.Append("token=").Append(Uri.EscapeDataString(token)).Append("&");
-            if (devid != null)
-                urlBuilder.Append("devid=").Append(Uri.EscapeDataString(devid)).Append("&");
-            if (signature != null)
-                urlBuilder.Append("signature=").Append(Uri.EscapeDataString(signature)).Append("&");
-            urlBuilder.Length--;
+                urlBuilder.Append("date_utc=").Append(Uri.EscapeDataString(dateUtc.Value.ToString("s", CultureInfo.InvariantCulture))).Append("&");
 
             var client = new HttpClient();
             try
@@ -198,6 +163,10 @@ namespace PtvApi
             {
                 client?.Dispose();
             }
+        }
+
+        public PatternsClient(string devid, string devKey) : base(devid, devKey)
+        {
         }
     }
 }

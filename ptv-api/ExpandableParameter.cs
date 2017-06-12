@@ -1,7 +1,7 @@
 using System.CodeDom.Compiler;
 using System.Runtime.Serialization;
 
-namespace PtvApi
+namespace ptv_api
 {
     [GeneratedCode("NJsonSchema", "8.33.6323.36213")]
     public enum ExpandableParameter
