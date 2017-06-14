@@ -2,7 +2,7 @@
 {
     public static partial class Data
     {
-        private const string _developerId = "";
-        private const string _developerKey = "";
+        private const string _developerId = "API_ID";
+        private const string _developerKey = "API_KEY";
     }
 }
