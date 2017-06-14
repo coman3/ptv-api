@@ -164,7 +164,7 @@ namespace ptv_api.Tests
         [TestMethod]
         public void StopDetails()
         {
-            var result = new PtvApi(Data.DeveloperId, Data.DeveloperKey).StopsClient.StopDetails(3, RouteTypes.Train, null, null, null);
+            var result = new PtvApi(Data.DeveloperId, Data.DeveloperKey).StopsClient.StopDetails(1071, RouteTypes.Train, null, null, null);
             Assert.IsNotNull(result);
         }
 
