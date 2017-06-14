@@ -2,6 +2,7 @@
 
 namespace ptv_api.Tests
 {
+    [TestClass]
     public class DataTest
     {
         [TestMethod]

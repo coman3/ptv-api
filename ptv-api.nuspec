@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>ptv-api</id>
+        <version>@version</version>
+        <title>Public Transport Victoria API</title>
+        <authors>coman3</authors>
+        <owners>coman3</owners>
+        <licenseUrl>https://github.com/coman3/ptv-api</licenseUrl>
+        <projectUrl>https://github.com/coman3/ptv-api</projectUrl>
+        <iconUrl>http://thegreatergroup.com/wp-content/uploads/unnamed.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>The API has been created to provide public transport timetable data to the public in the most dynamic and efficient way. By providing an API, PTV hopes to maximise both the opportunities for re-use of public transport data and the potential for innovation.
+This library is not officially supported by PTV, and is a sole project developed by Lachlan van der Velden (coman3). Any Issues, or problems must be reported to the project page: https://github.com/coman3/ptv-api 
+For use in Victoria, Australia only.
+You will need an api key from PTV to use this library, you can get one of these from: https://www.ptv.vic.gov.au/about-ptv/ptv-data-and-reports/digital-products/ptv-timetable-api/ under “Registering for an API key”.</description>
+        <copyright>Lachlan van der Velden</copyright>
+        <language>en-AU</language>
+        <tags>public, transport, api, victoria, portable</tags>
+        <dependencies>
+            <dependency id="Newtonsoft.Json" version="10.0.2" />
+            <dependency id="PCLCrypto" version="2.0.147" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="ptv-api\bin\Release\ptv-api.dll" target="lib\MonoAndroid\ptv-api.dll" />
+        <file src="ptv-api\bin\Release\ptv-api.dll" target="lib\MonoTouch\ptv-api.dll" />
+        <file src="ptv-api\bin\Release\ptv-api.dll" target="lib\netcore45\ptv-api.dll" />
+        <file src="ptv-api\bin\Release\ptv-api.dll" target="lib\portable-net45+wp7+win8\ptv-api.dll" />
+        <file src="ptv-api\bin\Release\ptv-api.dll" target="lib\xamarinios\ptv-api.dll" />
+    </files>
+</package>
