@@ -66,11 +66,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmptyData.cs" />
+    <Compile Include="ClientTests.cs" />
     <Compile Include="Data.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="EmptyData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnitTest2.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -91,4 +90,11 @@
     <Error Condition="!Exists('..\packages\MSTest.TestAdapter.1.1.11\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.1.1.11\build\net45\MSTest.TestAdapter.targets'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.1.1.11\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.1.1.11\build\net45\MSTest.TestAdapter.targets')" />
+  <PropertyGroup>
+    <PreBuildEvent>if not exist "$(ProjectDir)\Data.cs" (
+copy "$(ProjectDir)\DataTemplate.cs" "$(ProjectDir)\Data.cs"
+echo "Please enter api keys into Data.cs"
+exit /b 1
+)</PreBuildEvent>
+  </PropertyGroup>
 </Project>
